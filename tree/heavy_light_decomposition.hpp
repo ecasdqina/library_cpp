@@ -1,10 +1,13 @@
 #include <cstdint>
+#include <functional>
 #include <vector>
 
 class heavy_light_decomposition {
 public:
 	using i32 = std::int_fast32_t;
 	using u32 = std::uint_fast32_t;
+
+	using processor = std::function<void(u32, u32)>;
 
 	std::vector<std::vector<u32>> g;
 	std::vector<u32> edge_u, edge_v, size, et, in, out, head;
@@ -39,8 +42,7 @@ private:
 		out[v] = et.size();
 	}
 
-	template<class F>
-	void path(i32 x, i32 y, F& process, bool edge) const {
+	void path(i32 x, i32 y, const processor& process, bool edge) const {
 		std::vector<std::pair<u32, u32>> l, r;
 		while(true) {
 			if(in[x] > in[y]) {
@@ -59,8 +61,7 @@ private:
 		for(auto e: l) process(e.first, e.second);
 		for(auto e: r) process(e.first, e.second);
 	}
-	template<class F>
-	void subtree(u32 v, F& process, bool edge) const {
+	void subtree(u32 v, const processor& process, bool edge) const {
 		process(in[v] + !!edge, out[v]);
 	}
 
@@ -92,18 +93,18 @@ public:
 	}
 	
 	template<class F>
-	void path_node(u32 x, u32 y, const F& process) const { path(x, y, process, false); }
+	void path_node(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
 	template<class F>
-	void path_edge(u32 x, u32 y, const F& process) const { path(x, y, process, true); }
+	void path_edge(u32 x, u32 y, const processor& process) const { path(x, y, process, true); }
 	template<class F>
-	void path(u32 x, u32 y, const F& process) const { path(x, y, process, false); }
+	void path(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
 
 	template<class F>
-	void subtree_node(u32 v, const F& process) const { subtree(v, process, false); }
+	void subtree_node(u32 v, const processor& process) const { subtree(v, process, false); }
 	template<class F>
-	void subtree_edge(u32 v, const F& process) const { subtree(v, process, true); }
+	void subtree_edge(u32 v, const processor& process) const { subtree(v, process, true); }
 	template<class F>
-	void subtree(u32 v, const F& process) const { subtree(v, process, false); }
+	void subtree(u32 v, const processor& process) const { subtree(v, process, false); }
 
 	u32 index_node(u32 v) const { return in[v]; };
 	u32 index_edge(u32 x, u32 y) const { return std::max(in[x], in[y]); };
