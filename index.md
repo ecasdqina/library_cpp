@@ -34,6 +34,13 @@ layout: default
 
 ## Library Files
 
+<div id="c8f6850ec2ec3fb32f203c1f4e3c2fd2"></div>
+
+### data_structure
+
+* :heavy_check_mark: <a href="library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
+
+
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
 
 ### tree
@@ -44,6 +51,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.test.cpp.html">test/yosupo/point_add_range_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
 
 
