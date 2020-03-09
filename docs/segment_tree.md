@@ -16,7 +16,7 @@
 - operator[k]
 	- $\Theta(1)$
 - search(l, f)
-	- $\max\lbrace x | f(fold(l, x)) = true, l \le x \le N \rbrace$ を返します．
+	- $\max\lbrace x \vert f(fold(l, x)) = true, l \le x \le N \rbrace$ を返します．
 	- $\Theta(\log N)$
 
 ## monoid
