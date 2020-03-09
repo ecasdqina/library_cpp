@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
 #include <stdio.h>
 #include <algorithm>
