@@ -38,11 +38,11 @@ public:
 	segment_tree(size_type size)
 		: size_(size) {
 		height_ = get_height(size);
-		data.assign(base_size() << 1, Monoid::identity);
+		data.assign(base_size() << 1, T{});
 	}
 	T fold(size_type left, size_type right) {
-		T l_value = Monoid::identity;
-		T r_value = Monoid::identity;
+		T l_value = T{};
+		T r_value = T{};
 
 		for(left += base_size(), right += base_size();
 			left < right;
@@ -63,7 +63,7 @@ public:
 	void change(size_type index, const T& value) { update(index, [&value](const T& x) { return value; }); }
 	
 	const size_type search(size_type left, const checker& check) {
-		T val = Monoid::identity;
+		T val = T{};
 		size_type k = left + base_size();
 		while(true) {
 			if(check(Monoid::operation(val, data[k]))) {
@@ -93,6 +93,5 @@ template<class T>
 struct monoid {
 	using value_type = T;
 
-	static constexpr value_type operation(const T& a, const T& b) noexcept { return a + b; };
-	static constexpr value_type identity{};
+	static value_type operation(const value_type& a, const value_type& b) { return a + b; };
 };
