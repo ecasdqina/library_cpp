@@ -95,3 +95,5 @@ struct monoid {
 
 	static value_type operation(const value_type& a, const value_type& b) { return a + b; };
 };
+
+// @docs docs/segment_tree.md
