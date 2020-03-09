@@ -92,18 +92,12 @@ public:
 		}
 	}
 	
-	template<class F>
 	void path_node(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
-	template<class F>
 	void path_edge(u32 x, u32 y, const processor& process) const { path(x, y, process, true); }
-	template<class F>
 	void path(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
 
-	template<class F>
 	void subtree_node(u32 v, const processor& process) const { subtree(v, process, false); }
-	template<class F>
 	void subtree_edge(u32 v, const processor& process) const { subtree(v, process, true); }
-	template<class F>
 	void subtree(u32 v, const processor& process) const { subtree(v, process, false); }
 
 	u32 index_node(u32 v) const { return in[v]; };
