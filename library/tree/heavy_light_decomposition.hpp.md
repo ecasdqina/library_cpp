@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: tree/heavy_light_decomposition.hpp
+# :heavy_check_mark: tree/heavy_light_decomposition.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/heavy_light_decomposition.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 08:30:01+09:00
+    - Last commit date: 2020-03-09 09:25:54+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
-* :x: <a href="../../verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
 
 
 ## Code
@@ -141,18 +141,12 @@ public:
 		}
 	}
 	
-	template<class F>
 	void path_node(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
-	template<class F>
 	void path_edge(u32 x, u32 y, const processor& process) const { path(x, y, process, true); }
-	template<class F>
 	void path(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
 
-	template<class F>
 	void subtree_node(u32 v, const processor& process) const { subtree(v, process, false); }
-	template<class F>
 	void subtree_edge(u32 v, const processor& process) const { subtree(v, process, true); }
-	template<class F>
 	void subtree(u32 v, const processor& process) const { subtree(v, process, false); }
 
 	u32 index_node(u32 v) const { return in[v]; };
@@ -263,18 +257,12 @@ public:
 		}
 	}
 	
-	template<class F>
 	void path_node(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
-	template<class F>
 	void path_edge(u32 x, u32 y, const processor& process) const { path(x, y, process, true); }
-	template<class F>
 	void path(u32 x, u32 y, const processor& process) const { path(x, y, process, false); }
 
-	template<class F>
 	void subtree_node(u32 v, const processor& process) const { subtree(v, process, false); }
-	template<class F>
 	void subtree_edge(u32 v, const processor& process) const { subtree(v, process, true); }
-	template<class F>
 	void subtree(u32 v, const processor& process) const { subtree(v, process, false); }
 
 	u32 index_node(u32 v) const { return in[v]; };

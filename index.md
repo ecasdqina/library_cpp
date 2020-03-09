@@ -45,14 +45,14 @@ layout: default
 
 ### tree
 
-* :x: <a href="library/tree/heavy_light_decomposition.hpp.html">tree/heavy_light_decomposition.hpp</a>
+* :heavy_check_mark: <a href="library/tree/heavy_light_decomposition.hpp.html">tree/heavy_light_decomposition.hpp</a>
 
 
 ## Verify Files
 
-* :x: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>
 * :x: <a href="verify/test/yosupo/staticrmq.segment_tree.test.cpp.html">test/yosupo/staticrmq.segment_tree.test.cpp</a>
-* :x: <a href="verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
 
 
