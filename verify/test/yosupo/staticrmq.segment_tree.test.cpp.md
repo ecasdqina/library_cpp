@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/point_add_range_sum.test.cpp
+# :x: test/yosupo/staticrmq.segment_tree.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/point_add_range_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 08:25:08+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/staticrmq.segment_tree.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-03-09 09:19:19+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
@@ -49,29 +49,30 @@ layout: default
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include <stdio.h>
+#include <algorithm>
 #include "../../data_structure/segment_tree.hpp"
 
 int main() {
 	int n, q; scanf("%d%d", &n, &q);
-	segment_tree<monoid<std::int_fast64_t>> seg(n);
+
+	struct node {
+		int x;
+
+		node(int x = 1 << 30): x(x) {};
+		node operator+(node r) const { return std::min(x, r.x); }
+	};
+	
+	segment_tree<monoid<node>> seg(n);
 	for(int i = 0; i < n; i++) {
 		int a; scanf("%d", &a);
 
-		seg.change(i, a);
+		seg.change(i, node(a));
 	}
 
 	while(q--) {
-		int type; scanf("%d", &type);
+		int l, r; scanf("%d%d", &l, &r);
 
-		if(type == 0) {
-			int p, x; scanf("%d%d", &p, &x);
-
-			seg.update(p, x);
-		} else if(type == 1) {
-			int l, r; scanf("%d%d", &l, &r);
-
-			printf("%lld\n", seg.fold(l, r));
-		}
+		printf("%d\n", seg.fold(l, r).x);
 	}
 }
 
@@ -81,10 +82,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/yosupo/point_add_range_sum.test.cpp"
+#line 1 "test/yosupo/staticrmq.segment_tree.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include <stdio.h>
+#include <algorithm>
 #line 1 "test/yosupo/../../data_structure/segment_tree.hpp"
 #include <cstdint>
 #include <vector>
@@ -126,11 +128,11 @@ public:
 	segment_tree(size_type size)
 		: size_(size) {
 		height_ = get_height(size);
-		data.assign(base_size() << 1, Monoid::identity);
+		data.assign(base_size() << 1, T{});
 	}
 	T fold(size_type left, size_type right) {
-		T l_value = Monoid::identity;
-		T r_value = Monoid::identity;
+		T l_value = T{};
+		T r_value = T{};
 
 		for(left += base_size(), right += base_size();
 			left < right;
@@ -151,7 +153,7 @@ public:
 	void change(size_type index, const T& value) { update(index, [&value](const T& x) { return value; }); }
 	
 	const size_type search(size_type left, const checker& check) {
-		T val = Monoid::identity;
+		T val = T{};
 		size_type k = left + base_size();
 		while(true) {
 			if(check(Monoid::operation(val, data[k]))) {
@@ -181,32 +183,31 @@ template<class T>
 struct monoid {
 	using value_type = T;
 
-	static constexpr value_type operation(const T& a, const T& b) noexcept { return a + b; };
-	static constexpr value_type identity{};
+	static value_type operation(const value_type& a, const value_type& b) { return a + b; };
 };
-#line 5 "test/yosupo/point_add_range_sum.test.cpp"
+#line 6 "test/yosupo/staticrmq.segment_tree.test.cpp"
 
 int main() {
 	int n, q; scanf("%d%d", &n, &q);
-	segment_tree<monoid<std::int_fast64_t>> seg(n);
+
+	struct node {
+		int x;
+
+		node(int x = 1 << 30): x(x) {};
+		node operator+(node r) const { return std::min(x, r.x); }
+	};
+	
+	segment_tree<monoid<node>> seg(n);
 	for(int i = 0; i < n; i++) {
 		int a; scanf("%d", &a);
 
-		seg.change(i, a);
+		seg.change(i, node(a));
 	}
 
 	while(q--) {
-		int type; scanf("%d", &type);
+		int l, r; scanf("%d%d", &l, &r);
 
-		if(type == 0) {
-			int p, x; scanf("%d%d", &p, &x);
-
-			seg.update(p, x);
-		} else if(type == 1) {
-			int l, r; scanf("%d%d", &l, &r);
-
-			printf("%lld\n", seg.fold(l, r));
-		}
+		printf("%d\n", seg.fold(l, r).x);
 	}
 }
 
