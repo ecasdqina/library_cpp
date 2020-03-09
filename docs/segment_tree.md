@@ -5,13 +5,13 @@
 - fold(l, r)
 	- $\Theta(\log N)$
 - update(p, f)
-	- data[p] \leftarrow f(data[p])
+	- data[p] $\leftarrow$ f(data[p])
 	- $\Theta(\log N)$
 - update(p, x)
-	- data[p] \leftarrow data[p] \cdot x
+	- data[p] $\leftarrow$ data[p] $\cdot$ x
 	- $\Theta(\log N)$
 - change(p, x)
-	- data[p] \leftarrow x
+	- data[p] $\leftarrow$ x
 	- $\Theta(\log N)$
 - operator[k]
 	- $\Theta(1)$
