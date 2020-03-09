@@ -25,15 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/staticrmq.segment_tree.test.cpp
+# :heavy_check_mark: test/yosupo/staticrmq.segment_tree.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/staticrmq.segment_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 09:19:19+09:00
+    - Last commit date: 2020-03-09 09:33:47+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
+* see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
 
 
 ## Depends on
@@ -46,7 +46,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
 #include <stdio.h>
 #include <algorithm>
@@ -83,7 +83,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/yosupo/staticrmq.segment_tree.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
 #include <stdio.h>
 #include <algorithm>
