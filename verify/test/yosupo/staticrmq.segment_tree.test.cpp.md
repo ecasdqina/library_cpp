@@ -30,7 +30,7 @@ layout: default
 <a href="../../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/staticrmq.segment_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 09:33:47+09:00
+    - Last commit date: 2020-03-09 16:03:42+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
@@ -185,6 +185,8 @@ struct monoid {
 
 	static value_type operation(const value_type& a, const value_type& b) { return a + b; };
 };
+
+// @docs docs/segment_tree.md
 #line 6 "test/yosupo/staticrmq.segment_tree.test.cpp"
 
 int main() {
