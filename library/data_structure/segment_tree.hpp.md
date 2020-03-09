@@ -42,6 +42,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/test/yosupo/point_set_range_composite.segment_tree.test.cpp.html">test/yosupo/point_set_range_composite.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/staticrmq.segment_tree.test.cpp.html">test/yosupo/staticrmq.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/vertex_add_path_sum.test.cpp.html">test/yosupo/vertex_add_path_sum.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/vertex_add_subtree_sum.test.cpp.html">test/yosupo/vertex_add_subtree_sum.test.cpp</a>
 
 
 ## Code

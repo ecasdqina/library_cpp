@@ -39,6 +39,7 @@ layout: default
 ### data_structure
 
 * :heavy_check_mark: <a href="library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="library/data_structure/union_find.hpp.html">data_structure/union_find.hpp</a>
 
 
 <div id="7e676e9e663beb40fd133f5ee24487c2"></div>
@@ -61,7 +62,9 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.segment_tree.test.cpp.html">test/yosupo/point_set_range_composite.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/staticrmq.segment_tree.test.cpp.html">test/yosupo/staticrmq.segment_tree.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/unionfind.union_find.test.cpp.html">test/yosupo/unionfind.union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/vertex_add_path_sum.test.cpp.html">test/yosupo/vertex_add_path_sum.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/vertex_add_subtree_sum.test.cpp.html">test/yosupo/vertex_add_subtree_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
 
 
