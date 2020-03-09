@@ -41,6 +41,13 @@ layout: default
 * :heavy_check_mark: <a href="library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
 
 
+<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
+
+### math
+
+* :heavy_check_mark: <a href="library/math/modint.hpp.html">math/modint.hpp</a>
+
+
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
 
 ### tree
@@ -52,6 +59,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.segment_tree.test.cpp.html">test/yosupo/point_set_range_composite.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/staticrmq.segment_tree.test.cpp.html">test/yosupo/staticrmq.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
 
