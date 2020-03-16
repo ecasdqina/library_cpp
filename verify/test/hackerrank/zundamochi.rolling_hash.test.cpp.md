@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../../index.html">Back to top page</a>
 
+* category: <a href="../../../index.html#766fdb3ef249a93055dc5b84cab8f79c">test/hackerrank</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/hackerrank/zundamochi.rolling_hash.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-03-09 15:26:37+09:00
 

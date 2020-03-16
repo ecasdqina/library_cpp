@@ -39,6 +39,7 @@ layout: default
 ### data_structure
 
 * :heavy_check_mark: <a href="library/data_structure/fenwick_tree.hpp.html">data_structure/fenwick_tree.hpp</a>
+* :warning: <a href="library/data_structure/persistent_array.hpp.html">data_structure/persistent_array.hpp</a>
 * :heavy_check_mark: <a href="library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/data_structure/union_find.hpp.html">data_structure/union_find.hpp</a>
 
