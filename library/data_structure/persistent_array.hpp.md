@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c8f6850ec2ec3fb32f203c1f4e3c2fd2">data_structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_structure/persistent_array.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-16 16:24:59+09:00
+    - Last commit date: 2020-03-16 17:07:49+09:00
 
 
 
@@ -72,7 +72,7 @@ private:
 		}
 
 		if(!idx) ret->data = val;
-		else ret->child[idx % K] = set(idx / K, std::move(val), ret->child[idx % K]);
+		else ret->child[idx % K] = set(idx / K, std::forward(val), ret->child[idx % K]);
 		return ret;
 	}
 	T get(size_type idx, const node_ptr& t) const {
@@ -88,8 +88,8 @@ public:
 	persistent_array(): root(1, nullptr) {}
 
 	size_type set(size_type idx, const T&& val, int time = -1) {
-		if(time == -1) root.push_back(set(idx, std::move(val), root.back()));
-		else root.push_back(set(idx, std::move(val), root[time]));
+		if(time == -1) root.push_back(set(idx, std::forward(val), root.back()));
+		else root.push_back(set(idx, std::forward(val), root[time]));
 		return root.size() - 1;
 	}
 	T get(size_type idx, int time = -1) const {
@@ -142,7 +142,7 @@ private:
 		}
 
 		if(!idx) ret->data = val;
-		else ret->child[idx % K] = set(idx / K, std::move(val), ret->child[idx % K]);
+		else ret->child[idx % K] = set(idx / K, std::forward(val), ret->child[idx % K]);
 		return ret;
 	}
 	T get(size_type idx, const node_ptr& t) const {
@@ -158,8 +158,8 @@ public:
 	persistent_array(): root(1, nullptr) {}
 
 	size_type set(size_type idx, const T&& val, int time = -1) {
-		if(time == -1) root.push_back(set(idx, std::move(val), root.back()));
-		else root.push_back(set(idx, std::move(val), root[time]));
+		if(time == -1) root.push_back(set(idx, std::forward(val), root.back()));
+		else root.push_back(set(idx, std::forward(val), root[time]));
 		return root.size() - 1;
 	}
 	T get(size_type idx, int time = -1) const {
