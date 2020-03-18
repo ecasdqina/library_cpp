@@ -6,13 +6,13 @@ class modint {
 	using u64 = std::uint_fast64_t;
 	using i64 = std::int_fast64_t;
 
-	inline u64 apply(i64 x) { return (x >= 0 ? x : x + Modulus); };
+	inline u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };
 
 public:
 	u64 a;
 	static constexpr u64 mod = Modulus;
 
-	constexpr modint(const i64& x = 0) noexcept: a(apply(x % Modulus)) {}
+	constexpr modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}
 
 	constexpr modint operator+(const modint& rhs) const noexcept { return modint(*this) += rhs; }
 	constexpr modint operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }	
