@@ -39,7 +39,7 @@ layout: default
 ### data_structure
 
 * :heavy_check_mark: <a href="library/data_structure/fenwick_tree.hpp.html">data_structure/fenwick_tree.hpp</a>
-* :warning: <a href="library/data_structure/persistent_array.hpp.html">data_structure/persistent_array.hpp</a>
+* :heavy_check_mark: <a href="library/data_structure/persistent_array.hpp.html">data_structure/persistent_array.hpp</a>
 * :heavy_check_mark: <a href="library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/data_structure/union_find.hpp.html">data_structure/union_find.hpp</a>
 
@@ -70,6 +70,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/hackerrank/zundamochi.rolling_hash.test.cpp.html">test/hackerrank/zundamochi.rolling_hash.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/persistent_queue.persistent_array.test.cpp.html">test/yosupo/persistent_queue.persistent_array.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.fenwick_tree.test.cpp.html">test/yosupo/point_add_range_sum.fenwick_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.segment_tree.test.cpp.html">test/yosupo/point_set_range_composite.segment_tree.test.cpp</a>
