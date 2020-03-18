@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: math/number_theoritic_transform.hpp
+# :heavy_check_mark: math/number_theoritic_transform.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,13 +38,13 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="modint.hpp.html">math/modint.hpp</a>
-* :x: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
 
 
 ## Code

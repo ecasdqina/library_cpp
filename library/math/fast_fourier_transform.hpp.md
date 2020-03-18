@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Code

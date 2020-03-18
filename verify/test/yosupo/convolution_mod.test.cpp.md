@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/convolution_mod.test.cpp
+# :heavy_check_mark: test/yosupo/convolution_mod.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 17:15:29+09:00
+    - Last commit date: 2020-03-18 17:32:59+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
-* :x: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :x: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Code
@@ -52,7 +52,6 @@ layout: default
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include <stdio.h>
-#include "../../math/modint.hpp"
 #include "../../math/number_theoritic_transform.hpp"
 
 using mint = modint<998244353>;
@@ -85,98 +84,6 @@ int main() {
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include <stdio.h>
-#line 1 "test/yosupo/../../math/modint.hpp"
-#include <iostream>
-
-template <std::uint_fast64_t Modulus>
-class modint {
-	using u32 = std::uint_fast32_t;
-	using u64 = std::uint_fast64_t;
-	using i64 = std::int_fast64_t;
-
-	inline u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };
-
-public:
-	u64 a;
-	static constexpr u64 mod = Modulus;
-
-	constexpr modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}
-
-	constexpr modint operator+(const modint& rhs) const noexcept { return modint(*this) += rhs; }
-	constexpr modint operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }	
-	constexpr modint operator*(const modint& rhs) const noexcept { return modint(*this) *= rhs; }
-	constexpr modint operator/(const modint& rhs) const noexcept { return modint(*this) /= rhs; }
-	constexpr modint operator^(const u64& k) const noexcept { return modint(*this) ^= k; }
-	constexpr modint operator^(const modint& k) const noexcept { return modint(*this) ^= k.value(); }
-	constexpr modint operator-() const noexcept { return modint(Modulus - a); }
-	constexpr modint operator++() noexcept { return (*this) = modint(*this) + 1; }
-	constexpr modint operator--() noexcept { return (*this) = modint(*this) - 1; }
-	const bool operator==(const modint& rhs) const noexcept { return a == rhs.a; };
-	const bool operator!=(const modint& rhs) const noexcept { return a != rhs.a; };
-	const bool operator<=(const modint& rhs) const noexcept { return a <= rhs.a; };
-	const bool operator>=(const modint& rhs) const noexcept { return a >= rhs.a; };
-	const bool operator<(const modint& rhs) const noexcept { return a < rhs.a; };
-	const bool operator>(const modint& rhs) const noexcept { return a > rhs.a; };
-	constexpr modint& operator+=(const modint& rhs) noexcept {
-		a += rhs.a;
-		if (a >= Modulus) a -= Modulus;
-		return *this;
-	}
-	constexpr modint& operator-=(const modint& rhs) noexcept {
-		if (a < rhs.a) a += Modulus;
-		a -= rhs.a;
-		return *this;
-	}
-	constexpr modint& operator*=(const modint& rhs) noexcept {
-		a = a * rhs.a % Modulus;
-		return *this;
-	}
-	constexpr modint& operator/=(modint rhs) noexcept {
-		u64 exp = Modulus - 2;
-		while (exp) {
-			if (exp % 2) (*this) *= rhs;
-			
-			rhs *= rhs;
-			exp /= 2;
-		}
-		return *this;
-	}
-	constexpr modint& operator^=(u64 k) noexcept {
-		auto b = modint(1);
-		while(k) {
-			if(k & 1) b = b * (*this);
-			(*this) *= (*this);
-			k >>= 1;
-		}
-		return (*this) = b;
-	}
-	constexpr modint& operator=(const modint& rhs) noexcept {
-		a = rhs.a;
-		return (*this);
-	}
-
-	constexpr u64& value() noexcept { return a; }
-	constexpr const u64& value() const noexcept { return a; }
-	explicit operator bool() const { return a; }
-	explicit operator u32() const { return a; }
-
-	const modint inverse() const {
-		return modint(1) / *this;
-	}
-	const modint pow(i64 k) const {
-		return modint(*this) ^ k;
-	}
-
-	friend std::ostream& operator<<(std::ostream& os, const modint& p) {
-		return os << p.a;
-	}
-	friend std::istream& operator>>(std::istream& is, modint& p) {
-		u64 t;
-		is >> t;
-		p = modint(t);
-		return is;
-	}
-};
 #line 1 "test/yosupo/../../math/../math/polynomial.hpp"
 #include <cstdint>
 #include <vector>
@@ -272,7 +179,8 @@ public:
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
-#line 2 "test/yosupo/../../math/../math/modint.hpp"
+#line 1 "test/yosupo/../../math/../math/modint.hpp"
+#include <iostream>
 
 template <std::uint_fast64_t Modulus>
 class modint {
@@ -452,7 +360,7 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
-#line 6 "test/yosupo/convolution_mod.test.cpp"
+#line 5 "test/yosupo/convolution_mod.test.cpp"
 
 using mint = modint<998244353>;
 

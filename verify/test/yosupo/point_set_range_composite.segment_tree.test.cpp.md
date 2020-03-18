@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
-* :question: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
 
 
 ## Code
