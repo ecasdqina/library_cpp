@@ -24,6 +24,12 @@ private:
 	using node_ptr = node*;
 	std::vector<node_ptr> root;
 
+	void change(size_type idx, const T& val, node_ptr& t) {
+		if(!t) t = new node();
+		
+		if(!idx) t->data = val;
+		else change(idx / K, val, t->child[idx % K]);
+	}
 	node_ptr set(size_type idx, const T& val, const node_ptr& t) {
 		node_ptr ret = new node();
 		if(t) {
@@ -47,6 +53,10 @@ public:
 
 	persistent_array(): root(1, nullptr) {}
 
+	void change(size_type idx, const T& val, int time = -1) {
+		if(time == -1) change(idx, val, root.back());
+		else change(idx, val, root[time]);
+	}
 	size_type set(size_type idx, const T& val, int time = -1) {
 		if(time == -1) root.push_back(set(idx, val, root.back()));
 		else root.push_back(set(idx, val, root[time]));
