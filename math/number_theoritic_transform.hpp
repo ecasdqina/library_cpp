@@ -1,4 +1,5 @@
 #include "../math/polynomial.hpp"
+#include "../math/modint.hpp"
 
 template<class T, int primitive_root = 3>
 class number_theoritic_transform: public polynomial<T> {
