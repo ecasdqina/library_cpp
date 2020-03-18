@@ -21,7 +21,7 @@ private:
 	using node_ptr = node*;
 	std::vector<node_ptr> root;
 
-	node_ptr set(size_type idx, const T&& val, const node_ptr& t) {
+	node_ptr set(size_type idx, const T& val, const node_ptr& t) {
 		node_ptr ret = new node();
 		if(t) {
 			std::memcpy(ret->child, t->child, sizeof(t->child));
@@ -29,7 +29,7 @@ private:
 		}
 
 		if(!idx) ret->data = val;
-		else ret->child[idx % K] = set(idx / K, std::forward(val), ret->child[idx % K]);
+		else ret->child[idx % K] = set(idx / K, val, ret->child[idx % K]);
 		return ret;
 	}
 	T get(size_type idx, const node_ptr& t) const {
@@ -44,9 +44,9 @@ public:
 
 	persistent_array(): root(1, nullptr) {}
 
-	size_type set(size_type idx, const T&& val, int time = -1) {
-		if(time == -1) root.push_back(set(idx, std::forward(val), root.back()));
-		else root.push_back(set(idx, std::forward(val), root[time]));
+	size_type set(size_type idx, const T& val, int time = -1) {
+		if(time == -1) root.push_back(set(idx, val, root.back()));
+		else root.push_back(set(idx, val, root[time]));
 		return root.size() - 1;
 	}
 	T get(size_type idx, int time = -1) const {
