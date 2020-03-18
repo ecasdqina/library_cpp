@@ -1,3 +1,6 @@
+#ifndef INCLUDED_PERSISTENT_ARRAY_HPP
+#define INCLUDED_PERSISTENT_ARRAY_HPP
+
 #include <cstdint>
 #include <cstring>
 #include <vector>
@@ -60,3 +63,5 @@ public:
 	void clear() { root.assign(1, nullptr); }
 	void swap(const persistent_array& r) { root.swap(r.root); }
 };
+
+#endif

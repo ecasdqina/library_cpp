@@ -1,3 +1,6 @@
+#ifndef INCLUDED_MODINT_HPP
+#define INCLUDED_MODINT_HPP
+
 #include <iostream>
 
 template <std::uint_fast64_t Modulus>
@@ -89,3 +92,5 @@ public:
 		return is;
 	}
 };
+
+#endif

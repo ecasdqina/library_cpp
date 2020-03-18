@@ -1,3 +1,6 @@
+#ifndef INCLUDED_FENWICK_TREE_HPP
+#define INCLUDED_FENWICK_TREE_HPP
+
 #include <functional>
 #include <vector>
 
@@ -94,3 +97,5 @@ struct monoid {
 	static value_type operation(const value_type& a, const value_type& b) { return a + b; };
 	static value_type inverse(const value_type& x) { return -x; }
 };
+
+#endif

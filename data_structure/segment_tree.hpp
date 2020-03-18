@@ -1,3 +1,6 @@
+#ifndef INCLUDED_SEGMENT_TREE_HPP
+#define INCLUDED_SEGMENT_TREE_HPP
+
 #include <cstdint>
 #include <vector>
 #include <functional>
@@ -97,3 +100,5 @@ struct monoid {
 };
 
 // @docs docs/segment_tree.md
+
+#endif

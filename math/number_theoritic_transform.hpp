@@ -1,3 +1,6 @@
+#ifndef INCLUDED_NUMBER_THEORITIC_TRANSFORM_HPP
+#define INCLUDED_NUMBER_THEORITIC_TRANSFORM_HPP
+
 #include "../math/polynomial.hpp"
 #include "../math/modint.hpp"
 
@@ -88,3 +91,5 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+#endif

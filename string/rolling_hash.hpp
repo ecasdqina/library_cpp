@@ -1,3 +1,6 @@
+#ifndef INCLUDED_ROLLING_HASH_HPP
+#define INCLUDED_ROLLING_HASH_HPP
+
 #include <vector>
 #include <string>
 
@@ -61,3 +64,5 @@ public:
 	
 	size_type size() const { return str.size(); }
 };
+
+#endif

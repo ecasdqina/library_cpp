@@ -1,3 +1,6 @@
+#ifndef INCLUDED_POLYNOMIAL_HPP
+#define INCLUDED_POLYNOMIAL_HPP
+
 #include <cstdint>
 #include <vector>
 
@@ -92,3 +95,5 @@ public:
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
+
+#endif

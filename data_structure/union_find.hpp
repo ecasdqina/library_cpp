@@ -1,3 +1,6 @@
+#ifndef INCLUDED_UNION_FIND_HPP
+#define INCLUDED_UNION_FIND_HPP
+
 #include <cstdint>
 #include <vector>
 
@@ -48,3 +51,5 @@ public:
 		std::swap(comp_cnt, r.comp_cnt);
 	}
 };
+
+#endif

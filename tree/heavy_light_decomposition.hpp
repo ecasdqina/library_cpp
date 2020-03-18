@@ -1,3 +1,6 @@
+#ifndef INCLUDED_HEAVY_LIGHT_DECOMPOSITION_HPP
+#define INCLUDED_HEAVY_LIGHT_DECOMPOSITION_HPP
+
 #include <cstdint>
 #include <functional>
 #include <vector>
@@ -106,3 +109,5 @@ public:
 	
 	const u32 operator[](u32 k) const { return in[k]; }
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef INCLUDED_FAST_FOURIER_TRANSFORM_HPP
+#define INCLUDED_FAST_FOURIER_TRANSFORM_HPP
+
 #include "../math/polynomial.hpp"
 #include <complex>
 
@@ -68,3 +71,5 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+#endif
