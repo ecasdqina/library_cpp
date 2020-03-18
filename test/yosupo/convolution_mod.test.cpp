@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include <stdio.h>
-#include "../../math/modint.hpp"
 #include "../../math/number_theoritic_transform.hpp"
 
 using mint = modint<998244353>;
