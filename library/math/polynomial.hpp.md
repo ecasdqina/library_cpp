@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/polynomial.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 12:59:19+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 
@@ -52,6 +52,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef INCLUDED_POLYNOMIAL_HPP
+#define INCLUDED_POLYNOMIAL_HPP
+
 #include <cstdint>
 #include <vector>
 
@@ -146,6 +149,8 @@ public:
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
+
+#endif
 
 ```
 {% endraw %}
@@ -154,6 +159,9 @@ public:
 {% raw %}
 ```cpp
 #line 1 "math/polynomial.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 
@@ -248,6 +256,8 @@ public:
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
+
+
 
 ```
 {% endraw %}

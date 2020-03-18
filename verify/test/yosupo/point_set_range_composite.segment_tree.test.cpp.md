@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/point_set_range_composite.segment_tree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 16:53:58+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -93,6 +93,9 @@ int main() {
 
 #include <stdio.h>
 #line 1 "test/yosupo/../../data_structure/segment_tree.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 #include <functional>
@@ -192,7 +195,12 @@ struct monoid {
 };
 
 // @docs docs/segment_tree.md
+
+
 #line 1 "test/yosupo/../../math/modint.hpp"
+
+
+
 #include <iostream>
 
 template <std::uint_fast64_t Modulus>
@@ -284,6 +292,8 @@ public:
 		return is;
 	}
 };
+
+
 #line 6 "test/yosupo/point_set_range_composite.segment_tree.test.cpp"
 
 using mint = modint<998244353>;

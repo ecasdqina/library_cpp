@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/fast_fourier_transform.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 15:44:37+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 
@@ -46,6 +46,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef INCLUDED_FAST_FOURIER_TRANSFORM_HPP
+#define INCLUDED_FAST_FOURIER_TRANSFORM_HPP
+
 #include "../math/polynomial.hpp"
 #include <complex>
 
@@ -117,13 +120,22 @@ public:
 	}
 };
 
+#endif
+
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "math/fast_fourier_transform.hpp"
+
+
+
 #line 1 "math/../math/polynomial.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 
@@ -218,7 +230,9 @@ public:
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
-#line 2 "math/fast_fourier_transform.hpp"
+
+
+#line 5 "math/fast_fourier_transform.hpp"
 #include <complex>
 
 template<class T, class Real = double, class Complex = std::complex<Real>>
@@ -288,6 +302,8 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+
 
 ```
 {% endraw %}

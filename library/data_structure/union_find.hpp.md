@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c8f6850ec2ec3fb32f203c1f4e3c2fd2">data_structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_structure/union_find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 13:35:51+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 
@@ -46,6 +46,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef INCLUDED_UNION_FIND_HPP
+#define INCLUDED_UNION_FIND_HPP
+
 #include <cstdint>
 #include <vector>
 
@@ -96,6 +99,8 @@ public:
 		std::swap(comp_cnt, r.comp_cnt);
 	}
 };
+
+#endif
 
 ```
 {% endraw %}
@@ -104,6 +109,9 @@ public:
 {% raw %}
 ```cpp
 #line 1 "data_structure/union_find.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 
@@ -154,6 +162,8 @@ public:
 		std::swap(comp_cnt, r.comp_cnt);
 	}
 };
+
+
 
 ```
 {% endraw %}

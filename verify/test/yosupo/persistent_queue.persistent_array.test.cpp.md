@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_queue.persistent_array.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 12:58:04+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/persistent_queue">https://judge.yosupo.jp/problem/persistent_queue</a>
@@ -88,6 +88,9 @@ int main() {
 
 #include <stdio.h>
 #line 1 "test/yosupo/../../data_structure/persistent_array.hpp"
+
+
+
 #include <cstdint>
 #include <cstring>
 #include <vector>
@@ -150,6 +153,8 @@ public:
 	void clear() { root.assign(1, nullptr); }
 	void swap(const persistent_array& r) { root.swap(r.root); }
 };
+
+
 #line 5 "test/yosupo/persistent_queue.persistent_array.test.cpp"
 
 int main() {

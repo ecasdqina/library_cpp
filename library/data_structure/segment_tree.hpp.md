@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c8f6850ec2ec3fb32f203c1f4e3c2fd2">data_structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_structure/segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 16:03:42+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 
@@ -107,6 +107,9 @@ int main() {
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef INCLUDED_SEGMENT_TREE_HPP
+#define INCLUDED_SEGMENT_TREE_HPP
+
 #include <cstdint>
 #include <vector>
 #include <functional>
@@ -206,6 +209,8 @@ struct monoid {
 };
 
 // @docs docs/segment_tree.md
+
+#endif
 
 ```
 {% endraw %}
@@ -214,6 +219,9 @@ struct monoid {
 {% raw %}
 ```cpp
 #line 1 "data_structure/segment_tree.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 #include <functional>
@@ -313,6 +321,8 @@ struct monoid {
 };
 
 // @docs docs/segment_tree.md
+
+
 
 ```
 {% endraw %}

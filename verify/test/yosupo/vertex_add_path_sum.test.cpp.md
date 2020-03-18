@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/vertex_add_path_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 16:03:42+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/vertex_add_path_sum">https://judge.yosupo.jp/problem/vertex_add_path_sum</a>
@@ -96,6 +96,9 @@ int main() {
 
 #include <stdio.h>
 #line 1 "test/yosupo/../../data_structure/segment_tree.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 #include <functional>
@@ -195,7 +198,13 @@ struct monoid {
 };
 
 // @docs docs/segment_tree.md
-#line 4 "test/yosupo/../../tree/heavy_light_decomposition.hpp"
+
+
+#line 1 "test/yosupo/../../tree/heavy_light_decomposition.hpp"
+
+
+
+#line 7 "test/yosupo/../../tree/heavy_light_decomposition.hpp"
 
 class heavy_light_decomposition {
 public:
@@ -301,6 +310,8 @@ public:
 	
 	const u32 operator[](u32 k) const { return in[k]; }
 };
+
+
 #line 6 "test/yosupo/vertex_add_path_sum.test.cpp"
 
 using i64 = std::int_fast64_t;

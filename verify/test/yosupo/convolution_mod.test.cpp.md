@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 17:32:59+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
@@ -84,7 +84,14 @@ int main() {
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include <stdio.h>
+#line 1 "test/yosupo/../../math/number_theoritic_transform.hpp"
+
+
+
 #line 1 "test/yosupo/../../math/../math/polynomial.hpp"
+
+
+
 #include <cstdint>
 #include <vector>
 
@@ -179,7 +186,12 @@ public:
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
+
+
 #line 1 "test/yosupo/../../math/../math/modint.hpp"
+
+
+
 #include <iostream>
 
 template <std::uint_fast64_t Modulus>
@@ -271,7 +283,9 @@ public:
 		return is;
 	}
 };
-#line 3 "test/yosupo/../../math/number_theoritic_transform.hpp"
+
+
+#line 6 "test/yosupo/../../math/number_theoritic_transform.hpp"
 
 template<class T, int primitive_root = 3>
 class number_theoritic_transform: public polynomial<T> {
@@ -360,6 +374,8 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+
 #line 5 "test/yosupo/convolution_mod.test.cpp"
 
 using mint = modint<998244353>;

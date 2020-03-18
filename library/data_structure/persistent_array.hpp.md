@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c8f6850ec2ec3fb32f203c1f4e3c2fd2">data_structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_structure/persistent_array.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 12:58:04+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 
@@ -46,6 +46,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef INCLUDED_PERSISTENT_ARRAY_HPP
+#define INCLUDED_PERSISTENT_ARRAY_HPP
+
 #include <cstdint>
 #include <cstring>
 #include <vector>
@@ -108,6 +111,8 @@ public:
 	void clear() { root.assign(1, nullptr); }
 	void swap(const persistent_array& r) { root.swap(r.root); }
 };
+
+#endif
 
 ```
 {% endraw %}
@@ -116,6 +121,9 @@ public:
 {% raw %}
 ```cpp
 #line 1 "data_structure/persistent_array.hpp"
+
+
+
 #include <cstdint>
 #include <cstring>
 #include <vector>
@@ -178,6 +186,8 @@ public:
 	void clear() { root.assign(1, nullptr); }
 	void swap(const persistent_array& r) { root.swap(r.root); }
 };
+
+
 
 ```
 {% endraw %}

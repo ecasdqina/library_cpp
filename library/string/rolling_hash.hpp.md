@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/rolling_hash.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-09 15:23:19+09:00
+    - Last commit date: 2020-03-18 17:46:43+09:00
 
 
 
@@ -47,6 +47,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef INCLUDED_ROLLING_HASH_HPP
+#define INCLUDED_ROLLING_HASH_HPP
+
 #include <vector>
 #include <string>
 
@@ -110,6 +113,8 @@ public:
 	
 	size_type size() const { return str.size(); }
 };
+
+#endif
 
 ```
 {% endraw %}
@@ -118,6 +123,9 @@ public:
 {% raw %}
 ```cpp
 #line 1 "string/rolling_hash.hpp"
+
+
+
 #include <vector>
 #include <string>
 
@@ -181,6 +189,8 @@ public:
 	
 	size_type size() const { return str.size(); }
 };
+
+
 
 ```
 {% endraw %}
