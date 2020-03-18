@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_queue.persistent_array.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 17:46:43+09:00
+    - Last commit date: 2020-03-18 17:54:53+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/persistent_queue">https://judge.yosupo.jp/problem/persistent_queue</a>
@@ -114,6 +114,12 @@ private:
 	using node_ptr = node*;
 	std::vector<node_ptr> root;
 
+	void change(size_type idx, const T& val, node_ptr& t) {
+		if(!t) t = new node();
+		
+		if(!idx) t->data = val;
+		else change(idx / K, val, t->child[idx % K]);
+	}
 	node_ptr set(size_type idx, const T& val, const node_ptr& t) {
 		node_ptr ret = new node();
 		if(t) {
@@ -137,6 +143,10 @@ public:
 
 	persistent_array(): root(1, nullptr) {}
 
+	void change(size_type idx, const T& val, int time = -1) {
+		if(time == -1) change(idx, val, root.back());
+		else change(idx, val, root[time]);
+	}
 	size_type set(size_type idx, const T& val, int time = -1) {
 		if(time == -1) root.push_back(set(idx, val, root.back()));
 		else root.push_back(set(idx, val, root[time]));
