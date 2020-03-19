@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 17:03:37+09:00
+    - Last commit date: 2020-03-19 22:50:19+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod_1000000007">https://judge.yosupo.jp/problem/convolution_mod_1000000007</a>
@@ -40,9 +40,9 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/math/arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
-* :question: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
-* :question: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :question: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Code
@@ -487,6 +487,8 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+// @docs docs/arbitary_mod_number_theoritic_transform.md
 
 
 #line 5 "test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp"

@@ -31,16 +31,25 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/arbitary_mod_number_theoritic_transform.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 17:03:37+09:00
+    - Last commit date: 2020-03-19 22:50:19+09:00
 
 
 
+
+## 計算量
+- 時間 $\Theta(N\log N)$
+
+## description
+三素数による NTT を garner のアルゴリズムによって復元するため定数倍が重い．
+
+## reference
+- https://math314.hateblo.jp/entry/2015/05/07/014908
 
 ## Depends on
 
-* :question: <a href="modint.hpp.html">math/modint.hpp</a>
-* :question: <a href="number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :question: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :heavy_check_mark: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Verified with
@@ -152,6 +161,8 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+// @docs docs/arbitary_mod_number_theoritic_transform.md
 
 #endif
 
@@ -563,6 +574,8 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+// @docs docs/arbitary_mod_number_theoritic_transform.md
 
 
 

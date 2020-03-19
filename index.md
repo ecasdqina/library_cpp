@@ -50,10 +50,10 @@ layout: default
 
 * :heavy_check_mark: <a href="library/math/arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
 * :warning: <a href="library/math/fast_fourier_transform.hpp.html">math/fast_fourier_transform.hpp</a>
-* :x: <a href="library/math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
-* :question: <a href="library/math/modint.hpp.html">math/modint.hpp</a>
-* :question: <a href="library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :question: <a href="library/math/polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="library/math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
+* :heavy_check_mark: <a href="library/math/modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :heavy_check_mark: <a href="library/math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 <div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
@@ -61,14 +61,6 @@ layout: default
 ### string
 
 * :heavy_check_mark: <a href="library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
-
-
-<div id="0b58406058f6619a0f31a172defc0230"></div>
-
-### test/yosupo
-
-* :warning: <a href="library/test/yosupo/exp_of_formal_power_series.ntt.test .hpp.html">test/yosupo/exp_of_formal_power_series.ntt.test .hpp</a>
-* :warning: <a href="library/test/yosupo/log_of_formal_power_series.ntt.test  .hpp.html">test/yosupo/log_of_formal_power_series.ntt.test  .hpp</a>
 
 
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
@@ -85,7 +77,9 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/hackerrank/zundamochi.rolling_hash.test.cpp.html">test/hackerrank/zundamochi.rolling_hash.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp.html">test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp</a>
-* :x: <a href="verify/test/yosupo/inv_of_formal_power_series.ntt.test.hpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.hpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/exp_of_formal_power_series.ntt.test.cpp.html">test/yosupo/exp_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/inv_of_formal_power_series.ntt.test.cpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/log_of_formal_power_series.ntt.test.cpp.html">test/yosupo/log_of_formal_power_series.ntt.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_queue.persistent_array.test.cpp.html">test/yosupo/persistent_queue.persistent_array.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.fenwick_tree.test.cpp.html">test/yosupo/point_add_range_sum.fenwick_tree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>

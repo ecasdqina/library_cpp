@@ -25,24 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: test/yosupo/exp_of_formal_power_series.ntt.test .hpp
+# :heavy_check_mark: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/exp_of_formal_power_series.ntt.test .hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 22:39:56+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/inv_of_formal_power_series.ntt.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-03-19 22:54:58+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/exp_of_formal_power_series">https://judge.yosupo.jp/problem/exp_of_formal_power_series</a>
+* see: <a href="https://judge.yosupo.jp/problem/inv_of_formal_power_series">https://judge.yosupo.jp/problem/inv_of_formal_power_series</a>
 
 
 ## Depends on
 
-* :x: <a href="../../math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
-* :question: <a href="../../math/modint.hpp.html">math/modint.hpp</a>
-* :question: <a href="../../math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :question: <a href="../../math/polynomial.hpp.html">math/polynomial.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :heavy_check_mark: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Code
@@ -50,7 +50,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
+#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
 
 #include <stdio.h>
 #include "../../math/number_theoritic_transform.hpp"
@@ -67,7 +67,7 @@ int main() {
 		a[i] = x;
 	}
 
-	for(auto v: a.exp()) printf("%d ", v.value());
+	for(auto v: a.inverse()) printf("%d ", v.value());
 	printf("\n");
 	return 0;
 }
@@ -78,8 +78,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/yosupo/exp_of_formal_power_series.ntt.test .hpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
+#line 1 "test/yosupo/inv_of_formal_power_series.ntt.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
 
 #include <stdio.h>
 #line 1 "math/number_theoritic_transform.hpp"
@@ -458,7 +458,7 @@ public:
 };
 
 
-#line 6 "test/yosupo/exp_of_formal_power_series.ntt.test .hpp"
+#line 6 "test/yosupo/inv_of_formal_power_series.ntt.test.cpp"
 
 using fps = formal_power_series<number_theoritic_transform<modint<998244353>>>;
 
@@ -471,7 +471,7 @@ int main() {
 		a[i] = x;
 	}
 
-	for(auto v: a.exp()) printf("%d ", v.value());
+	for(auto v: a.inverse()) printf("%d ", v.value());
 	printf("\n");
 	return 0;
 }

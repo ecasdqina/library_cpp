@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: math/polynomial.hpp
+# :heavy_check_mark: math/polynomial.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -40,16 +40,16 @@ layout: default
 
 * :heavy_check_mark: <a href="arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
 * :warning: <a href="fast_fourier_transform.hpp.html">math/fast_fourier_transform.hpp</a>
-* :question: <a href="number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :warning: <a href="../test/yosupo/exp_of_formal_power_series.ntt.test .hpp.html">test/yosupo/exp_of_formal_power_series.ntt.test .hpp</a>
-* :warning: <a href="../test/yosupo/log_of_formal_power_series.ntt.test  .hpp.html">test/yosupo/log_of_formal_power_series.ntt.test  .hpp</a>
+* :heavy_check_mark: <a href="number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp.html">test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp</a>
-* :x: <a href="../../verify/test/yosupo/inv_of_formal_power_series.ntt.test.hpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.hpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/exp_of_formal_power_series.ntt.test.cpp.html">test/yosupo/exp_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/inv_of_formal_power_series.ntt.test.cpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/log_of_formal_power_series.ntt.test.cpp.html">test/yosupo/log_of_formal_power_series.ntt.test.cpp</a>
 
 
 ## Code
