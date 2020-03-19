@@ -46,7 +46,7 @@ public:
 	}
 	polynomial& operator-=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
-		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
 		return *this;
 	}
 	polynomial& operator*=(const_reference r) {
