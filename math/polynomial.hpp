@@ -29,9 +29,9 @@ public:
 	polynomial(const std::vector<T>& p): std::vector<T>(p) {}
 
 	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
-	polynomial operator+(const_reference r) const { return polynomial(*this) += r; }
-	polynomial operator-(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator-(const polynomial& r) const { return polynomial(*this) -= r; }
+	polynomial operator*(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator/(const_reference r) const { return polynomial(*this) *= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
 	polynomial operator>>(size_type r) const { return polynomial(*this) >>= r; }
 	polynomial operator-() const {
