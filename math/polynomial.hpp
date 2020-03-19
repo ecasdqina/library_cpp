@@ -26,9 +26,10 @@ private:
 
 public:
 	polynomial(): std::vector<T>(1, T{}) {}
+	polynomial(const std::vector<T>& p): std::vector<T>(p) {}
 
-	polynomial operator+(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator+(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
+	polynomial operator+(const_reference r) const { return polynomial(*this) += r; }
 	polynomial operator-(const polynomial& r) const { return polynomial(*this) *= r; }
 	polynomial operator-(const_reference r) const { return polynomial(*this) *= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
@@ -86,6 +87,10 @@ public:
 		polynomial ret(this->size() + 1);
 		for(int i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T{i + 1};
 		return ret;
+	}
+	polynomial prefix(size_type size) const {
+		if(size == 0) return polynomial();
+		return polynomial(begin(*this), begin(*this) + std::min(this->size(), size));
 	}
 	
 	void shrink() {
