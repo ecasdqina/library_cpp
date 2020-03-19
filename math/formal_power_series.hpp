@@ -35,6 +35,11 @@ public:
 		}
 		return ret.prefix(this->size());
 	}
+	formal_power_series log() const {
+		assert((*this)[0] == value_type(1));
+		
+		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
+	}
 };
 
 #endif
