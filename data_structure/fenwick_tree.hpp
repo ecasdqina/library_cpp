@@ -1,3 +1,4 @@
+#pragma once
 #ifndef INCLUDED_FENWICK_TREE_HPP
 #define INCLUDED_FENWICK_TREE_HPP
 

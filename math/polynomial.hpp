@@ -1,3 +1,4 @@
+#pragma once
 #ifndef INCLUDED_POLYNOMIAL_HPP
 #define INCLUDED_POLYNOMIAL_HPP
 

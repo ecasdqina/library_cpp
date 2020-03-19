@@ -1,3 +1,4 @@
+#pragma once
 #ifndef INCLUDED_ROLLING_HASH_HPP
 #define INCLUDED_ROLLING_HASH_HPP
 
