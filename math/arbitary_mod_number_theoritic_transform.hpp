@@ -47,7 +47,7 @@ public:
 	using const_reference = typename polynomial<T>::const_reference;
 	using size_type = typename polynomial<T>::size_type;
 
-	using amntt = arbitary_mod_number_theoritic_transform<T, MOD_1, PRR_1, MOD_2, PRR_2, MOD_3, PRR_3>;
+	using amntt = arbitary_mod_number_theoritic_transform;
 	using m1 = modint<MOD_1>;
 	using m2 = modint<MOD_2>;
 	using m3 = modint<MOD_3>;
@@ -85,6 +85,8 @@ private:
 	}
 	
 public:
+	arbitary_mod_number_theoritic_transform(const polynomial<T>& p): polynomial<T>(p) {}
+
 	amntt operator*(const amntt& r) const { return amntt(*this) *= r; }
 	amntt& operator*=(const amntt& r) {
 		return (*this) = convolution((*this), r);

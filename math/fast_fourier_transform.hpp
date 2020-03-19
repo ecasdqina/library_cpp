@@ -67,6 +67,8 @@ private:
 		
 	}
 public:
+	fast_fourier_transform(const polynomial<T>& p): polynomial<T>(p) {}
+
 	fast_fourier_transform operator*(const fast_fourier_transform& r) const { return fast_fourier_transform(*this) *= r; }
 	fast_fourier_transform& operator*=(const fast_fourier_transform& r) {
 		return (*this) = convolution((*this), r);
