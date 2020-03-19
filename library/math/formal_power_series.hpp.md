@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/formal_power_series.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 18:01:54+09:00
+    - Last commit date: 2020-03-19 18:16:27+09:00
 
 
 
@@ -81,6 +81,19 @@ public:
 		assert((*this)[0] == value_type(1));
 		
 		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
+	}
+	formal_power_series exp() const {
+		assert((*this)[0] == value_type{});
+
+		formal_power_series f(1, value_type(1)), g(1, value_type(1));
+		for(int i = 1; i < this->size(); i <<= 1) {
+			g = (g * value_type(2) - f * g * g).prefix(i);
+			formal_power_series q = this->differential().prefix(i - 1);
+			formal_power_series w = (q + g * (f.differential() - f * q)).prefix((i << 1) - 1);
+			f = (f + f * (*this - w.integral()).prefix(i << 1)).prefix(i << 1);
+
+		}
+		return f.prefix(this->size());
 	}
 	formal_power_series pow(size_type k) const {
 		for(size_type i = 0; i < this->size(); i++) {
@@ -147,6 +160,19 @@ public:
 		assert((*this)[0] == value_type(1));
 		
 		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
+	}
+	formal_power_series exp() const {
+		assert((*this)[0] == value_type{});
+
+		formal_power_series f(1, value_type(1)), g(1, value_type(1));
+		for(int i = 1; i < this->size(); i <<= 1) {
+			g = (g * value_type(2) - f * g * g).prefix(i);
+			formal_power_series q = this->differential().prefix(i - 1);
+			formal_power_series w = (q + g * (f.differential() - f * q)).prefix((i << 1) - 1);
+			f = (f + f * (*this - w.integral()).prefix(i << 1)).prefix(i << 1);
+
+		}
+		return f.prefix(this->size());
 	}
 	formal_power_series pow(size_type k) const {
 		for(size_type i = 0; i < this->size(); i++) {
