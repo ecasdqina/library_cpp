@@ -25,20 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/convolution_mod.test.cpp
+# :heavy_check_mark: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 10:58:20+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-03-19 11:00:31+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
+* see: <a href="https://judge.yosupo.jp/problem/convolution_mod_1000000007">https://judge.yosupo.jp/problem/convolution_mod_1000000007</a>
 
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../../../library/math/arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
 * :heavy_check_mark: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
 * :heavy_check_mark: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
 * :heavy_check_mark: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
@@ -49,16 +50,16 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
+#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include <stdio.h>
-#include "../../math/number_theoritic_transform.hpp"
+#include "../../math/arbitary_mod_number_theoritic_transform.hpp"
 
-using mint = modint<998244353>;
+using mint = modint<(int)(1e9 + 7)>;
 
 int main() {
 	int n, m; scanf("%d%d", &n, &m);
-	number_theoritic_transform<mint> a(n), b(m);
+	arbitary_mod_number_theoritic_transform<mint> a(n), b(m);
 	for(int i = 0; i < n; i++) {
 		int x; scanf("%d", &x);
 		a[i] = x;
@@ -80,11 +81,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/yosupo/convolution_mod.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
+#line 1 "test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include <stdio.h>
-#line 1 "test/yosupo/../../math/number_theoritic_transform.hpp"
+#line 1 "test/yosupo/../../math/arbitary_mod_number_theoritic_transform.hpp"
 
 
 
@@ -285,7 +286,207 @@ public:
 };
 
 
-#line 6 "test/yosupo/../../math/number_theoritic_transform.hpp"
+#line 1 "test/yosupo/../../math/../math/number_theoritic_transform.hpp"
+
+
+
+#line 1 "test/yosupo/../../math/../math/../math/modint.hpp"
+
+
+
+#line 5 "test/yosupo/../../math/../math/../math/modint.hpp"
+
+template <std::uint_fast64_t Modulus>
+class modint {
+	using u32 = std::uint_fast32_t;
+	using u64 = std::uint_fast64_t;
+	using i64 = std::int_fast64_t;
+
+	inline u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };
+
+public:
+	u64 a;
+	static constexpr u64 mod = Modulus;
+
+	constexpr modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}
+
+	constexpr modint operator+(const modint& rhs) const noexcept { return modint(*this) += rhs; }
+	constexpr modint operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }	
+	constexpr modint operator*(const modint& rhs) const noexcept { return modint(*this) *= rhs; }
+	constexpr modint operator/(const modint& rhs) const noexcept { return modint(*this) /= rhs; }
+	constexpr modint operator^(const u64& k) const noexcept { return modint(*this) ^= k; }
+	constexpr modint operator^(const modint& k) const noexcept { return modint(*this) ^= k.value(); }
+	constexpr modint operator-() const noexcept { return modint(Modulus - a); }
+	constexpr modint operator++() noexcept { return (*this) = modint(*this) + 1; }
+	constexpr modint operator--() noexcept { return (*this) = modint(*this) - 1; }
+	const bool operator==(const modint& rhs) const noexcept { return a == rhs.a; };
+	const bool operator!=(const modint& rhs) const noexcept { return a != rhs.a; };
+	const bool operator<=(const modint& rhs) const noexcept { return a <= rhs.a; };
+	const bool operator>=(const modint& rhs) const noexcept { return a >= rhs.a; };
+	const bool operator<(const modint& rhs) const noexcept { return a < rhs.a; };
+	const bool operator>(const modint& rhs) const noexcept { return a > rhs.a; };
+	constexpr modint& operator+=(const modint& rhs) noexcept {
+		a += rhs.a;
+		if (a >= Modulus) a -= Modulus;
+		return *this;
+	}
+	constexpr modint& operator-=(const modint& rhs) noexcept {
+		if (a < rhs.a) a += Modulus;
+		a -= rhs.a;
+		return *this;
+	}
+	constexpr modint& operator*=(const modint& rhs) noexcept {
+		a = a * rhs.a % Modulus;
+		return *this;
+	}
+	constexpr modint& operator/=(modint rhs) noexcept {
+		u64 exp = Modulus - 2;
+		while (exp) {
+			if (exp % 2) (*this) *= rhs;
+			
+			rhs *= rhs;
+			exp /= 2;
+		}
+		return *this;
+	}
+	constexpr modint& operator^=(u64 k) noexcept {
+		auto b = modint(1);
+		while(k) {
+			if(k & 1) b = b * (*this);
+			(*this) *= (*this);
+			k >>= 1;
+		}
+		return (*this) = b;
+	}
+	constexpr modint& operator=(const modint& rhs) noexcept {
+		a = rhs.a;
+		return (*this);
+	}
+
+	constexpr u64& value() noexcept { return a; }
+	constexpr const u64& value() const noexcept { return a; }
+	explicit operator bool() const { return a; }
+	explicit operator u32() const { return a; }
+
+	const modint inverse() const {
+		return modint(1) / *this;
+	}
+	const modint pow(i64 k) const {
+		return modint(*this) ^ k;
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const modint& p) {
+		return os << p.a;
+	}
+	friend std::istream& operator>>(std::istream& is, modint& p) {
+		u64 t;
+		is >> t;
+		p = modint(t);
+		return is;
+	}
+};
+
+
+#line 1 "test/yosupo/../../math/../math/../math/polynomial.hpp"
+
+
+
+#line 6 "test/yosupo/../../math/../math/../math/polynomial.hpp"
+
+template<class T>
+class polynomial: public std::vector<T> {
+public:
+	using std::vector<T>::vector;
+	using value_type = typename std::vector<T>::value_type;
+	using reference = typename std::vector<T>::reference;
+	using const_reference = typename std::vector<T>::const_reference;
+	using size_type = typename std::vector<T>::size_type;
+
+private:
+	T eval(T x) const {
+		T ret = (*this)[0], tmp = x;
+		for(int i = 1; i < this->size(); i++) {
+			ret = ret + (*this)[i] * tmp;
+			tmp = tmp * x;
+		}
+		return ret;
+	}
+
+public:
+	polynomial(): std::vector<T>(1, T{}) {}
+
+	polynomial operator+(const polynomial& r) const { return polynomial(*this) *= r; }
+	polynomial operator+(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator-(const polynomial& r) const { return polynomial(*this) *= r; }
+	polynomial operator-(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
+	polynomial operator>>(size_type r) const { return polynomial(*this) >>= r; }
+	polynomial operator-() const {
+		polynomial ret(this->size());
+		for(int i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
+		return ret;
+	}
+	polynomial& operator+=(const polynomial& r) {
+		if(r.size() > this->size()) this->resize(r.size());
+		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		return *this;
+	}
+	polynomial& operator-=(const polynomial& r) {
+		if(r.size() > this->size()) this->resize(r.size());
+		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		return *this;
+	}
+	polynomial& operator*=(const_reference r) {
+		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
+		return *this;
+	}
+	polynomial& operator/=(const_reference r) {
+		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] / r;
+		return *this;
+	}
+	polynomial& operator<<=(size_type r) {
+		this->insert(begin(*this), r, T{});
+		return *this;
+	}
+	polynomial& operator>>=(size_type r) {
+		if(r >= this->size()) clear();
+		else this->erase(begin(*this), begin(*this) + r);
+		return *this;
+	}
+
+	polynomial differential(size_type k) const {
+		polynomial ret(*this);
+		for(int i = 0; i < k; i++) ret = ret.differential();
+		return ret;
+	}
+	polynomial differential() const {
+		if(degree() < 1) return polynomial();
+		polynomial ret(this->size() - 1);
+		for(int i = 1; i < this->size(); i++) ret[i - 1] = (*this)[i] * T{i};
+		return ret;
+	}
+	polynomial integral(size_type k) const {
+		polynomial ret(*this);
+		for(int i = 0; i < k; i++) ret = ret.integral();
+		return ret;
+	}
+	polynomial integral() const {
+		polynomial ret(this->size() + 1);
+		for(int i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T{i + 1};
+		return ret;
+	}
+	
+	void shrink() {
+		while(this->size() > 1 and this->back() == T{}) this->pop_back();
+	}
+	
+	T operator()(T x) const { return eval(x); }
+	size_type degree() const { return this->size() - 1; }
+	void clear() { this->assign(1, T{}); }
+};
+
+
+#line 6 "test/yosupo/../../math/../math/number_theoritic_transform.hpp"
 
 template<class T, int primitive_root = 3>
 class number_theoritic_transform: public polynomial<T> {
@@ -376,13 +577,101 @@ public:
 };
 
 
-#line 5 "test/yosupo/convolution_mod.test.cpp"
+#line 7 "test/yosupo/../../math/arbitary_mod_number_theoritic_transform.hpp"
 
-using mint = modint<998244353>;
+namespace amnttlib {
+	using u64 = std::uint_fast64_t;
+
+	// https://lumakernel.github.io/ecasdqina/math/FFT/NTT
+	constexpr u64 ntt_primes[][2] = {
+		{1224736769, 3}, // 2^24 * 73 + 1,
+		{1053818881, 7}, // 2^20 * 3 * 5 * 67 + 1
+		{1051721729, 6}, // 2^20 * 17 * 59 + 1
+		{1045430273, 3}, // 2^20 * 997 + 1
+		{1012924417, 5}, // 2^21 * 3 * 7 * 23 + 1
+		{1007681537, 3}, // 2^20 * 31^2 + 1
+		{1004535809, 3}, // 2^21 * 479 + 1
+		{998244353, 3},  // 2^23 * 7 * 17 + 1
+		{985661441, 3},  // 2^22 * 5 * 47 + 1
+		{976224257, 3},  // 2^20 * 7^2 * 19 + 1
+		{975175681, 17}, // 2^21 * 3 * 5 * 31 + 1
+		{962592769, 7},  // 2^21 * 3^3 * 17 + 1
+		{950009857, 7},  // 2^21 * 4 * 151 + 1
+		{943718401, 7},  // 2^22 * 3^2 * 5^2 + 1
+		{935329793, 3},  // 2^22 * 223 + 1
+		{924844033, 5},  // 2^21 * 3^2 * 7^2 + 1
+		{469762049, 3},  // 2^26 * 7 + 1
+		{167772161, 3},  // 2^25 * 5 + 1
+	};
+};
+
+template<class T,
+	amnttlib::u64 MOD_1 = amnttlib::ntt_primes[0][0],
+	amnttlib::u64 PRR_1 = amnttlib::ntt_primes[0][1],
+	amnttlib::u64 MOD_2 = amnttlib::ntt_primes[2][0],
+	amnttlib::u64 PRR_2 = amnttlib::ntt_primes[2][1],
+	amnttlib::u64 MOD_3 = amnttlib::ntt_primes[3][0],
+	amnttlib::u64 PRR_3 = amnttlib::ntt_primes[3][1]
+> class arbitary_mod_number_theoritic_transform: public polynomial<T> {
+public:
+	using polynomial<T>::polynomial;
+	using value_type = typename polynomial<T>::value_type;
+	using reference = typename polynomial<T>::reference;
+	using const_reference = typename polynomial<T>::const_reference;
+	using size_type = typename polynomial<T>::size_type;
+
+	using amntt = arbitary_mod_number_theoritic_transform<T, MOD_1, PRR_1, MOD_2, PRR_2, MOD_3, PRR_3>;
+	using m1 = modint<MOD_1>;
+	using m2 = modint<MOD_2>;
+	using m3 = modint<MOD_3>;
+
+private:
+	amntt convolution(const amntt& ar, const amntt& br) {
+		number_theoritic_transform<m1, PRR_1> ntt1_a(ar.size()), ntt1_b(br.size());
+		number_theoritic_transform<m2, PRR_2> ntt2_a(ar.size()), ntt2_b(br.size());
+		number_theoritic_transform<m3, PRR_3> ntt3_a(ar.size()), ntt3_b(br.size());
+		for(int i = 0; i < ar.size(); i++) {
+			ntt1_a[i] = m1(ar[i].value());
+			ntt2_a[i] = m2(ar[i].value());
+			ntt3_a[i] = m3(ar[i].value());
+		}
+		for(int i = 0; i < br.size(); i++) {
+			ntt1_b[i] = m1(br[i].value());
+			ntt2_b[i] = m2(br[i].value());
+			ntt3_b[i] = m3(br[i].value());
+		}
+		auto x = ntt1_a * ntt1_b;
+		auto y = ntt2_a * ntt2_b;
+		auto z = ntt3_a * ntt3_b;
+
+		amntt ret(x.size());
+		const m2 m1_inv_m2 = m2(MOD_1).inverse();
+		const m3 m12_inv_m3 = (m3(MOD_1) * m3(MOD_2)).inverse();
+		const T m12 = T(MOD_1) * T(MOD_2);
+		for(int i = 0; i < ret.size(); i++) {
+			m2 v1 = (m2(y[i].value()) - m2(x[i].value())) * m1_inv_m2;
+			m3 v2 = (m3(z[i].value()) - (m3(x[i].value()) + m3(MOD_1) * m3(v1.value()))) * m12_inv_m3;
+			ret[i] = (T(x[i].value()) + T(MOD_1) * T(v1.value()) + m12 * T(v2.value()));
+		}
+		ret.resize(ar.degree() + br.degree() + 1);
+		return ret;
+	}
+	
+public:
+	amntt operator*(const amntt& r) const { return amntt(*this) *= r; }
+	amntt& operator*=(const amntt& r) {
+		return (*this) = convolution((*this), r);
+	}
+};
+
+
+#line 5 "test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp"
+
+using mint = modint<(int)(1e9 + 7)>;
 
 int main() {
 	int n, m; scanf("%d%d", &n, &m);
-	number_theoritic_transform<mint> a(n), b(m);
+	arbitary_mod_number_theoritic_transform<mint> a(n), b(m);
 	for(int i = 0; i < n; i++) {
 		int x; scanf("%d", &x);
 		a[i] = x;
