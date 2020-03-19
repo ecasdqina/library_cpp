@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 10:58:20+09:00
+    - Last commit date: 2020-03-19 17:03:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
@@ -84,11 +84,11 @@ int main() {
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include <stdio.h>
-#line 1 "test/yosupo/../../math/number_theoritic_transform.hpp"
+#line 1 "math/number_theoritic_transform.hpp"
 
 
 
-#line 1 "test/yosupo/../../math/../math/modint.hpp"
+#line 1 "math/modint.hpp"
 
 
 
@@ -185,7 +185,7 @@ public:
 };
 
 
-#line 1 "test/yosupo/../../math/../math/polynomial.hpp"
+#line 1 "math/polynomial.hpp"
 
 
 
@@ -213,11 +213,12 @@ private:
 
 public:
 	polynomial(): std::vector<T>(1, T{}) {}
+	polynomial(const std::vector<T>& p): std::vector<T>(p) {}
 
-	polynomial operator+(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator+(const_reference r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
+	polynomial operator-(const polynomial& r) const { return polynomial(*this) -= r; }
+	polynomial operator*(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator/(const_reference r) const { return polynomial(*this) /= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
 	polynomial operator>>(size_type r) const { return polynomial(*this) >>= r; }
 	polynomial operator-() const {
@@ -232,7 +233,7 @@ public:
 	}
 	polynomial& operator-=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
-		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
 		return *this;
 	}
 	polynomial& operator*=(const_reference r) {
@@ -274,6 +275,10 @@ public:
 		for(int i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T{i + 1};
 		return ret;
 	}
+	polynomial prefix(size_type size) const {
+		if(size == 0) return polynomial();
+		return polynomial(begin(*this), begin(*this) + std::min(this->size(), size));
+	}
 	
 	void shrink() {
 		while(this->size() > 1 and this->back() == T{}) this->pop_back();
@@ -285,7 +290,7 @@ public:
 };
 
 
-#line 6 "test/yosupo/../../math/number_theoritic_transform.hpp"
+#line 6 "math/number_theoritic_transform.hpp"
 
 template<class T, int primitive_root = 3>
 class number_theoritic_transform: public polynomial<T> {
@@ -369,6 +374,13 @@ private:
 	}
 
 public:
+	number_theoritic_transform(const polynomial<T>& p): polynomial<T>(p) {}
+	
+	number_theoritic_transform operator*(const_reference r) const { return number_theoritic_transform(*this) *= r; }
+	number_theoritic_transform& operator*=(const_reference r) {
+		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
+		return *this;
+	}
 	number_theoritic_transform operator*(const number_theoritic_transform& r) const { return number_theoritic_transform(*this) *= r; }
 	number_theoritic_transform& operator*=(const number_theoritic_transform& r) {
 		return (*this) = convolution((*this), r);

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c8f6850ec2ec3fb32f203c1f4e3c2fd2">data_structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_structure/fenwick_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 17:46:43+09:00
+    - Last commit date: 2020-03-19 17:03:37+09:00
 
 
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/polynomial.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-18 17:46:43+09:00
+    - Last commit date: 2020-03-19 17:03:37+09:00
 
 
 
@@ -81,11 +81,12 @@ private:
 
 public:
 	polynomial(): std::vector<T>(1, T{}) {}
+	polynomial(const std::vector<T>& p): std::vector<T>(p) {}
 
-	polynomial operator+(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator+(const_reference r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
+	polynomial operator-(const polynomial& r) const { return polynomial(*this) -= r; }
+	polynomial operator*(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator/(const_reference r) const { return polynomial(*this) /= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
 	polynomial operator>>(size_type r) const { return polynomial(*this) >>= r; }
 	polynomial operator-() const {
@@ -100,7 +101,7 @@ public:
 	}
 	polynomial& operator-=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
-		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
 		return *this;
 	}
 	polynomial& operator*=(const_reference r) {
@@ -141,6 +142,10 @@ public:
 		polynomial ret(this->size() + 1);
 		for(int i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T{i + 1};
 		return ret;
+	}
+	polynomial prefix(size_type size) const {
+		if(size == 0) return polynomial();
+		return polynomial(begin(*this), begin(*this) + std::min(this->size(), size));
 	}
 	
 	void shrink() {
@@ -188,11 +193,12 @@ private:
 
 public:
 	polynomial(): std::vector<T>(1, T{}) {}
+	polynomial(const std::vector<T>& p): std::vector<T>(p) {}
 
-	polynomial operator+(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator+(const_reference r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const polynomial& r) const { return polynomial(*this) *= r; }
-	polynomial operator-(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
+	polynomial operator-(const polynomial& r) const { return polynomial(*this) -= r; }
+	polynomial operator*(const_reference r) const { return polynomial(*this) *= r; }
+	polynomial operator/(const_reference r) const { return polynomial(*this) /= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
 	polynomial operator>>(size_type r) const { return polynomial(*this) >>= r; }
 	polynomial operator-() const {
@@ -207,7 +213,7 @@ public:
 	}
 	polynomial& operator-=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
-		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
 		return *this;
 	}
 	polynomial& operator*=(const_reference r) {
@@ -248,6 +254,10 @@ public:
 		polynomial ret(this->size() + 1);
 		for(int i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T{i + 1};
 		return ret;
+	}
+	polynomial prefix(size_type size) const {
+		if(size == 0) return polynomial();
+		return polynomial(begin(*this), begin(*this) + std::min(this->size(), size));
 	}
 	
 	void shrink() {

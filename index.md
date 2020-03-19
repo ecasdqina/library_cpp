@@ -50,6 +50,7 @@ layout: default
 
 * :heavy_check_mark: <a href="library/math/arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
 * :warning: <a href="library/math/fast_fourier_transform.hpp.html">math/fast_fourier_transform.hpp</a>
+* :warning: <a href="library/math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
 * :heavy_check_mark: <a href="library/math/modint.hpp.html">math/modint.hpp</a>
 * :heavy_check_mark: <a href="library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
 * :heavy_check_mark: <a href="library/math/polynomial.hpp.html">math/polynomial.hpp</a>
