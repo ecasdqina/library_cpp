@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/formal_power_series.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 17:03:37+09:00
+    - Last commit date: 2020-03-19 18:01:54+09:00
 
 
 
@@ -81,6 +81,20 @@ public:
 		assert((*this)[0] == value_type(1));
 		
 		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
+	}
+	formal_power_series pow(size_type k) const {
+		for(size_type i = 0; i < this->size(); i++) {
+			if((*this)[i] != value_type{}) {
+				value_type inv = (*this)[i].inverse();
+				formal_power_series f(*this * inv);
+				formal_power_series g(f >> i);
+				g = formal_power_series(g.log() * value_type(k)).exp() * (*this)[i].pow(k);
+				if(i * k > this->size()) return formal_power_series(this->size());
+
+				return (g << (i * k)).prefix(this->size());
+			}
+		}
+		return *this;
 	}
 };
 
@@ -133,6 +147,20 @@ public:
 		assert((*this)[0] == value_type(1));
 		
 		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
+	}
+	formal_power_series pow(size_type k) const {
+		for(size_type i = 0; i < this->size(); i++) {
+			if((*this)[i] != value_type{}) {
+				value_type inv = (*this)[i].inverse();
+				formal_power_series f(*this * inv);
+				formal_power_series g(f >> i);
+				g = formal_power_series(g.log() * value_type(k)).exp() * (*this)[i].pow(k);
+				if(i * k > this->size()) return formal_power_series(this->size());
+
+				return (g << (i * k)).prefix(this->size());
+			}
+		}
+		return *this;
 	}
 };
 
