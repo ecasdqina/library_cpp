@@ -40,9 +40,9 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/math/arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
-* :heavy_check_mark: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
-* :heavy_check_mark: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :heavy_check_mark: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
+* :question: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
+* :question: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :question: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Code

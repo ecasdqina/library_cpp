@@ -25,23 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/convolution_mod.test.cpp
+# :warning: test/yosupo/log_of_formal_power_series.ntt.test  .hpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 17:03:37+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/log_of_formal_power_series.ntt.test  .hpp">View this file on GitHub</a>
+    - Last commit date: 2020-03-19 22:39:56+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
+* see: <a href="https://judge.yosupo.jp/problem/log_of_formal_power_series">https://judge.yosupo.jp/problem/log_of_formal_power_series</a>
 
 
 ## Depends on
 
-* :question: <a href="../../../library/math/modint.hpp.html">math/modint.hpp</a>
-* :question: <a href="../../../library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :question: <a href="../../../library/math/polynomial.hpp.html">math/polynomial.hpp</a>
+* :x: <a href="../../math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
+* :question: <a href="../../math/modint.hpp.html">math/modint.hpp</a>
+* :question: <a href="../../math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :question: <a href="../../math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Code
@@ -49,27 +50,24 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
+#define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 
 #include <stdio.h>
 #include "../../math/number_theoritic_transform.hpp"
+#include "../../math/formal_power_series.hpp"
 
-using mint = modint<998244353>;
+using fps = formal_power_series<number_theoritic_transform<modint<998244353>>>;
 
 int main() {
-	int n, m; scanf("%d%d", &n, &m);
-	number_theoritic_transform<mint> a(n), b(m);
+	int n; scanf("%d", &n);
+	fps a(n);
 	for(int i = 0; i < n; i++) {
 		int x; scanf("%d", &x);
+
 		a[i] = x;
 	}
-	for(int i = 0; i < m; i++) {
-		int x; scanf("%d", &x);
-		b[i] = x;
-	}
 
-	auto c = a * b;
-	for(auto v: c) printf("%d ", v.value());
+	for(auto v: a.log()) printf("%d ", v.value());
 	printf("\n");
 	return 0;
 }
@@ -80,8 +78,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/yosupo/convolution_mod.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
+#line 1 "test/yosupo/log_of_formal_power_series.ntt.test  .hpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 
 #include <stdio.h>
 #line 1 "math/number_theoritic_transform.hpp"
@@ -388,24 +386,92 @@ public:
 };
 
 
-#line 5 "test/yosupo/convolution_mod.test.cpp"
+#line 1 "math/formal_power_series.hpp"
 
-using mint = modint<998244353>;
+
+
+#include <cassert>
+#include <utility>
+
+template<class T>
+class formal_power_series: public T {
+public:
+	using T::T;
+	using value_type = typename T::value_type;
+	using reference = typename T::reference;
+	using const_reference = typename T::const_reference;
+	using size_type = typename T::size_type;
+
+private:
+	formal_power_series(): T(1) {}
+	formal_power_series(const T& p): T(p) {}
+
+public:
+	formal_power_series inverse() const {
+		assert((*this)[0] != value_type{});
+
+		formal_power_series ret(1, (*this)[0].inverse());
+		for(int i = 1; i < this->size(); i <<= 1) {
+			auto tmp = ret * this->prefix(i << 1);
+			for(int j = 0; j < i; j++) {
+				tmp[j] = value_type{};
+				if(j + i < tmp.size()) tmp[j + i] *= value_type(-1);
+			}
+			tmp = tmp * ret;
+			for(int j = 0; j < i; j++) tmp[j] = ret[j];
+			ret = std::move(tmp).prefix(i << 1);
+		}
+		return ret.prefix(this->size());
+	}
+	formal_power_series log() const {
+		assert((*this)[0] == value_type(1));
+		
+		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
+	}
+	formal_power_series exp() const {
+		assert((*this)[0] == value_type{});
+
+		formal_power_series f(1, value_type(1)), g(1, value_type(1));
+		for(int i = 1; i < this->size(); i <<= 1) {
+			g = (g * value_type(2) - f * g * g).prefix(i);
+			formal_power_series q = this->differential().prefix(i - 1);
+			formal_power_series w = (q + g * (f.differential() - f * q)).prefix((i << 1) - 1);
+			f = (f + f * (*this - w.integral()).prefix(i << 1)).prefix(i << 1);
+
+		}
+		return f.prefix(this->size());
+	}
+	formal_power_series pow(size_type k) const {
+		for(size_type i = 0; i < this->size(); i++) {
+			if((*this)[i] != value_type{}) {
+				value_type inv = (*this)[i].inverse();
+				formal_power_series f(*this * inv);
+				formal_power_series g(f >> i);
+				g = formal_power_series(g.log() * value_type(k)).exp() * (*this)[i].pow(k);
+				if(i * k > this->size()) return formal_power_series(this->size());
+
+				return (g << (i * k)).prefix(this->size());
+			}
+		}
+		return *this;
+	}
+};
+
+
+#line 6 "test/yosupo/log_of_formal_power_series.ntt.test  .hpp"
+
+using fps = formal_power_series<number_theoritic_transform<modint<998244353>>>;
 
 int main() {
-	int n, m; scanf("%d%d", &n, &m);
-	number_theoritic_transform<mint> a(n), b(m);
+	int n; scanf("%d", &n);
+	fps a(n);
 	for(int i = 0; i < n; i++) {
 		int x; scanf("%d", &x);
+
 		a[i] = x;
 	}
-	for(int i = 0; i < m; i++) {
-		int x; scanf("%d", &x);
-		b[i] = x;
-	}
 
-	auto c = a * b;
-	for(auto v: c) printf("%d ", v.value());
+	for(auto v: a.log()) printf("%d ", v.value());
 	printf("\n");
 	return 0;
 }

@@ -38,9 +38,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="modint.hpp.html">math/modint.hpp</a>
-* :heavy_check_mark: <a href="number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :heavy_check_mark: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
+* :question: <a href="modint.hpp.html">math/modint.hpp</a>
+* :question: <a href="number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
+* :question: <a href="polynomial.hpp.html">math/polynomial.hpp</a>
 
 
 ## Verified with

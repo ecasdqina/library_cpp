@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: math/formal_power_series.hpp
+# :x: math/formal_power_series.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -34,6 +34,17 @@ layout: default
     - Last commit date: 2020-03-19 18:16:27+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="../test/yosupo/exp_of_formal_power_series.ntt.test .hpp.html">test/yosupo/exp_of_formal_power_series.ntt.test .hpp</a>
+* :warning: <a href="../test/yosupo/log_of_formal_power_series.ntt.test  .hpp.html">test/yosupo/log_of_formal_power_series.ntt.test  .hpp</a>
+
+
+## Verified with
+
+* :x: <a href="../../verify/test/yosupo/inv_of_formal_power_series.ntt.test.hpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.hpp</a>
 
 
 ## Code
