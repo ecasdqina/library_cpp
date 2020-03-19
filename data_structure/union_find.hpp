@@ -1,4 +1,3 @@
-#pragma once
 #ifndef INCLUDED_UNION_FIND_HPP
 #define INCLUDED_UNION_FIND_HPP
 

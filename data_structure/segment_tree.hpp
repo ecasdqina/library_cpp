@@ -1,4 +1,3 @@
-#pragma once
 #ifndef INCLUDED_SEGMENT_TREE_HPP
 #define INCLUDED_SEGMENT_TREE_HPP
 
