@@ -1,8 +1,8 @@
 #ifndef INCLUDED_NUMBER_THEORITIC_TRANSFORM_HPP
 #define INCLUDED_NUMBER_THEORITIC_TRANSFORM_HPP
 
-#include "../math/polynomial.hpp"
 #include "../math/modint.hpp"
+#include "../math/polynomial.hpp"
 
 template<class T, int primitive_root = 3>
 class number_theoritic_transform: public polynomial<T> {
