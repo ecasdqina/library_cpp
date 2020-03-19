@@ -87,6 +87,12 @@ private:
 public:
 	arbitary_mod_number_theoritic_transform(const polynomial<T>& p): polynomial<T>(p) {}
 
+
+	amntt operator*(const_reference r) const { return amntt(*this) *= r; }
+	amntt& operator*=(const_reference r) {
+		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
+		return *this;
+	}
 	amntt operator*(const amntt& r) const { return amntt(*this) *= r; }
 	amntt& operator*=(const amntt& r) {
 		return (*this) = convolution((*this), r);

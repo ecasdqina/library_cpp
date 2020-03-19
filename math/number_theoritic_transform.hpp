@@ -89,6 +89,11 @@ private:
 public:
 	number_theoritic_transform(const polynomial<T>& p): polynomial<T>(p) {}
 	
+	number_theoritic_transform operator*(const_reference r) const { return number_theoritic_transform(*this) *= r; }
+	number_theoritic_transform& operator*=(const_reference r) {
+		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
+		return *this;
+	}
 	number_theoritic_transform operator*(const number_theoritic_transform& r) const { return number_theoritic_transform(*this) *= r; }
 	number_theoritic_transform& operator*=(const number_theoritic_transform& r) {
 		return (*this) = convolution((*this), r);
