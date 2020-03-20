@@ -18,7 +18,7 @@ int main() {
 		if(Y != hash.hash(A + B + A, A + B + A + B)) continue;
 		if(X != hash.hash(A + B + A + B, A + B + A + B + A)) continue;
 
-		fout.println("Love", s.substr(0, A + B).c_str());
+		fout.println("Love " + s.substr(0, A + B) + "!");
 		return 0;
 	}
 	fout.println("mitomerarenaiWA\n");

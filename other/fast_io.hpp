@@ -174,13 +174,16 @@ namespace fast_io {
 			memcpy(pos, s, N-1);
 			pos += N-1;
 		}
-
+		
 		void print(char const* s) {
 			while (*s != 0) {
 				*pos++ = *s++;
 				if (pos == outbuf + buf_size) M_flush_stdout();
 			}
 		}
+
+		void print(const std::string& s) { print(s.c_str()); }
+		
 		void print(const bool& x) {
 			if(x) print(1);
 			else print(0);
@@ -221,7 +224,7 @@ namespace fast_io {
 
 		template <typename Tp>
 		void println(Tp const& x) { print(x), print('\n'); }
-
+		
 		template<class H, class... T>
 		void print(const H& h, const T&... t) {
 			print(h);
