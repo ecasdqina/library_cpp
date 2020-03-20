@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#766fdb3ef249a93055dc5b84cab8f79c">test/hackerrank</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/hackerrank/zundamochi.rolling_hash.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 11:14:02+09:00
+    - Last commit date: 2020-03-20 11:32:22+09:00
 
 
 * see: <a href="https://www.hackerrank.com/contests/kiritan-birthday-contest-2020/challenges/zundamochi">https://www.hackerrank.com/contests/kiritan-birthday-contest-2020/challenges/zundamochi</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/other/fast_io.hpp.html">other/fast_io.hpp</a>
-* :question: <a href="../../../library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
+* :heavy_check_mark: <a href="../../../library/other/fast_io.hpp.html">other/fast_io.hpp</a>
+* :heavy_check_mark: <a href="../../../library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
 
 
 ## Code
@@ -336,13 +336,16 @@ namespace fast_io {
 			memcpy(pos, s, N-1);
 			pos += N-1;
 		}
-
+		
 		void print(char const* s) {
 			while (*s != 0) {
 				*pos++ = *s++;
 				if (pos == outbuf + buf_size) M_flush_stdout();
 			}
 		}
+
+		void print(const std::string& s) { print(s.c_str()); }
+		
 		void print(const bool& x) {
 			if(x) print(1);
 			else print(0);
@@ -383,7 +386,7 @@ namespace fast_io {
 
 		template <typename Tp>
 		void println(Tp const& x) { print(x), print('\n'); }
-
+		
 		template<class H, class... T>
 		void print(const H& h, const T&... t) {
 			print(h);

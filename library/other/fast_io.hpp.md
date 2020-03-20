@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: other/fast_io.hpp
+# :heavy_check_mark: other/fast_io.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#795f3202b17cb6bc3d4b771d8c6c9eaf">other</a>
 * <a href="{{ site.github.repository_url }}/blob/master/other/fast_io.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 11:09:05+09:00
+    - Last commit date: 2020-03-20 11:32:22+09:00
 
 
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
-* :x: <a href="../../verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/hackerrank/zundamochi.rolling_hash.test.cpp.html">test/hackerrank/zundamochi.rolling_hash.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp.html">test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp</a>
@@ -238,13 +238,16 @@ namespace fast_io {
 			memcpy(pos, s, N-1);
 			pos += N-1;
 		}
-
+		
 		void print(char const* s) {
 			while (*s != 0) {
 				*pos++ = *s++;
 				if (pos == outbuf + buf_size) M_flush_stdout();
 			}
 		}
+
+		void print(const std::string& s) { print(s.c_str()); }
+		
 		void print(const bool& x) {
 			if(x) print(1);
 			else print(0);
@@ -285,7 +288,7 @@ namespace fast_io {
 
 		template <typename Tp>
 		void println(Tp const& x) { print(x), print('\n'); }
-
+		
 		template<class H, class... T>
 		void print(const H& h, const T&... t) {
 			print(h);
@@ -494,13 +497,16 @@ namespace fast_io {
 			memcpy(pos, s, N-1);
 			pos += N-1;
 		}
-
+		
 		void print(char const* s) {
 			while (*s != 0) {
 				*pos++ = *s++;
 				if (pos == outbuf + buf_size) M_flush_stdout();
 			}
 		}
+
+		void print(const std::string& s) { print(s.c_str()); }
+		
 		void print(const bool& x) {
 			if(x) print(1);
 			else print(0);
@@ -541,7 +547,7 @@ namespace fast_io {
 
 		template <typename Tp>
 		void println(Tp const& x) { print(x), print('\n'); }
-
+		
 		template<class H, class... T>
 		void print(const H& h, const T&... t) {
 			print(h);
