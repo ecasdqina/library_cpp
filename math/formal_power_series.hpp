@@ -68,4 +68,6 @@ public:
 	}
 };
 
+// @docs docs/formal_power_series.md
+
 #endif

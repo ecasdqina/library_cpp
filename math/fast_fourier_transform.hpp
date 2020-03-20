@@ -79,4 +79,6 @@ public:
 	}
 };
 
+// @docs docs/fast_fourier_transform.md
+
 #endif

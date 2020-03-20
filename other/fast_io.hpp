@@ -248,4 +248,6 @@ namespace fast_io {
 fast_io::scanner fin;
 fast_io::printer fout;
 
+// @docs docs/fast_io.md
+
 #endif
