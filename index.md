@@ -60,14 +60,14 @@ layout: default
 
 ### other
 
-* :heavy_check_mark: <a href="library/other/fast_io.hpp.html">other/fast_io.hpp</a>
+* :question: <a href="library/other/fast_io.hpp.html">other/fast_io.hpp</a>
 
 
 <div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
 
 ### string
 
-* :heavy_check_mark: <a href="library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
+* :question: <a href="library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
 
 
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
@@ -80,7 +80,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
+* :x: <a href="verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/hackerrank/zundamochi.rolling_hash.test.cpp.html">test/hackerrank/zundamochi.rolling_hash.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp.html">test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp</a>

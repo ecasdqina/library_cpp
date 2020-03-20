@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/unionfind.union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 10:53:53+09:00
+    - Last commit date: 2020-03-20 11:09:05+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/data_structure/union_find.hpp.html">data_structure/union_find.hpp</a>
-* :heavy_check_mark: <a href="../../../library/other/fast_io.hpp.html">other/fast_io.hpp</a>
+* :question: <a href="../../../library/other/fast_io.hpp.html">other/fast_io.hpp</a>
 
 
 ## Code
@@ -364,8 +364,18 @@ namespace fast_io {
 			print(' ');
 			print(t...);
 		}
+		template<class T>
+		void print(const std::vector<T>& t) {
+			for(size_t i = 0; i < t.size(); i++) {
+				print(t[i]);
+				if(i + 1 != t.size()) print(' ');
+			}
+		}
 		template<class... T>
 		void println(const T&... t) { print(t...); print('\n'); }
+		template<class T>
+		void println(const std::vector<T>& t) { print(t); print('\n'); }
+		void println() { print('\n'); }
 	};
 }
 fast_io::scanner fin;

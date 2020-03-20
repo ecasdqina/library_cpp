@@ -25,22 +25,36 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: other/fast_io.hpp
+# :question: other/fast_io.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#795f3202b17cb6bc3d4b771d8c6c9eaf">other</a>
 * <a href="{{ site.github.repository_url }}/blob/master/other/fast_io.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 10:53:38+09:00
+    - Last commit date: 2020-03-20 11:09:05+09:00
 
 
 
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/hackerrank/zundamochi.rolling_hash.test.cpp.html">test/hackerrank/zundamochi.rolling_hash.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp.html">test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/exp_of_formal_power_series.ntt.test.cpp.html">test/yosupo/exp_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/inv_of_formal_power_series.ntt.test.cpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/log_of_formal_power_series.ntt.test.cpp.html">test/yosupo/log_of_formal_power_series.ntt.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/persistent_queue.persistent_array.test.cpp.html">test/yosupo/persistent_queue.persistent_array.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/point_add_range_sum.fenwick_tree.test.cpp.html">test/yosupo/point_add_range_sum.fenwick_tree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/point_set_range_composite.segment_tree.test.cpp.html">test/yosupo/point_set_range_composite.segment_tree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/staticrmq.segment_tree.test.cpp.html">test/yosupo/staticrmq.segment_tree.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/unionfind.union_find.test.cpp.html">test/yosupo/unionfind.union_find.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/vertex_add_path_sum.test.cpp.html">test/yosupo/vertex_add_path_sum.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/vertex_add_subtree_sum.test.cpp.html">test/yosupo/vertex_add_subtree_sum.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
 
 
 ## Code
@@ -278,8 +292,18 @@ namespace fast_io {
 			print(' ');
 			print(t...);
 		}
+		template<class T>
+		void print(const std::vector<T>& t) {
+			for(size_t i = 0; i < t.size(); i++) {
+				print(t[i]);
+				if(i + 1 != t.size()) print(' ');
+			}
+		}
 		template<class... T>
 		void println(const T&... t) { print(t...); print('\n'); }
+		template<class T>
+		void println(const std::vector<T>& t) { print(t); print('\n'); }
+		void println() { print('\n'); }
 	};
 }
 fast_io::scanner fin;
@@ -524,8 +548,18 @@ namespace fast_io {
 			print(' ');
 			print(t...);
 		}
+		template<class T>
+		void print(const std::vector<T>& t) {
+			for(size_t i = 0; i < t.size(); i++) {
+				print(t[i]);
+				if(i + 1 != t.size()) print(' ');
+			}
+		}
 		template<class... T>
 		void println(const T&... t) { print(t...); print('\n'); }
+		template<class T>
+		void println(const std::vector<T>& t) { print(t); print('\n'); }
+		void println() { print('\n'); }
 	};
 }
 fast_io::scanner fin;
