@@ -228,8 +228,18 @@ namespace fast_io {
 			print(' ');
 			print(t...);
 		}
+		template<class T>
+		void print(const std::vector<T>& t) {
+			for(size_t i = 0; i < t.size(); i++) {
+				print(t[i]);
+				if(i + 1 != t.size()) print(' ');
+			}
+		}
 		template<class... T>
 		void println(const T&... t) { print(t...); print('\n'); }
+		template<class T>
+		void println(const std::vector<T>& t) { print(t); print('\n'); }
+		void println() { print('\n'); }
 	};
 }
 fast_io::scanner fin;
