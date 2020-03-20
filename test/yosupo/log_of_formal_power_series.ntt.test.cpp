@@ -1,21 +1,21 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 
-#include <stdio.h>
 #include "../../math/number_theoritic_transform.hpp"
 #include "../../math/formal_power_series.hpp"
+#include "../../other/fast_io.hpp"
 
 using fps = formal_power_series<number_theoritic_transform<modint<998244353>>>;
 
 int main() {
-	int n; scanf("%d", &n);
+	int n; fin.scan(n);
 	fps a(n);
 	for(int i = 0; i < n; i++) {
-		int x; scanf("%d", &x);
+		int x; fin.scan(x);
 
 		a[i] = x;
 	}
 
-	for(auto v: a.log()) printf("%d ", v.value());
-	printf("\n");
+	for(auto v: a.log()) fout.print(v.value(), ' ');
+	fout.println();
 	return 0;
 }

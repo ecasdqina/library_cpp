@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include <stdio.h>
 #include <algorithm>
 #include "../../data_structure/segment_tree.hpp"
+#include "../../other/fast_io.hpp"
 
 int main() {
-	int n, q; scanf("%d%d", &n, &q);
+	int n, q; fin.scan(n, q);
 
 	struct node {
 		int x;
@@ -16,14 +16,14 @@ int main() {
 	
 	segment_tree<monoid<node>> seg(n);
 	for(int i = 0; i < n; i++) {
-		int a; scanf("%d", &a);
+		int a; fin.scan(a);
 
 		seg.change(i, node(a));
 	}
 
 	while(q--) {
-		int l, r; scanf("%d%d", &l, &r);
+		int l, r; fin.scan(l, r);
 
-		printf("%d\n", seg.fold(l, r).x);
+		fout.println(seg.fold(l, r).x);
 	}
 }

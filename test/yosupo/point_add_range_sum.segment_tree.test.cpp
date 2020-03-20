@@ -1,28 +1,28 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#include <stdio.h>
 #include "../../data_structure/segment_tree.hpp"
+#include "../../other/fast_io.hpp"
 
 int main() {
-	int n, q; scanf("%d%d", &n, &q);
+	int n, q; fin.scan(n, q);
 	segment_tree<monoid<std::int_fast64_t>> seg(n);
 	for(int i = 0; i < n; i++) {
-		int a; scanf("%d", &a);
+		int a; fin.scan(a);
 
 		seg.change(i, a);
 	}
 
 	while(q--) {
-		int type; scanf("%d", &type);
+		int type; fin.scan(type);
 
 		if(type == 0) {
-			int p, x; scanf("%d%d", &p, &x);
+			int p, x; fin.scan(p, x);
 
 			seg.update(p, x);
 		} else if(type == 1) {
-			int l, r; scanf("%d%d", &l, &r);
+			int l, r; fin.scan(l, r);
 
-			printf("%lld\n", seg.fold(l, r));
+			fout.println(seg.fold(l, r));
 		}
 	}
 }
