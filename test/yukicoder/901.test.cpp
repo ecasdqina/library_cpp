@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/901"
 
-#include <stdio.h>
 #include <functional>
 #include "../../tree/heavy_light_decomposition.hpp"
+#include "../../other/fast_io.hpp"
 
 using i64 = std::int_fast64_t;
 
@@ -112,11 +112,11 @@ std::vector<int> depth;
 constexpr int dep(const int & k) { return (k < 0 ? -1 : depth[k]); };
 
 int main() {
-	int n; scanf("%d", &n);
+	int n; fin.scan(n);
 	std::vector<std::vector<std::pair<int, i64>>> g(n);
 	heavy_light_decomposition hld(n);
 	for(int i = 0; i < n - 1; i++) {
-		int a, b, c; scanf("%d%d%d", &a, &b, &c);
+		int a, b, c; fin.scan(a, b, c);
 
 		g[a].push_back({b, c});
 		g[b].push_back({a, c});
@@ -154,14 +154,14 @@ int main() {
 	auto kiri = [&A](int l, int r) { A.update(l, r, 1); };
 	auto irik = [&A](int l, int r) { A.update(l, r, 0); };
 
-	int q; scanf("%d", &q);
+	int q; fin.scan(q);
 	while(q--) {
-		int k; scanf("%d", &k);
+		int k; fin.scan(k);
 				
 		i64 ans = 0;
-		int c; scanf("%d", &c);
+		int c; fin.scan(c);
 		for(int i = 1; i < k; i++) {
-			int v; scanf("%d", &v);
+			int v; fin.scan(v);
 			node tmp = node();
 			auto tanpo = [&](int l, int r) { tmp = f(tmp, A.fold(l, r)); };
 			hld.path(0, v, tanpo);
@@ -173,7 +173,7 @@ int main() {
 		}
 
 		A.update(0, n, 0);
-		printf("%lld\n", ans);
+		fout.println(ans);
 	}
 	return 0;
 }

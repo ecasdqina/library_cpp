@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2667"
 
-#include <stdio.h>
 #include <functional>
 #include "../../tree/heavy_light_decomposition.hpp"
+#include "../../other/fast_io.hpp"
 
 using i64 = std::int_fast64_t;
 
@@ -103,10 +103,10 @@ public:
 };
 
 int main() {
-	int n, q; scanf("%d%d", &n, &q);
+	int n, q; fin.scan(n, q);
 	heavy_light_decomposition hld(n);
 	for(int i = 0; i < n - 1; i++) {
-		int a, b; scanf("%d%d", &a, &b);
+		int a, b; fin.scan(a, b);
 
 		hld.add_edge(a, b);
 	}
@@ -118,18 +118,18 @@ int main() {
 	lazy_segment_tree<i64> seg(n, f, g, h, 0, 0);
 
 	while(q--) {
-		int type; scanf("%d", &type);
+		int type; fin.scan(type);
 
 		if(type == 0) {
-			int x, y; scanf("%d%d", &x, &y);
+			int x, y; fin.scan(x, y);
 
 			i64 ans = 0;
 			auto p = [&](int l, int r) { ans += seg.fold(l, r); };
 			hld.path_edge(x, y, p);
 
-			printf("%lld\n", ans);
+			fout.println(ans);
 		} else if(type == 1) {
-			int x, y; scanf("%d%d", &x, &y);
+			int x, y; fin.scan(x, y);
 
 			auto p = [&](int l, int r) { seg.update(l, r, y); };
 			hld.subtree_edge(x, p);

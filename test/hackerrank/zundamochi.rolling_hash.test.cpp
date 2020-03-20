@@ -1,13 +1,12 @@
 #define PROBLEM "https://www.hackerrank.com/contests/kiritan-birthday-contest-2020/challenges/zundamochi"
 
-#include <stdio.h>
-#include <iostream>
 #include <map>
 #include "../../string/rolling_hash.hpp"
+#include "../../other/fast_io.hpp"
 
 int main() {
-    int n, k; scanf("%d%d", &n, &k);
-    std::string s; std::cin >> s;
+    int n, k; fin.scan(n, k);
+    std::string s; fin.scan(s);
 
     rolling_hash hash(s);
     std::map<std::uint_fast64_t, std::vector<int>> mp;
@@ -27,6 +26,6 @@ int main() {
         ans = std::max(ans, cnt);
     }
 
-    printf("%d\n", ans);
+	fout.println(ans);
     return 0;
 }

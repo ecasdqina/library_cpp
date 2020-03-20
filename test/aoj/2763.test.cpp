@@ -1,11 +1,10 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2763"
 
-#include <stdio.h>
-#include <iostream>
 #include "../../string/rolling_hash.hpp"
+#include "../../other/fast_io.hpp"
 
 int main() {
-	std::string s; std::cin >> s;
+	std::string s; fin.scan(s);
 
 	rolling_hash hash(s);
 	for(int i = (int)s.size(); i > 0; i--) {
@@ -19,9 +18,9 @@ int main() {
 		if(Y != hash.hash(A + B + A, A + B + A + B)) continue;
 		if(X != hash.hash(A + B + A + B, A + B + A + B + A)) continue;
 
-		printf("Love %s!\n", s.substr(0, A + B).c_str());
+		fout.println("Love", s.substr(0, A + B).c_str());
 		return 0;
 	}
-	printf("mitomerarenaiWA\n");
+	fout.println("mitomerarenaiWA\n");
 	return 0;
 }
