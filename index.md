@@ -56,6 +56,13 @@ layout: default
 * :heavy_check_mark: <a href="library/math/polynomial.hpp.html">math/polynomial.hpp</a>
 
 
+<div id="795f3202b17cb6bc3d4b771d8c6c9eaf"></div>
+
+### other
+
+* :heavy_check_mark: <a href="library/other/fast_io.hpp.html">other/fast_io.hpp</a>
+
+
 <div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
 
 ### string
