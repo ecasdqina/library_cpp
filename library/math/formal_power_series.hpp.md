@@ -31,10 +31,41 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/formal_power_series.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 18:16:27+09:00
+    - Last commit date: 2020-03-20 12:55:43+09:00
 
 
 
+
+## 計算量
+- inv, log, exp, pow $\Theta(N\log N)$
+
+## reference
+- https://ei1333.github.io/luzhiled/snippets/math/formal-power-series.html
+
+## example
+```cpp
+#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
+
+#include "../../math/number_theoritic_transform.hpp"
+#include "../../math/formal_power_series.hpp"
+#include "../../other/fast_io.hpp"
+
+using fps = formal_power_series<number_theoritic_transform<modint<998244353>>>;
+
+int main() {
+	int n; fin.scan(n);
+	fps a(n);
+	for(int i = 0; i < n; i++) {
+		int x; fin.scan(x);
+
+		a[i] = x;
+	}
+
+	for(auto v: a.inverse()) fout.print(v.value(), ' ');
+	fout.println();
+	return 0;
+}
+```
 
 ## Verified with
 
@@ -118,6 +149,8 @@ public:
 	}
 };
 
+// @docs docs/formal_power_series.md
+
 #endif
 
 ```
@@ -196,6 +229,8 @@ public:
 		return *this;
 	}
 };
+
+// @docs docs/formal_power_series.md
 
 
 

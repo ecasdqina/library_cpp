@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/log_of_formal_power_series.ntt.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 11:32:22+09:00
+    - Last commit date: 2020-03-20 12:55:43+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/log_of_formal_power_series">https://judge.yosupo.jp/problem/log_of_formal_power_series</a>
@@ -385,6 +385,8 @@ public:
 	}
 };
 
+// @docs docs/number_theoritic_transform.md
+
 
 #line 1 "math/formal_power_series.hpp"
 
@@ -456,6 +458,8 @@ public:
 		return *this;
 	}
 };
+
+// @docs docs/formal_power_series.md
 
 
 #line 1 "other/fast_io.hpp"
@@ -707,6 +711,8 @@ namespace fast_io {
 }
 fast_io::scanner fin;
 fast_io::printer fout;
+
+// @docs docs/fast_io.md
 
 
 #line 6 "test/yosupo/log_of_formal_power_series.ntt.test.cpp"

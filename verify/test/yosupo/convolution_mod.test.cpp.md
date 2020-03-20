@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/convolution_mod.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 11:32:22+09:00
+    - Last commit date: 2020-03-20 12:55:43+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
@@ -386,6 +386,8 @@ public:
 	}
 };
 
+// @docs docs/number_theoritic_transform.md
+
 
 #line 1 "other/fast_io.hpp"
 
@@ -637,6 +639,8 @@ namespace fast_io {
 }
 fast_io::scanner fin;
 fast_io::printer fout;
+
+// @docs docs/fast_io.md
 
 
 #line 5 "test/yosupo/convolution_mod.test.cpp"

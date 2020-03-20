@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/arbitary_mod_number_theoritic_transform.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-19 22:50:19+09:00
+    - Last commit date: 2020-03-20 12:55:43+09:00
 
 
 
@@ -508,6 +508,8 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+// @docs docs/number_theoritic_transform.md
 
 
 #line 7 "math/arbitary_mod_number_theoritic_transform.hpp"

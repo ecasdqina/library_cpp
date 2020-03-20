@@ -31,10 +31,16 @@ layout: default
 
 * category: <a href="../../index.html#795f3202b17cb6bc3d4b771d8c6c9eaf">other</a>
 * <a href="{{ site.github.repository_url }}/blob/master/other/fast_io.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-20 11:32:22+09:00
+    - Last commit date: 2020-03-20 12:55:43+09:00
 
 
 
+
+## description
+rsk0315 さんの FastIO を基にしていくつか機能を追加したもの．
+
+## reference
+- https://github.com/rsk0315/codefolio/blob/master/FastIO/fastio.cpp
 
 ## Verified with
 
@@ -312,6 +318,8 @@ namespace fast_io {
 fast_io::scanner fin;
 fast_io::printer fout;
 
+// @docs docs/fast_io.md
+
 #endif
 
 ```
@@ -570,6 +578,8 @@ namespace fast_io {
 }
 fast_io::scanner fin;
 fast_io::printer fout;
+
+// @docs docs/fast_io.md
 
 
 
