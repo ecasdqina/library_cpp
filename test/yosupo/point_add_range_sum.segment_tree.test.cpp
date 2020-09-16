@@ -5,11 +5,12 @@
 
 int main() {
 	int n, q; fin.scan(n, q);
-	segment_tree<monoid<std::int_fast64_t>> seg(n);
-	for(int i = 0; i < n; i++) {
+
+	using T = cplib::add_monoid<long long>;
+	cplib::segment_tree<T> seg(n);
 		int a; fin.scan(a);
 
-		seg.change(i, a);
+		seg.change(i, T{a});
 	}
 
 	while(q--) {
@@ -18,11 +19,11 @@ int main() {
 		if(type == 0) {
 			int p, x; fin.scan(p, x);
 
-			seg.update(p, x);
+			seg.update(p, T{x});
 		} else if(type == 1) {
 			int l, r; fin.scan(l, r);
 
-			fout.println(seg.fold(l, r));
+			fout.println(seg.fold(l, r).a);
 		}
 	}
 }
