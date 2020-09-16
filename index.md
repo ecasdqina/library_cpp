@@ -1,100 +1,111 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: data_structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data_structure/fenwick_tree.hpp
+      title: data_structure/fenwick_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_structure/persistent_array.hpp
+      title: data_structure/persistent_array.hpp
+    - icon: ':x:'
+      path: data_structure/segment_tree.hpp
+      title: data_structure/segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_structure/union_find.hpp
+      title: data_structure/union_find.hpp
+  - name: math
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: math/arbitary_mod_number_theoritic_transform.hpp
+      title: math/arbitary_mod_number_theoritic_transform.hpp
+    - icon: ':warning:'
+      path: math/fast_fourier_transform.hpp
+      title: math/fast_fourier_transform.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/formal_power_series.hpp
+      title: math/formal_power_series.hpp
+    - icon: ':question:'
+      path: math/modint.hpp
+      title: math/modint.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/number_theoritic_transform.hpp
+      title: math/number_theoritic_transform.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/polynomial.hpp
+      title: math/polynomial.hpp
+  - name: other
+    pages:
+    - icon: ':question:'
+      path: other/fast_io.hpp
+      title: other/fast_io.hpp
+  - name: string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: string/rolling_hash.hpp
+      title: string/rolling_hash.hpp
+  - name: tree
+    pages:
+    - icon: ':question:'
+      path: tree/heavy_light_decomposition.hpp
+      title: tree/heavy_light_decomposition.hpp
+  verificationCategories:
+  - name: test/aoj
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2667.test.cpp
+      title: test/aoj/2667.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2763.test.cpp
+      title: test/aoj/2763.test.cpp
+  - name: test/hackerrank
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/hackerrank/zundamochi.rolling_hash.test.cpp
+      title: test/hackerrank/zundamochi.rolling_hash.test.cpp
+  - name: test/yosupo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution_mod.test.cpp
+      title: test/yosupo/convolution_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+      title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+      title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
+      title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
+      title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/persistent_queue.persistent_array.test.cpp
+      title: test/yosupo/persistent_queue.persistent_array.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
+      title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
+      title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
+      title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/unionfind.union_find.test.cpp
+      title: test/yosupo/unionfind.union_find.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/vertex_add_path_sum.test.cpp
+      title: test/yosupo/vertex_add_path_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/vertex_add_subtree_sum.test.cpp
+      title: test/yosupo/vertex_add_subtree_sum.test.cpp
+  - name: test/yukicoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/901.test.cpp
+      title: test/yukicoder/901.test.cpp
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/kmyk/online-judge-verify-helper">online-judge-verify-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="c8f6850ec2ec3fb32f203c1f4e3c2fd2"></div>
-
-### data_structure
-
-* :heavy_check_mark: <a href="library/data_structure/fenwick_tree.hpp.html">data_structure/fenwick_tree.hpp</a>
-* :heavy_check_mark: <a href="library/data_structure/persistent_array.hpp.html">data_structure/persistent_array.hpp</a>
-* :heavy_check_mark: <a href="library/data_structure/segment_tree.hpp.html">data_structure/segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/data_structure/union_find.hpp.html">data_structure/union_find.hpp</a>
-
-
-<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
-
-### math
-
-* :heavy_check_mark: <a href="library/math/arbitary_mod_number_theoritic_transform.hpp.html">math/arbitary_mod_number_theoritic_transform.hpp</a>
-* :warning: <a href="library/math/fast_fourier_transform.hpp.html">math/fast_fourier_transform.hpp</a>
-* :heavy_check_mark: <a href="library/math/formal_power_series.hpp.html">math/formal_power_series.hpp</a>
-* :heavy_check_mark: <a href="library/math/modint.hpp.html">math/modint.hpp</a>
-* :heavy_check_mark: <a href="library/math/number_theoritic_transform.hpp.html">math/number_theoritic_transform.hpp</a>
-* :heavy_check_mark: <a href="library/math/polynomial.hpp.html">math/polynomial.hpp</a>
-
-
-<div id="795f3202b17cb6bc3d4b771d8c6c9eaf"></div>
-
-### other
-
-* :heavy_check_mark: <a href="library/other/fast_io.hpp.html">other/fast_io.hpp</a>
-
-
-<div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
-
-### string
-
-* :heavy_check_mark: <a href="library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
-
-
-<div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
-
-### tree
-
-* :heavy_check_mark: <a href="library/tree/heavy_light_decomposition.hpp.html">tree/heavy_light_decomposition.hpp</a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/test/aoj/2667.test.cpp.html">test/aoj/2667.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/2763.test.cpp.html">test/aoj/2763.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/hackerrank/zundamochi.rolling_hash.test.cpp.html">test/hackerrank/zundamochi.rolling_hash.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod.test.cpp.html">test/yosupo/convolution_mod.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp.html">test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/exp_of_formal_power_series.ntt.test.cpp.html">test/yosupo/exp_of_formal_power_series.ntt.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/inv_of_formal_power_series.ntt.test.cpp.html">test/yosupo/inv_of_formal_power_series.ntt.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/log_of_formal_power_series.ntt.test.cpp.html">test/yosupo/log_of_formal_power_series.ntt.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/persistent_queue.persistent_array.test.cpp.html">test/yosupo/persistent_queue.persistent_array.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.fenwick_tree.test.cpp.html">test/yosupo/point_add_range_sum.fenwick_tree.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/point_add_range_sum.segment_tree.test.cpp.html">test/yosupo/point_add_range_sum.segment_tree.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/point_set_range_composite.segment_tree.test.cpp.html">test/yosupo/point_set_range_composite.segment_tree.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/staticrmq.segment_tree.test.cpp.html">test/yosupo/staticrmq.segment_tree.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/unionfind.union_find.test.cpp.html">test/yosupo/unionfind.union_find.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/vertex_add_path_sum.test.cpp.html">test/yosupo/vertex_add_path_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/vertex_add_subtree_sum.test.cpp.html">test/yosupo/vertex_add_subtree_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yukicoder/901.test.cpp.html">test/yukicoder/901.test.cpp</a>
-
-
