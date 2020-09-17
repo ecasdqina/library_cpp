@@ -1,19 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: math/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -27,7 +30,7 @@ data:
     \n\tprivate:\n\t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\t\
     usize base() const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree()\
     \ = default;\n\t\texplicit segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\
-    \t\t\twhile(size <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity);\n\
+    \t\t\twhile(size <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\
     \t\t}\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
     \ {\n\t\t\tfor(usize i = 0; i < vec.size(); i++) set(i, vec[i]);\n\t\t\tbuild();\n\
     \t\t}\n\n\t\tusize size() const { return n; }\n\t\tvalue_type get(usize i) const\
@@ -39,67 +42,77 @@ data:
     \ * 2 + 0], data[i * 2 + 1]);\n\t\t}\n\t\tvoid update(usize i, const value_type&\
     \ x) { change(i, value_type::operation(get(i), x)); }\n\n\t\tvalue_type fold(usize\
     \ first, usize last) const {\n\t\t\tfirst += base();\n\t\t\tlast += base();\n\n\
-    \t\t\tvalue_type lval = value_type::identity;\n\t\t\tvalue_type rval = value_type::identity;\n\
+    \t\t\tvalue_type lval = value_type::identity();\n\t\t\tvalue_type rval = value_type::identity();\n\
     \t\t\twhile(first != last) {\n\t\t\t\tif(first & 1) lval = value_type::operation(lval,\
     \ data[first++]);\n\t\t\t\tif(last  & 1) rval = value_type::operation(data[--last],\
     \ rval);\n\t\t\t\tfirst >>= 1;\n\t\t\t\tlast  >>= 1;\n\t\t\t}\n\t\t\treturn value_type::operation(lval,\
     \ rval);\n\t\t}\n\t\tvalue_type fold_all() const { return data[1]; }\n\n\t\t//\
     \ return max{r | f(fold(l, r - 1)) = true}\n\t\ttemplate<class F> usize search_right(int\
     \ l, const F& f) const {\n\t\t\tif(l == size()) return base();\n\n\t\t\tl += base();\n\
-    \t\t\tvalue_type acc = value_type::identity;\n\t\t\tdo {\n\t\t\t\twhile(l % 2\
-    \ == 0) l >>= 1;\n\t\t\t\tif(!f(value_type::operation(acc, data[l]))) {\n\t\t\t\
-    \t\twhile(l < base()) {\n\t\t\t\t\t\tl = l << 1;\n\t\t\t\t\t\tif(f(value_type::operation(acc,\
+    \t\t\tvalue_type acc = value_type::identity();\n\t\t\tdo {\n\t\t\t\twhile(l %\
+    \ 2 == 0) l >>= 1;\n\t\t\t\tif(!f(value_type::operation(acc, data[l]))) {\n\t\t\
+    \t\t\twhile(l < base()) {\n\t\t\t\t\t\tl = l << 1;\n\t\t\t\t\t\tif(f(value_type::operation(acc,\
     \ data[l]))) {\n\t\t\t\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\
     \t\t\t\t\tl += 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn l - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\t\tl += 1;\n\
     \t\t\t} while((l & -l) != l);\n\t\t\treturn size();\n\t\t}\n\n\t\t// return min{l\
     \ | f(fold(l, r - 1) = true}\n\t\ttemplate<class F> usize search_left(int r, const\
     \ F& f) const {\n\t\t\tif(r == 0) return 0;\n\n\t\t\tr += base();\n\t\t\tvalue_type\
-    \ acc = value_type::identity;\n\t\t\tdo {\n\t\t\t\tr--;\n\t\t\t\twhile(r > 1 and\
-    \ (r % 2)) r >>= 1;\n\t\t\t\tif(!f(value_type::operation(data[r], acc))) {\n\t\
-    \t\t\t\twhile(r < base()) {\n\t\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\t\tif(f(value_type::operation(data[r],\
+    \ acc = value_type::identity();\n\t\t\tdo {\n\t\t\t\tr--;\n\t\t\t\twhile(r > 1\
+    \ and (r % 2)) r >>= 1;\n\t\t\t\tif(!f(value_type::operation(data[r], acc))) {\n\
+    \t\t\t\t\twhile(r < base()) {\n\t\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\t\tif(f(value_type::operation(data[r],\
     \ acc))) {\n\t\t\t\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t\t\
     \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
-    \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n\n\ttemplate<class T, T id = T{}>\n\
-    \tstruct add_monoid {\n\t\tT a;\n\n\t\tstatic constexpr add_monoid operation(const\
-    \ add_monoid& l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\t\
-    static constexpr add_monoid identity{id};\n\t};\n\n\ttemplate<class T, T id =\
-    \ T{1}>\n\tstruct mul_monoid {\n\t\tT a;\n\n\t\tstatic constexpr mul_monoid operation(const\
-    \ mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a * r.a}; }\n\t\t\
-    static constexpr mul_monoid identity{id};\n\t};\n\n\ttemplate<class T, T id =\
-    \ T{}>\n\tstruct max_monoid {\n\t\tT a;\n\n\t\tstatic constexpr max_monoid operation(const\
-    \ max_monoid& l, const max_monoid& r) { return max_monoid{std::max(l.a, r.a)};\
-    \ }\n\t\tstatic constexpr max_monoid identity{id};\n\t};\n\n\ttemplate<class T,\
-    \ T id = T{}>\n\tstruct min_monoid {\n\t\tT a;\n\n\t\tstatic constexpr min_monoid\
-    \ operation(const min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a,\
-    \ r.a)}; }\n\t\tstatic constexpr min_monoid identity{id};\n\t};\n}\n\n// @docs\
-    \ docs/segment_tree.md\n#line 1 \"math/modint.hpp\"\n\n\n\n#include <iostream>\n\
-    \ntemplate <std::uint_fast64_t Modulus>\nclass modint {\n\tusing u32 = std::uint_fast32_t;\n\
-    \tusing u64 = std::uint_fast64_t;\n\tusing i64 = std::int_fast64_t;\n\n\tinline\
-    \ u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };\n\npublic:\n\tu64 a;\n\
-    \tstatic constexpr u64 mod = Modulus;\n\n\tconstexpr modint(const i64& x = 0)\
-    \ noexcept: a(apply(x % (i64)Modulus)) {}\n\n\tconstexpr modint operator+(const\
-    \ modint& rhs) const noexcept { return modint(*this) += rhs; }\n\tconstexpr modint\
-    \ operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }\t\
-    \n\tconstexpr modint operator*(const modint& rhs) const noexcept { return modint(*this)\
-    \ *= rhs; }\n\tconstexpr modint operator/(const modint& rhs) const noexcept {\
-    \ return modint(*this) /= rhs; }\n\tconstexpr modint operator^(const u64& k) const\
-    \ noexcept { return modint(*this) ^= k; }\n\tconstexpr modint operator^(const\
-    \ modint& k) const noexcept { return modint(*this) ^= k.value(); }\n\tconstexpr\
-    \ modint operator-() const noexcept { return modint(Modulus - a); }\n\tconstexpr\
-    \ modint operator++() noexcept { return (*this) = modint(*this) + 1; }\n\tconstexpr\
-    \ modint operator--() noexcept { return (*this) = modint(*this) - 1; }\n\tconst\
-    \ bool operator==(const modint& rhs) const noexcept { return a == rhs.a; };\n\t\
-    const bool operator!=(const modint& rhs) const noexcept { return a != rhs.a; };\n\
-    \tconst bool operator<=(const modint& rhs) const noexcept { return a <= rhs.a;\
-    \ };\n\tconst bool operator>=(const modint& rhs) const noexcept { return a >=\
-    \ rhs.a; };\n\tconst bool operator<(const modint& rhs) const noexcept { return\
-    \ a < rhs.a; };\n\tconst bool operator>(const modint& rhs) const noexcept { return\
-    \ a > rhs.a; };\n\tconstexpr modint& operator+=(const modint& rhs) noexcept {\n\
-    \t\ta += rhs.a;\n\t\tif (a >= Modulus) a -= Modulus;\n\t\treturn *this;\n\t}\n\
-    \tconstexpr modint& operator-=(const modint& rhs) noexcept {\n\t\tif (a < rhs.a)\
-    \ a += Modulus;\n\t\ta -= rhs.a;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
+    \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n\
+    #line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
+    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
+    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
+    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
+    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
+    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
+    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
+    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
+    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
+    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
+    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
+    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
+    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
+    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
+    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
+    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
+    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
+    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
+    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
+    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
+    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
+    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
+    \ T value() { return a; }\n\t};\n}\n#line 1 \"math/modint.hpp\"\n\n\n\n#include\
+    \ <iostream>\n\ntemplate <std::uint_fast64_t Modulus>\nclass modint {\n\tusing\
+    \ u32 = std::uint_fast32_t;\n\tusing u64 = std::uint_fast64_t;\n\tusing i64 =\
+    \ std::int_fast64_t;\n\n\tinline u64 apply(i64 x) { return (x < 0 ? x + Modulus\
+    \ : x); };\n\npublic:\n\tu64 a;\n\tstatic constexpr u64 mod = Modulus;\n\n\tconstexpr\
+    \ modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}\n\n\tconstexpr\
+    \ modint operator+(const modint& rhs) const noexcept { return modint(*this) +=\
+    \ rhs; }\n\tconstexpr modint operator-(const modint& rhs) const noexcept { return\
+    \ modint(*this) -= rhs; }\t\n\tconstexpr modint operator*(const modint& rhs) const\
+    \ noexcept { return modint(*this) *= rhs; }\n\tconstexpr modint operator/(const\
+    \ modint& rhs) const noexcept { return modint(*this) /= rhs; }\n\tconstexpr modint\
+    \ operator^(const u64& k) const noexcept { return modint(*this) ^= k; }\n\tconstexpr\
+    \ modint operator^(const modint& k) const noexcept { return modint(*this) ^= k.value();\
+    \ }\n\tconstexpr modint operator-() const noexcept { return modint(Modulus - a);\
+    \ }\n\tconstexpr modint operator++() noexcept { return (*this) = modint(*this)\
+    \ + 1; }\n\tconstexpr modint operator--() noexcept { return (*this) = modint(*this)\
+    \ - 1; }\n\tconst bool operator==(const modint& rhs) const noexcept { return a\
+    \ == rhs.a; };\n\tconst bool operator!=(const modint& rhs) const noexcept { return\
+    \ a != rhs.a; };\n\tconst bool operator<=(const modint& rhs) const noexcept {\
+    \ return a <= rhs.a; };\n\tconst bool operator>=(const modint& rhs) const noexcept\
+    \ { return a >= rhs.a; };\n\tconst bool operator<(const modint& rhs) const noexcept\
+    \ { return a < rhs.a; };\n\tconst bool operator>(const modint& rhs) const noexcept\
+    \ { return a > rhs.a; };\n\tconstexpr modint& operator+=(const modint& rhs) noexcept\
+    \ {\n\t\ta += rhs.a;\n\t\tif (a >= Modulus) a -= Modulus;\n\t\treturn *this;\n\
+    \t}\n\tconstexpr modint& operator-=(const modint& rhs) noexcept {\n\t\tif (a <\
+    \ rhs.a) a += Modulus;\n\t\ta -= rhs.a;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
     \ operator*=(const modint& rhs) noexcept {\n\t\ta = a * rhs.a % Modulus;\n\t\t\
     return *this;\n\t}\n\tconstexpr modint& operator/=(modint rhs) noexcept {\n\t\t\
     u64 exp = Modulus - 2;\n\t\twhile (exp) {\n\t\t\tif (exp % 2) (*this) *= rhs;\n\
@@ -205,35 +218,38 @@ data:
     \ print('\\n'); }\n\t\ttemplate<class T>\n\t\tvoid println(const std::vector<T>&\
     \ t) { print(t); print('\\n'); }\n\t\tvoid println() { print('\\n'); }\n\t};\n\
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
-    \n\n#line 6 \"test/yosupo/point_set_range_composite.segment_tree.test.cpp\"\n\n\
-    using mint = modint<998244353>;\n\nstruct node {\n\tmint a, b;\n\n\tnode(mint\
-    \ a = 1, mint b = 0): a(a), b(b) {}\n\tnode operator+(node r) const { return node(r.a\
-    \ * a, r.a * b + r.b); }\n\tmint eval(mint x) { return a * x + b; }\n};\n\nint\
-    \ main() {\n\tint n, q; fin.scan(n, q);\n\tsegment_tree<monoid<node>> seg(n);\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tint a, b; fin.scan(a, b);\n\n\t\tseg.change(i,\
-    \ node(a, b));\n\t}\n\n\twhile(q--) {\n\t\tint type, x, y, z; fin.scan(type, x,\
-    \ y, z);\n\n\t\tif(type == 0) seg.change(x, node(y, z));\n\t\tif(type == 1) fout.println(seg.fold(x,\
-    \ y).eval(z).value());\n\t}\n\treturn 0;\n}\n"
+    \n\n#line 7 \"test/yosupo/point_set_range_composite.segment_tree.test.cpp\"\n\n\
+    using mint = modint<998244353>;\n\nstruct node {\n\tmint a, b;\n\n\tnode operator+(const\
+    \ node& r) const { return node{r.a * a, r.a * b + r.b}; }\n\tmint eval(mint x)\
+    \ { return a * x + b; }\n} id{1, 0};\n\nint main() {\n\tint n, q; fin.scan(n,\
+    \ q);\n\n\tusing T = cplib::monoid<node, id>;\n\tcplib::segment_tree<T> seg(n);\n\
+    \tfor(int i = 0; i < n; i++) {\n\t\tint a, b; fin.scan(a, b);\n\n\t\tseg.set(i,\
+    \ node{a, b});\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type, x, y, z;\
+    \ fin.scan(type, x, y, z);\n\n\t\tif(type == 0) seg.change(x, node{y, z});\n\t\
+    \tif(type == 1) fout.println(seg.fold(x, y).value().eval(z).value());\n\t}\n\t\
+    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n\n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../math/modint.hpp\"\
-    \n#include \"../../other/fast_io.hpp\"\n\nusing mint = modint<998244353>;\n\n\
-    struct node {\n\tmint a, b;\n\n\tnode(mint a = 1, mint b = 0): a(a), b(b) {}\n\
-    \tnode operator+(node r) const { return node(r.a * a, r.a * b + r.b); }\n\tmint\
-    \ eval(mint x) { return a * x + b; }\n};\n\nint main() {\n\tint n, q; fin.scan(n,\
-    \ q);\n\tsegment_tree<monoid<node>> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\
-    \tint a, b; fin.scan(a, b);\n\n\t\tseg.change(i, node(a, b));\n\t}\n\n\twhile(q--)\
-    \ {\n\t\tint type, x, y, z; fin.scan(type, x, y, z);\n\n\t\tif(type == 0) seg.change(x,\
-    \ node(y, z));\n\t\tif(type == 1) fout.println(seg.fold(x, y).eval(z).value());\n\
-    \t}\n\treturn 0;\n}\n"
+    \n\n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../data_structure/monoid.hpp\"\
+    \n#include \"../../math/modint.hpp\"\n#include \"../../other/fast_io.hpp\"\n\n\
+    using mint = modint<998244353>;\n\nstruct node {\n\tmint a, b;\n\n\tnode operator+(const\
+    \ node& r) const { return node{r.a * a, r.a * b + r.b}; }\n\tmint eval(mint x)\
+    \ { return a * x + b; }\n} id{1, 0};\n\nint main() {\n\tint n, q; fin.scan(n,\
+    \ q);\n\n\tusing T = cplib::monoid<node, id>;\n\tcplib::segment_tree<T> seg(n);\n\
+    \tfor(int i = 0; i < n; i++) {\n\t\tint a, b; fin.scan(a, b);\n\n\t\tseg.set(i,\
+    \ node{a, b});\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type, x, y, z;\
+    \ fin.scan(type, x, y, z);\n\n\t\tif(type == 0) seg.change(x, node{y, z});\n\t\
+    \tif(type == 1) fout.println(seg.fold(x, y).value().eval(z).value());\n\t}\n\t\
+    return 0;\n}\n"
   dependsOn:
   - data_structure/segment_tree.hpp
+  - data_structure/monoid.hpp
   - math/modint.hpp
   - other/fast_io.hpp
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 06:15:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-17 22:59:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.segment_tree.test.cpp
 layout: document

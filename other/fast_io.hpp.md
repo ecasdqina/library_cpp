@@ -21,13 +21,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.union_find.test.cpp
     title: test/yosupo/unionfind.union_find.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
     title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
     title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,14 +45,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/hackerrank/zundamochi.rolling_hash.test.cpp
-    title: test/hackerrank/zundamochi.rolling_hash.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/fast_io.md
@@ -245,7 +242,7 @@ data:
   path: other/fast_io.hpp
   requiredBy: []
   timestamp: '2020-03-20 12:55:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2763.test.cpp
   - test/aoj/2667.test.cpp
@@ -262,7 +259,6 @@ data:
   - test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/hackerrank/zundamochi.rolling_hash.test.cpp
 documentation_of: other/fast_io.hpp
 layout: document
 redirect_from:

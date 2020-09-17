@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
     title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
     title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
     path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -130,7 +130,7 @@ data:
   - math/arbitary_mod_number_theoritic_transform.hpp
   - math/arbitary_mod_number_theoritic_transform.hpp
   timestamp: '2020-03-19 17:03:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
   - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp

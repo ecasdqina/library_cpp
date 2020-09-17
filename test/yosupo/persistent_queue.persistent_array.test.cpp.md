@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data_structure/persistent_array.hpp
     title: data_structure/persistent_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []

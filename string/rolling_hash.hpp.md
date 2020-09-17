@@ -6,9 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2763.test.cpp
     title: test/aoj/2763.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/hackerrank/zundamochi.rolling_hash.test.cpp
-    title: test/hackerrank/zundamochi.rolling_hash.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -68,7 +65,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2763.test.cpp
-  - test/hackerrank/zundamochi.rolling_hash.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:

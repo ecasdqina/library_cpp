@@ -9,14 +9,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/901.test.cpp
     title: test/yukicoder/901.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
@@ -105,7 +105,7 @@ data:
   path: tree/heavy_light_decomposition.hpp
   requiredBy: []
   timestamp: '2020-03-19 17:03:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2667.test.cpp
   - test/yukicoder/901.test.cpp

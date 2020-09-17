@@ -1,16 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -24,8 +27,8 @@ data:
     \t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base()\
     \ const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\
     \t\texplicit segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\t\t\twhile(size\
-    \ <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity);\n\t\t\
-    }\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
+    \ <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\t\
+    \t}\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
     \ {\n\t\t\tfor(usize i = 0; i < vec.size(); i++) set(i, vec[i]);\n\t\t\tbuild();\n\
     \t\t}\n\n\t\tusize size() const { return n; }\n\t\tvalue_type get(usize i) const\
     \ { return data[i + base()]; }\n\t\tvoid set(usize i, const value_type& x) { data[i\
@@ -36,48 +39,58 @@ data:
     \ * 2 + 0], data[i * 2 + 1]);\n\t\t}\n\t\tvoid update(usize i, const value_type&\
     \ x) { change(i, value_type::operation(get(i), x)); }\n\n\t\tvalue_type fold(usize\
     \ first, usize last) const {\n\t\t\tfirst += base();\n\t\t\tlast += base();\n\n\
-    \t\t\tvalue_type lval = value_type::identity;\n\t\t\tvalue_type rval = value_type::identity;\n\
+    \t\t\tvalue_type lval = value_type::identity();\n\t\t\tvalue_type rval = value_type::identity();\n\
     \t\t\twhile(first != last) {\n\t\t\t\tif(first & 1) lval = value_type::operation(lval,\
     \ data[first++]);\n\t\t\t\tif(last  & 1) rval = value_type::operation(data[--last],\
     \ rval);\n\t\t\t\tfirst >>= 1;\n\t\t\t\tlast  >>= 1;\n\t\t\t}\n\t\t\treturn value_type::operation(lval,\
     \ rval);\n\t\t}\n\t\tvalue_type fold_all() const { return data[1]; }\n\n\t\t//\
     \ return max{r | f(fold(l, r - 1)) = true}\n\t\ttemplate<class F> usize search_right(int\
     \ l, const F& f) const {\n\t\t\tif(l == size()) return base();\n\n\t\t\tl += base();\n\
-    \t\t\tvalue_type acc = value_type::identity;\n\t\t\tdo {\n\t\t\t\twhile(l % 2\
-    \ == 0) l >>= 1;\n\t\t\t\tif(!f(value_type::operation(acc, data[l]))) {\n\t\t\t\
-    \t\twhile(l < base()) {\n\t\t\t\t\t\tl = l << 1;\n\t\t\t\t\t\tif(f(value_type::operation(acc,\
+    \t\t\tvalue_type acc = value_type::identity();\n\t\t\tdo {\n\t\t\t\twhile(l %\
+    \ 2 == 0) l >>= 1;\n\t\t\t\tif(!f(value_type::operation(acc, data[l]))) {\n\t\t\
+    \t\t\twhile(l < base()) {\n\t\t\t\t\t\tl = l << 1;\n\t\t\t\t\t\tif(f(value_type::operation(acc,\
     \ data[l]))) {\n\t\t\t\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\
     \t\t\t\t\tl += 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn l - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\t\tl += 1;\n\
     \t\t\t} while((l & -l) != l);\n\t\t\treturn size();\n\t\t}\n\n\t\t// return min{l\
     \ | f(fold(l, r - 1) = true}\n\t\ttemplate<class F> usize search_left(int r, const\
     \ F& f) const {\n\t\t\tif(r == 0) return 0;\n\n\t\t\tr += base();\n\t\t\tvalue_type\
-    \ acc = value_type::identity;\n\t\t\tdo {\n\t\t\t\tr--;\n\t\t\t\twhile(r > 1 and\
-    \ (r % 2)) r >>= 1;\n\t\t\t\tif(!f(value_type::operation(data[r], acc))) {\n\t\
-    \t\t\t\twhile(r < base()) {\n\t\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\t\tif(f(value_type::operation(data[r],\
+    \ acc = value_type::identity();\n\t\t\tdo {\n\t\t\t\tr--;\n\t\t\t\twhile(r > 1\
+    \ and (r % 2)) r >>= 1;\n\t\t\t\tif(!f(value_type::operation(data[r], acc))) {\n\
+    \t\t\t\t\twhile(r < base()) {\n\t\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\t\tif(f(value_type::operation(data[r],\
     \ acc))) {\n\t\t\t\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t\t\
     \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
-    \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n\n\ttemplate<class T, T id = T{}>\n\
-    \tstruct add_monoid {\n\t\tT a;\n\n\t\tstatic constexpr add_monoid operation(const\
-    \ add_monoid& l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\t\
-    static constexpr add_monoid identity{id};\n\t};\n\n\ttemplate<class T, T id =\
-    \ T{1}>\n\tstruct mul_monoid {\n\t\tT a;\n\n\t\tstatic constexpr mul_monoid operation(const\
-    \ mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a * r.a}; }\n\t\t\
-    static constexpr mul_monoid identity{id};\n\t};\n\n\ttemplate<class T, T id =\
-    \ T{}>\n\tstruct max_monoid {\n\t\tT a;\n\n\t\tstatic constexpr max_monoid operation(const\
-    \ max_monoid& l, const max_monoid& r) { return max_monoid{std::max(l.a, r.a)};\
-    \ }\n\t\tstatic constexpr max_monoid identity{id};\n\t};\n\n\ttemplate<class T,\
-    \ T id = T{}>\n\tstruct min_monoid {\n\t\tT a;\n\n\t\tstatic constexpr min_monoid\
-    \ operation(const min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a,\
-    \ r.a)}; }\n\t\tstatic constexpr min_monoid identity{id};\n\t};\n}\n\n// @docs\
-    \ docs/segment_tree.md\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include <cstdio>\n\
-    #line 6 \"other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n#include\
-    \ <limits>\n#include <string>\n#include <type_traits>\n#include <utility>\n#line\
-    \ 13 \"other/fast_io.hpp\"\n\nnamespace fast_io {\n\t// fast I/O by rsk0315 (update:\
-    \ 2020-03-02 01:10:54).\n\tstatic size_t constexpr buf_size = 1 << 17;\n\tstatic\
-    \ size_t constexpr margin = 1;\n\tstatic char inbuf[buf_size + margin] = {};\n\
-    \tstatic char outbuf[buf_size + margin] = {};\n\tstatic __attribute__((aligned(8)))\
+    \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n\
+    #line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
+    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
+    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
+    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
+    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
+    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
+    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
+    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
+    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
+    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
+    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
+    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
+    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
+    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
+    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
+    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
+    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
+    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
+    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
+    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
+    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
+    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
+    \ T value() { return a; }\n\t};\n}\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include\
+    \ <cstdio>\n#line 6 \"other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n\
+    #include <limits>\n#include <string>\n#include <type_traits>\n#include <utility>\n\
+    #line 13 \"other/fast_io.hpp\"\n\nnamespace fast_io {\n\t// fast I/O by rsk0315\
+    \ (update: 2020-03-02 01:10:54).\n\tstatic size_t constexpr buf_size = 1 << 17;\n\
+    \tstatic size_t constexpr margin = 1;\n\tstatic char inbuf[buf_size + margin]\
+    \ = {};\n\tstatic char outbuf[buf_size + margin] = {};\n\tstatic __attribute__((aligned(8)))\
     \ char minibuf[32];\n\tstatic size_t constexpr int_digits = 20;\t// 18446744073709551615\n\
     \tstatic uintmax_t constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t\
     \ constexpr first_mask = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask\
@@ -161,29 +174,31 @@ data:
     \ print('\\n'); }\n\t\ttemplate<class T>\n\t\tvoid println(const std::vector<T>&\
     \ t) { print(t); print('\\n'); }\n\t\tvoid println() { print('\\n'); }\n\t};\n\
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
-    \n\n#line 5 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\nint main()\
+    \n\n#line 6 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\nint main()\
     \ {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::add_monoid<long long>;\n\
     \tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tint a; fin.scan(a);\n\
-    \n\t\tseg.set(i, T{a});\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type;\
-    \ fin.scan(type);\n\n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\
-    \t\tseg.update(p, T{x});\n\t\t} else if(type == 1) {\n\t\t\tint l, r; fin.scan(l,\
-    \ r);\n\n\t\t\tfout.println(seg.fold(l, r).a);\n\t\t}\n\t}\n}\n"
+    \n\t\tseg.set(i, a);\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\
+    \n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p,\
+    \ x);\n\t\t} else if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
+    \ r).value());\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../other/fast_io.hpp\"\
-    \n\nint main() {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::add_monoid<long\
-    \ long>;\n\tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\
-    \tint a; fin.scan(a);\n\n\t\tseg.set(i, T{a});\n\t}\n\tseg.build();\n\n\twhile(q--)\
-    \ {\n\t\tint type; fin.scan(type);\n\n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p,\
-    \ x);\n\n\t\t\tseg.update(p, T{x});\n\t\t} else if(type == 1) {\n\t\t\tint l,\
-    \ r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l, r).a);\n\t\t}\n\t}\n}\n"
+    \n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../data_structure/monoid.hpp\"\
+    \n#include \"../../other/fast_io.hpp\"\n\nint main() {\n\tint n, q; fin.scan(n,\
+    \ q);\n\n\tusing T = cplib::add_monoid<long long>;\n\tcplib::segment_tree<T> seg(n);\n\
+    \tfor(int i = 0; i < n; i++) {\n\t\tint a; fin.scan(a);\n\n\t\tseg.set(i, a);\n\
+    \t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\n\t\tif(type\
+    \ == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p, x);\n\t\t} else\
+    \ if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
+    \ r).value());\n\t\t}\n\t}\n}\n"
   dependsOn:
   - data_structure/segment_tree.hpp
+  - data_structure/monoid.hpp
   - other/fast_io.hpp
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 21:11:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-17 22:59:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.segment_tree.test.cpp
 layout: document

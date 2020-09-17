@@ -7,9 +7,12 @@ data:
       path: data_structure/fenwick_tree.hpp
       title: data_structure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
+      path: data_structure/monoid.hpp
+      title: data_structure/monoid.hpp
+    - icon: ':heavy_check_mark:'
       path: data_structure/persistent_array.hpp
       title: data_structure/persistent_array.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/segment_tree.hpp
       title: data_structure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -26,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/formal_power_series.hpp
       title: math/formal_power_series.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: math/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -37,7 +40,7 @@ data:
       title: math/polynomial.hpp
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/fast_io.hpp
       title: other/fast_io.hpp
   - name: string
@@ -47,7 +50,7 @@ data:
       title: string/rolling_hash.hpp
   - name: tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/heavy_light_decomposition.hpp
       title: tree/heavy_light_decomposition.hpp
   verificationCategories:
@@ -59,11 +62,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2763.test.cpp
       title: test/aoj/2763.test.cpp
-  - name: test/hackerrank
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/hackerrank/zundamochi.rolling_hash.test.cpp
-      title: test/hackerrank/zundamochi.rolling_hash.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
@@ -87,19 +85,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
       title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
       title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
       title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.union_find.test.cpp
       title: test/yosupo/unionfind.union_find.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.test.cpp
   - name: test/yukicoder

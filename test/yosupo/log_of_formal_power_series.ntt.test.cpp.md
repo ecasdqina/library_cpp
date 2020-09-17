@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/number_theoritic_transform.hpp
     title: math/number_theoritic_transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: math/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
