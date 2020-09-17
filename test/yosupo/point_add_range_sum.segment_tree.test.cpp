@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include "../../data_structure/segment_tree.hpp"
+#include "../../data_structure/monoid.hpp"
 #include "../../other/fast_io.hpp"
 
 int main() {
@@ -11,7 +12,7 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		int a; fin.scan(a);
 
-		seg.set(i, T{a});
+		seg.set(i, a);
 	}
 	seg.build();
 
@@ -21,11 +22,11 @@ int main() {
 		if(type == 0) {
 			int p, x; fin.scan(p, x);
 
-			seg.update(p, T{x});
+			seg.update(p, x);
 		} else if(type == 1) {
 			int l, r; fin.scan(l, r);
 
-			fout.println(seg.fold(l, r).a);
+			fout.println(seg.fold(l, r).value());
 		}
 	}
 }
