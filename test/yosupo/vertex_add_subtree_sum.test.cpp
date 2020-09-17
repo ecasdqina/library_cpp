@@ -32,7 +32,7 @@ int main() {
 			int v; fin.scan(v);
 
 			i64 ans = 0;
-			auto p = [&](int l, int r) { ans += seg.fold(l, r).value(); };
+			auto p = [&](int l, int r) { ans += seg.fold(l, r); };
 			hld.subtree(v, p);
 
 			fout.println(ans);

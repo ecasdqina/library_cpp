@@ -27,7 +27,7 @@ int main() {
 		if(type == 0) seg.update(hld[x], y);
 		if(type == 1) {
 			i64 ans = 0;
-			auto p = [&](int l, int r) { ans += seg.fold(l, r).value(); };
+			auto p = [&](int l, int r) { ans += seg.fold(l, r); };
 			hld.path(x, y, p);
 
 			fout.println(ans);

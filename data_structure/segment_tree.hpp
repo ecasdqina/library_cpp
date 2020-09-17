@@ -9,6 +9,7 @@ namespace cplib {
 	template<class Monoid> class segment_tree {
 	public:
 		using value_type = Monoid;
+		using T = typename value_type::value_type;
 		using usize = std::uint_fast32_t;
 
 	private:
@@ -31,7 +32,7 @@ namespace cplib {
 		}
 
 		usize size() const { return n; }
-		value_type get(usize i) const { return data[i + base()]; }
+		T get(usize i) const { return data[i + base()].a; }
 		void set(usize i, const value_type& x) { data[i + base()] = x; }
 
 		void build() {
@@ -44,7 +45,7 @@ namespace cplib {
 		}
 		void update(usize i, const value_type& x) { change(i, value_type::operation(get(i), x)); }
 
-		value_type fold(usize first, usize last) const {
+		T fold(usize first, usize last) const {
 			first += base();
 			last += base();
 
@@ -56,9 +57,9 @@ namespace cplib {
 				first >>= 1;
 				last  >>= 1;
 			}
-			return value_type::operation(lval, rval);
+			return value_type::operation(lval, rval).a;
 		}
-		value_type fold_all() const { return data[1]; }
+		T fold_all() const { return data[1].a; }
 
 		// return max{r | f(fold(l, r - 1)) = true}
 		template<class F> usize search_right(int l, const F& f) const {

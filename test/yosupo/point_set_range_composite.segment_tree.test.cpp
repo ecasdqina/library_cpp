@@ -29,7 +29,7 @@ int main() {
 		int type, x, y, z; fin.scan(type, x, y, z);
 
 		if(type == 0) seg.change(x, node{y, z});
-		if(type == 1) fout.println(seg.fold(x, y).value().eval(z).value());
+		if(type == 1) fout.println(seg.fold(x, y).eval(z).value());
 	}
 	return 0;
 }

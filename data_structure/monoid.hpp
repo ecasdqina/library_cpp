@@ -4,6 +4,8 @@
 
 namespace cplib {
 	template<class T, T id = T{}> struct add_monoid {
+		using value_type = T;
+
 		T a;
 
 		constexpr add_monoid(T a): a(a) {}
@@ -13,6 +15,8 @@ namespace cplib {
 	};
 
 	template<class T, T id = T{1}> struct mul_monoid {
+		using value_type = T;
+
 		T a;
 
 		constexpr mul_monoid(T a): a(a) {}
@@ -22,6 +26,8 @@ namespace cplib {
 	};
 
 	template<class T, T id = T{}> struct max_monoid {
+		using value_type = T;
+
 		T a;
 
 		constexpr max_monoid(T a): a(a) {}
@@ -31,6 +37,8 @@ namespace cplib {
 	};
 
 	template<class T, T id = T{}> struct min_monoid {
+		using value_type = T;
+
 		T a;
 
 		constexpr min_monoid(T a): a(a) {}
@@ -40,6 +48,8 @@ namespace cplib {
 	};
 
 	template<class T, T& id> struct monoid {
+		using value_type = T;
+
 		T a;
 
 		constexpr monoid(T a): a(a) {}

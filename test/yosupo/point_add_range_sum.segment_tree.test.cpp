@@ -25,7 +25,7 @@ int main() {
 		} else if(type == 1) {
 			int l, r; fin.scan(l, r);
 
-			fout.println(seg.fold(l, r).value());
+			fout.println(seg.fold(l, r));
 		}
 	}
 }
