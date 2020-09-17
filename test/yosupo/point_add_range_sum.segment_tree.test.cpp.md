@@ -163,26 +163,26 @@ data:
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
     \n\n#line 5 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\nint main()\
     \ {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::add_monoid<long long>;\n\
-    \tcplib::segment_tree<T> seg(n);\n\t\tint a; fin.scan(a);\n\n\t\tseg.change(i,\
-    \ T{a});\n\t}\n\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\n\t\tif(type\
-    \ == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p, T{x});\n\t\t\
-    } else if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
-    \ r).a);\n\t\t}\n\t}\n}\n"
+    \tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tint a; fin.scan(a);\n\
+    \n\t\tseg.set(i, T{a});\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type;\
+    \ fin.scan(type);\n\n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\
+    \t\tseg.update(p, T{x});\n\t\t} else if(type == 1) {\n\t\t\tint l, r; fin.scan(l,\
+    \ r);\n\n\t\t\tfout.println(seg.fold(l, r).a);\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     \n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../other/fast_io.hpp\"\
     \n\nint main() {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::add_monoid<long\
-    \ long>;\n\tcplib::segment_tree<T> seg(n);\n\t\tint a; fin.scan(a);\n\n\t\tseg.change(i,\
-    \ T{a});\n\t}\n\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\n\t\tif(type\
-    \ == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p, T{x});\n\t\t\
-    } else if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
-    \ r).a);\n\t\t}\n\t}\n}\n"
+    \ long>;\n\tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\
+    \tint a; fin.scan(a);\n\n\t\tseg.set(i, T{a});\n\t}\n\tseg.build();\n\n\twhile(q--)\
+    \ {\n\t\tint type; fin.scan(type);\n\n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p,\
+    \ x);\n\n\t\t\tseg.update(p, T{x});\n\t\t} else if(type == 1) {\n\t\t\tint l,\
+    \ r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l, r).a);\n\t\t}\n\t}\n}\n"
   dependsOn:
   - data_structure/segment_tree.hpp
   - other/fast_io.hpp
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 06:15:17+09:00'
+  timestamp: '2020-09-17 21:11:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.segment_tree.test.cpp
