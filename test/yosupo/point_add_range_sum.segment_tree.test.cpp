@@ -8,10 +8,12 @@ int main() {
 
 	using T = cplib::add_monoid<long long>;
 	cplib::segment_tree<T> seg(n);
+	for(int i = 0; i < n; i++) {
 		int a; fin.scan(a);
 
-		seg.change(i, T{a});
+		seg.set(i, T{a});
 	}
+	seg.build();
 
 	while(q--) {
 		int type; fin.scan(type);
