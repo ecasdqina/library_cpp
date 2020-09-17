@@ -3,6 +3,8 @@
 #include <vector>
 #include <cstdint>
 
+#include "../data_structure/monoid.hpp"
+
 namespace cplib {
 	template<class Monoid> class segment_tree {
 	public:
