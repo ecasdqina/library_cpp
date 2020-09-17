@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../../data_structure/segment_tree.hpp"
-#include "../../data_structure/monoid.hpp"
 #include "../../math/modint.hpp"
 #include "../../other/fast_io.hpp"
 

@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include "../../data_structure/segment_tree.hpp"
-#include "../../data_structure/monoid.hpp"
 #include "../../other/fast_io.hpp"
 
 int main() {

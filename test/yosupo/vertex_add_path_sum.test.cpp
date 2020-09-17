@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include "../../data_structure/segment_tree.hpp"
-#include "../../data_structure/monoid.hpp"
 #include "../../tree/heavy_light_decomposition.hpp"
 #include "../../other/fast_io.hpp"
 
