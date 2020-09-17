@@ -21,7 +21,7 @@ namespace cplib {
 		explicit segment_tree(usize n): n(n) {
 			usize size = 1;
 			while(size <= n) size <<= 1;
-			data.assign(size << 1, value_type::identity);
+			data.assign(size << 1, value_type::identity());
 		}
 		explicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size()) {
 			for(usize i = 0; i < vec.size(); i++) set(i, vec[i]);
@@ -46,8 +46,8 @@ namespace cplib {
 			first += base();
 			last += base();
 
-			value_type lval = value_type::identity;
-			value_type rval = value_type::identity;
+			value_type lval = value_type::identity();
+			value_type rval = value_type::identity();
 			while(first != last) {
 				if(first & 1) lval = value_type::operation(lval, data[first++]);
 				if(last  & 1) rval = value_type::operation(data[--last], rval);
@@ -63,7 +63,7 @@ namespace cplib {
 			if(l == size()) return base();
 
 			l += base();
-			value_type acc = value_type::identity;
+			value_type acc = value_type::identity();
 			do {
 				while(l % 2 == 0) l >>= 1;
 				if(!f(value_type::operation(acc, data[l]))) {
@@ -87,7 +87,7 @@ namespace cplib {
 			if(r == 0) return 0;
 
 			r += base();
-			value_type acc = value_type::identity;
+			value_type acc = value_type::identity();
 			do {
 				r--;
 				while(r > 1 and (r % 2)) r >>= 1;
