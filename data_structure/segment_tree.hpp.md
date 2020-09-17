@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -22,13 +25,36 @@ data:
     _deprecated_at_docs: docs/segment_tree.md
     links: []
   bundledCode: "#line 2 \"data_structure/segment_tree.hpp\"\n\n#include <vector>\n\
-    #include <cstdint>\n\nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree\
-    \ {\n\tpublic:\n\t\tusing value_type = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\
-    \n\tprivate:\n\t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\t\
-    usize base() const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree()\
-    \ = default;\n\t\texplicit segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\
-    \t\t\twhile(size <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\
-    \t\t}\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
+    #include <cstdint>\n\n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\
+    \nnamespace cplib {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\t\
+    T a;\n\n\t\tconstexpr add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid\
+    \ operation(const add_monoid& l, const add_monoid& r) { return add_monoid{l.a\
+    \ + r.a}; }\n\t\tstatic constexpr add_monoid identity() { return add_monoid{id};\
+    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
+    \ = T{1}> struct mul_monoid {\n\t\tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a)\
+    \ {}\n\t\tstatic constexpr mul_monoid operation(const mul_monoid& l, const mul_monoid&\
+    \ r) { return mul_monoid{l.a * r.a}; }\n\t\tstatic constexpr mul_monoid identity()\
+    \ { return mul_monoid{id}; };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\
+    \ttemplate<class T, T id = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr\
+    \ max_monoid(T a): a(a) {}\n\t\tstatic constexpr max_monoid operation(const max_monoid&\
+    \ l, const max_monoid& r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic\
+    \ constexpr max_monoid identity() { return max_monoid{id}; };\n\t\tconstexpr T\
+    \ value() { return a; }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid\
+    \ {\n\t\tT a;\n\n\t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr\
+    \ min_monoid operation(const min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a,\
+    \ r.a)}; }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id};\
+    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id>\
+    \ struct monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic\
+    \ constexpr monoid operation(const monoid& l, const monoid& r) { return monoid{l.a\
+    \ + r.a}; }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\
+    \tconstexpr T value() { return a; }\n\t};\n}\n#line 7 \"data_structure/segment_tree.hpp\"\
+    \n\nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
+    \t\tusing value_type = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\n\tprivate:\n\
+    \t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base()\
+    \ const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\
+    \t\texplicit segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\t\t\twhile(size\
+    \ <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\t\
+    \t}\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
     \ {\n\t\t\tfor(usize i = 0; i < vec.size(); i++) set(i, vec[i]);\n\t\t\tbuild();\n\
     \t\t}\n\n\t\tusize size() const { return n; }\n\t\tvalue_type get(usize i) const\
     \ { return data[i + base()]; }\n\t\tvoid set(usize i, const value_type& x) { data[i\
@@ -62,14 +88,14 @@ data:
     \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
     \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n"
-  code: "#pragma once\n\n#include <vector>\n#include <cstdint>\n\nnamespace cplib\
-    \ {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\t\tusing value_type\
-    \ = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\n\tprivate:\n\t\tint n;\n\
-    \t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base() const { return\
-    \ data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\t\texplicit\
-    \ segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\t\t\twhile(size <= n)\
-    \ size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\t\t}\n\t\
-    \texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
+  code: "#pragma once\n\n#include <vector>\n#include <cstdint>\n\n#include \"../data_structure/monoid.hpp\"\
+    \n\nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
+    \t\tusing value_type = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\n\tprivate:\n\
+    \t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base()\
+    \ const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\
+    \t\texplicit segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\t\t\twhile(size\
+    \ <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\t\
+    \t}\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
     \ {\n\t\t\tfor(usize i = 0; i < vec.size(); i++) set(i, vec[i]);\n\t\t\tbuild();\n\
     \t\t}\n\n\t\tusize size() const { return n; }\n\t\tvalue_type get(usize i) const\
     \ { return data[i + base()]; }\n\t\tvoid set(usize i, const value_type& x) { data[i\
@@ -103,11 +129,12 @@ data:
     \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
     \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n"
-  dependsOn: []
+  dependsOn:
+  - data_structure/monoid.hpp
   isVerificationFile: false
   path: data_structure/segment_tree.hpp
   requiredBy: []
-  timestamp: '2020-09-17 22:59:43+09:00'
+  timestamp: '2020-09-17 23:57:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_set_range_composite.segment_tree.test.cpp

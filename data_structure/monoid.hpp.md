@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: data_structure/segment_tree.hpp
+    title: data_structure/segment_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
@@ -69,7 +72,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data_structure/monoid.hpp
-  requiredBy: []
+  requiredBy:
+  - data_structure/segment_tree.hpp
   timestamp: '2020-09-17 22:59:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

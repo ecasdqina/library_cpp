@@ -25,7 +25,30 @@ data:
   bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#include <stdio.h>\n\
     #line 2 \"data_structure/segment_tree.hpp\"\n\n#include <vector>\n#include <cstdint>\n\
-    \nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
+    \n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
+    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
+    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
+    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
+    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
+    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
+    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
+    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
+    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
+    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
+    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
+    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
+    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
+    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
+    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
+    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
+    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
+    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
+    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
+    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
+    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
+    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
+    \ T value() { return a; }\n\t};\n}\n#line 7 \"data_structure/segment_tree.hpp\"\
+    \n\nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
     \t\tusing value_type = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\n\tprivate:\n\
     \t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base()\
     \ const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\
@@ -65,48 +88,26 @@ data:
     \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
     \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n\
-    #line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
-    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
-    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
-    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
-    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
-    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
-    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
-    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
-    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
-    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
-    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
-    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
-    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
-    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
-    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
-    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
-    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
-    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
-    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
-    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
-    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
-    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
-    \ T value() { return a; }\n\t};\n}\n#line 1 \"tree/heavy_light_decomposition.hpp\"\
-    \n\n\n\n#line 5 \"tree/heavy_light_decomposition.hpp\"\n#include <functional>\n\
-    #line 7 \"tree/heavy_light_decomposition.hpp\"\n\nclass heavy_light_decomposition\
-    \ {\npublic:\n\tusing i32 = std::int_fast32_t;\n\tusing u32 = std::uint_fast32_t;\n\
-    \n\tusing processor = std::function<void(u32, u32)>;\n\n\tstd::vector<std::vector<u32>>\
-    \ g;\n\tstd::vector<u32> edge_u, edge_v, size, et, in, out, head;\n\tstd::vector<i32>\
-    \ parent, heavy;\n\nprivate:\n\tvoid calc_size(u32 v) {\n\t\tsize[v] = 1;\n\t\t\
-    for(int id: g[v]) {\n\t\t\tint to = edge_u[id] ^ edge_v[id] ^ v;\n\t\t\tif(to\
-    \ == parent[v]) continue;\n\t\t\tparent[to] = v;\n\t\t\tcalc_size(to);\n\t\t\t\
-    size[v] += size[to];\n\n\t\t\tif(heavy[v] == -1 or size[heavy[v]] < size[to])\
-    \ heavy[v] = to;\n\t\t}\n\t}\n\tvoid calc_et(u32 v) {\n\t\tin[v] = et.size();\n\
-    \t\tet.push_back(v);\n\t\tif(heavy[v] != -1) {\n\t\t\thead[heavy[v]] = head[v];\n\
-    \t\t\tcalc_et(heavy[v]);\n\t\t}\n\t\tfor(int id: g[v]) {\t\n\t\t\tint to = edge_u[id]\
-    \ ^ edge_v[id] ^ v;\n\t\t\tif(to == parent[v] or to == heavy[v]) continue;\n\t\
-    \t\thead[to] = to;\n\t\t\tcalc_et(to);\n\t\t}\n\t\tout[v] = et.size();\n\t}\n\n\
-    \tvoid path(i32 x, i32 y, const processor& process, bool edge) const {\n\t\tstd::vector<std::pair<u32,\
-    \ u32>> l, r;\n\t\twhile(true) {\n\t\t\tif(in[x] > in[y]) {\n\t\t\t\tstd::swap(x,\
-    \ y);\n\t\t\t\tl.swap(r);\n\t\t\t}\n\n\t\t\tif(head[x] == head[y]) {\n\t\t\t\t\
-    l.emplace_back(in[x] + !!edge, in[y] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tl.emplace_back(in[head[y]],\
-    \ in[y] + 1);\n\t\t\ty = parent[head[y]];\n\t\t}\n\n\t\tfor(auto e: l) process(e.first,\
+    #line 1 \"tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 5 \"tree/heavy_light_decomposition.hpp\"\
+    \n#include <functional>\n#line 7 \"tree/heavy_light_decomposition.hpp\"\n\nclass\
+    \ heavy_light_decomposition {\npublic:\n\tusing i32 = std::int_fast32_t;\n\tusing\
+    \ u32 = std::uint_fast32_t;\n\n\tusing processor = std::function<void(u32, u32)>;\n\
+    \n\tstd::vector<std::vector<u32>> g;\n\tstd::vector<u32> edge_u, edge_v, size,\
+    \ et, in, out, head;\n\tstd::vector<i32> parent, heavy;\n\nprivate:\n\tvoid calc_size(u32\
+    \ v) {\n\t\tsize[v] = 1;\n\t\tfor(int id: g[v]) {\n\t\t\tint to = edge_u[id] ^\
+    \ edge_v[id] ^ v;\n\t\t\tif(to == parent[v]) continue;\n\t\t\tparent[to] = v;\n\
+    \t\t\tcalc_size(to);\n\t\t\tsize[v] += size[to];\n\n\t\t\tif(heavy[v] == -1 or\
+    \ size[heavy[v]] < size[to]) heavy[v] = to;\n\t\t}\n\t}\n\tvoid calc_et(u32 v)\
+    \ {\n\t\tin[v] = et.size();\n\t\tet.push_back(v);\n\t\tif(heavy[v] != -1) {\n\t\
+    \t\thead[heavy[v]] = head[v];\n\t\t\tcalc_et(heavy[v]);\n\t\t}\n\t\tfor(int id:\
+    \ g[v]) {\t\n\t\t\tint to = edge_u[id] ^ edge_v[id] ^ v;\n\t\t\tif(to == parent[v]\
+    \ or to == heavy[v]) continue;\n\t\t\thead[to] = to;\n\t\t\tcalc_et(to);\n\t\t\
+    }\n\t\tout[v] = et.size();\n\t}\n\n\tvoid path(i32 x, i32 y, const processor&\
+    \ process, bool edge) const {\n\t\tstd::vector<std::pair<u32, u32>> l, r;\n\t\t\
+    while(true) {\n\t\t\tif(in[x] > in[y]) {\n\t\t\t\tstd::swap(x, y);\n\t\t\t\tl.swap(r);\n\
+    \t\t\t}\n\n\t\t\tif(head[x] == head[y]) {\n\t\t\t\tl.emplace_back(in[x] + !!edge,\
+    \ in[y] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tl.emplace_back(in[head[y]], in[y]\
+    \ + 1);\n\t\t\ty = parent[head[y]];\n\t\t}\n\n\t\tfor(auto e: l) process(e.first,\
     \ e.second);\n\t\tfor(auto e: r) process(e.first, e.second);\n\t}\n\tvoid subtree(u32\
     \ v, const processor& process, bool edge) const {\n\t\tprocess(in[v] + !!edge,\
     \ out[v]);\n\t}\n\npublic:\n\theavy_light_decomposition() = default;\n\theavy_light_decomposition(heavy_light_decomposition&&)\
@@ -218,7 +219,7 @@ data:
     \ print('\\n'); }\n\t\ttemplate<class T>\n\t\tvoid println(const std::vector<T>&\
     \ t) { print(t); print('\\n'); }\n\t\tvoid println() { print('\\n'); }\n\t};\n\
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
-    \n\n#line 8 \"test/yosupo/vertex_add_subtree_sum.test.cpp\"\n\nusing i64 = std::int_fast64_t;\n\
+    \n\n#line 7 \"test/yosupo/vertex_add_subtree_sum.test.cpp\"\n\nusing i64 = std::int_fast64_t;\n\
     \nint main() {\n\tint n, q; fin.scan(n, q); std::vector<int> a(n);\n\tfor(int\
     \ i = 0; i < n; i++) fin.scan(a[i]);\n\n\theavy_light_decomposition hld(n);\n\t\
     for(int i = 1; i < n; i++) {\n\t\tint p; fin.scan(p);\n\n\t\thld.add_edge(p, i);\n\
@@ -231,13 +232,12 @@ data:
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
     \n\n#include <stdio.h>\n#include \"../../data_structure/segment_tree.hpp\"\n#include\
-    \ \"../../data_structure/monoid.hpp\"\n#include \"../../tree/heavy_light_decomposition.hpp\"\
-    \n#include \"../../other/fast_io.hpp\"\n\nusing i64 = std::int_fast64_t;\n\nint\
-    \ main() {\n\tint n, q; fin.scan(n, q); std::vector<int> a(n);\n\tfor(int i =\
-    \ 0; i < n; i++) fin.scan(a[i]);\n\n\theavy_light_decomposition hld(n);\n\tfor(int\
-    \ i = 1; i < n; i++) {\n\t\tint p; fin.scan(p);\n\n\t\thld.add_edge(p, i);\n\t\
-    }\n\thld.build();\n\n\tcplib::segment_tree<cplib::add_monoid<i64>> seg(n);\n\t\
-    for(int i = 0; i < n; i++) seg.change(hld[i], a[i]);\n\twhile(q--) {\n\t\tint\
+    \ \"../../tree/heavy_light_decomposition.hpp\"\n#include \"../../other/fast_io.hpp\"\
+    \n\nusing i64 = std::int_fast64_t;\n\nint main() {\n\tint n, q; fin.scan(n, q);\
+    \ std::vector<int> a(n);\n\tfor(int i = 0; i < n; i++) fin.scan(a[i]);\n\n\theavy_light_decomposition\
+    \ hld(n);\n\tfor(int i = 1; i < n; i++) {\n\t\tint p; fin.scan(p);\n\n\t\thld.add_edge(p,\
+    \ i);\n\t}\n\thld.build();\n\n\tcplib::segment_tree<cplib::add_monoid<i64>> seg(n);\n\
+    \tfor(int i = 0; i < n; i++) seg.change(hld[i], a[i]);\n\twhile(q--) {\n\t\tint\
     \ type; fin.scan(type);\n\n\t\tif(type == 0) {\n\t\t\tint x, y; fin.scan(x, y);\n\
     \n\t\t\tseg.update(hld[x], y);\n\t\t} if(type == 1) {\n\t\t\tint v; fin.scan(v);\n\
     \n\t\t\ti64 ans = 0;\n\t\t\tauto p = [&](int l, int r) { ans += seg.fold(l, r).value();\
@@ -251,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 22:59:43+09:00'
+  timestamp: '2020-09-17 23:58:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.test.cpp

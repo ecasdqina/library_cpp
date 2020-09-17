@@ -22,7 +22,30 @@ data:
   bundledCode: "#line 1 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n#line\
     \ 2 \"data_structure/segment_tree.hpp\"\n\n#include <vector>\n#include <cstdint>\n\
-    \nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
+    \n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
+    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
+    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
+    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
+    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
+    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
+    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
+    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
+    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
+    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
+    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
+    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
+    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
+    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
+    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
+    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
+    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
+    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
+    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
+    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
+    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
+    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
+    \ T value() { return a; }\n\t};\n}\n#line 7 \"data_structure/segment_tree.hpp\"\
+    \n\nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
     \t\tusing value_type = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\n\tprivate:\n\
     \t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base()\
     \ const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\
@@ -62,50 +85,28 @@ data:
     \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
     \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
     \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n\
-    #line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
-    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
-    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
-    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
-    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
-    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
-    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
-    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
-    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
-    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
-    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
-    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
-    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
-    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
-    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
-    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
-    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
-    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
-    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
-    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
-    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
-    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
-    \ T value() { return a; }\n\t};\n}\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include\
-    \ <cstdio>\n#line 6 \"other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n\
-    #include <limits>\n#include <string>\n#include <type_traits>\n#include <utility>\n\
-    #line 13 \"other/fast_io.hpp\"\n\nnamespace fast_io {\n\t// fast I/O by rsk0315\
-    \ (update: 2020-03-02 01:10:54).\n\tstatic size_t constexpr buf_size = 1 << 17;\n\
-    \tstatic size_t constexpr margin = 1;\n\tstatic char inbuf[buf_size + margin]\
-    \ = {};\n\tstatic char outbuf[buf_size + margin] = {};\n\tstatic __attribute__((aligned(8)))\
-    \ char minibuf[32];\n\tstatic size_t constexpr int_digits = 20;\t// 18446744073709551615\n\
-    \tstatic uintmax_t constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t\
-    \ constexpr first_mask = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask\
-    \ = 0x0000FFFF0000FFFF;\n\tstatic uintmax_t constexpr third_mask = 0x00000000FFFFFFFF;\n\
-    \tstatic uintmax_t constexpr tenpow[] = {\n\t\t1, 10, 100, 1000, 10000, 100000,\
-    \ 1000000, 10000000, 100000000\n\t};\n\ttemplate <typename Tp>\n\tusing enable_if_integral\
-    \ = std::enable_if<std::is_integral<Tp>::value, Tp>;\n\n\tclass scanner {\n\t\t\
-    char* pos = inbuf;\n\t\tchar* endpos = inbuf + buf_size;\n\n\t\tvoid M_read_from_stdin()\
-    \ {\n\t\t\tendpos = inbuf + fread(pos, 1, buf_size, stdin);\n\t\t}\n\t\tvoid M_reread_from_stdin()\
-    \ {\n\t\t\tptrdiff_t len = endpos - pos;\n\t\t\tif (!(inbuf + len <= pos)) return;\n\
-    \t\t\tmemcpy(inbuf, pos, len);\n\t\t\tchar* tmp = inbuf + len;\n\t\t\tendpos =\
-    \ tmp + fread(tmp, 1, buf_size-len, stdin);\n\t\t\t*endpos = 0;\n\t\t\tpos = inbuf;\n\
-    \t\t}\n\n\tpublic:\n\t\tscanner() { M_read_from_stdin(); }\n\n\t\ttemplate <typename\
-    \ Integral,\n\t\t\t\t\t\t\ttypename enable_if_integral<Integral>::type* = nullptr>\n\
-    \t\tvoid scan_parallel(Integral& x) {\n\t\t\t// See https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4\n\
+    #line 1 \"other/fast_io.hpp\"\n\n\n\n#include <cstdio>\n#line 6 \"other/fast_io.hpp\"\
+    \n#include <cstddef>\n#include <cstring>\n#include <limits>\n#include <string>\n\
+    #include <type_traits>\n#include <utility>\n#line 13 \"other/fast_io.hpp\"\n\n\
+    namespace fast_io {\n\t// fast I/O by rsk0315 (update: 2020-03-02 01:10:54).\n\
+    \tstatic size_t constexpr buf_size = 1 << 17;\n\tstatic size_t constexpr margin\
+    \ = 1;\n\tstatic char inbuf[buf_size + margin] = {};\n\tstatic char outbuf[buf_size\
+    \ + margin] = {};\n\tstatic __attribute__((aligned(8))) char minibuf[32];\n\t\
+    static size_t constexpr int_digits = 20;\t// 18446744073709551615\n\tstatic uintmax_t\
+    \ constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t constexpr first_mask\
+    \ = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask = 0x0000FFFF0000FFFF;\n\
+    \tstatic uintmax_t constexpr third_mask = 0x00000000FFFFFFFF;\n\tstatic uintmax_t\
+    \ constexpr tenpow[] = {\n\t\t1, 10, 100, 1000, 10000, 100000, 1000000, 10000000,\
+    \ 100000000\n\t};\n\ttemplate <typename Tp>\n\tusing enable_if_integral = std::enable_if<std::is_integral<Tp>::value,\
+    \ Tp>;\n\n\tclass scanner {\n\t\tchar* pos = inbuf;\n\t\tchar* endpos = inbuf\
+    \ + buf_size;\n\n\t\tvoid M_read_from_stdin() {\n\t\t\tendpos = inbuf + fread(pos,\
+    \ 1, buf_size, stdin);\n\t\t}\n\t\tvoid M_reread_from_stdin() {\n\t\t\tptrdiff_t\
+    \ len = endpos - pos;\n\t\t\tif (!(inbuf + len <= pos)) return;\n\t\t\tmemcpy(inbuf,\
+    \ pos, len);\n\t\t\tchar* tmp = inbuf + len;\n\t\t\tendpos = tmp + fread(tmp,\
+    \ 1, buf_size-len, stdin);\n\t\t\t*endpos = 0;\n\t\t\tpos = inbuf;\n\t\t}\n\n\t\
+    public:\n\t\tscanner() { M_read_from_stdin(); }\n\n\t\ttemplate <typename Integral,\n\
+    \t\t\t\t\t\t\ttypename enable_if_integral<Integral>::type* = nullptr>\n\t\tvoid\
+    \ scan_parallel(Integral& x) {\n\t\t\t// See https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4\n\
     \t\t\tif (__builtin_expect(endpos <= pos + int_digits, 0))\n\t\t\t\tM_reread_from_stdin();\n\
     \t\t\tbool ends = false;\n\t\t\ttypename std::make_unsigned<Integral>::type y\
     \ = 0;\n\t\t\tbool neg = false;\n\t\t\tif (std::is_signed<Integral>::value &&\
@@ -174,7 +175,7 @@ data:
     \ print('\\n'); }\n\t\ttemplate<class T>\n\t\tvoid println(const std::vector<T>&\
     \ t) { print(t); print('\\n'); }\n\t\tvoid println() { print('\\n'); }\n\t};\n\
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
-    \n\n#line 6 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\nint main()\
+    \n\n#line 5 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\nint main()\
     \ {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::add_monoid<long long>;\n\
     \tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tint a; fin.scan(a);\n\
     \n\t\tseg.set(i, a);\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\
@@ -182,14 +183,14 @@ data:
     \ x);\n\t\t} else if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
     \ r).value());\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../data_structure/monoid.hpp\"\
-    \n#include \"../../other/fast_io.hpp\"\n\nint main() {\n\tint n, q; fin.scan(n,\
-    \ q);\n\n\tusing T = cplib::add_monoid<long long>;\n\tcplib::segment_tree<T> seg(n);\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tint a; fin.scan(a);\n\n\t\tseg.set(i, a);\n\
-    \t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\n\t\tif(type\
-    \ == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p, x);\n\t\t} else\
-    \ if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
-    \ r).value());\n\t\t}\n\t}\n}\n"
+    \n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../other/fast_io.hpp\"\
+    \n\nint main() {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::add_monoid<long\
+    \ long>;\n\tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\
+    \tint a; fin.scan(a);\n\n\t\tseg.set(i, a);\n\t}\n\tseg.build();\n\n\twhile(q--)\
+    \ {\n\t\tint type; fin.scan(type);\n\n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p,\
+    \ x);\n\n\t\t\tseg.update(p, x);\n\t\t} else if(type == 1) {\n\t\t\tint l, r;\
+    \ fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l, r).value());\n\t\t}\n\t}\n\
+    }\n"
   dependsOn:
   - data_structure/segment_tree.hpp
   - data_structure/monoid.hpp
@@ -197,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 22:59:43+09:00'
+  timestamp: '2020-09-17 23:58:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.segment_tree.test.cpp
