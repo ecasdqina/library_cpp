@@ -5,24 +5,20 @@
 
 int main() {
 	int n, q; fin.scan(n, q);
-	fenwick_tree<monoid<std::int_fast64_t>> bit(n);
-	for(int i = 0; i < n; i++) {
-		int a; fin.scan(a);
+	std::vector<long long> a; for(auto& v: a) fin.scan(v);
 
-		bit.change(i, a);
-	}
-
+	cplib::fenwick_tree<cplib::add_monoid<long long>> fwt(begin(a), end(a));
 	while(q--) {
 		int type; fin.scan(type);
 
 		if(type == 0) {
 			int p, x; fin.scan(p, x);
 
-			bit.update(p, x);
+			fwt.update(p, x);
 		} else if(type == 1) {
 			int l, r; fin.scan(l, r);
 
-			fout.println(bit.fold(l, r));
+			fout.println(fwt.fold(l, r));
 		}
 	}
 }

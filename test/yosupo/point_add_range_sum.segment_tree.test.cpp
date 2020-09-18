@@ -5,16 +5,9 @@
 
 int main() {
 	int n, q; fin.scan(n, q);
+	std::vector<long long> a; for(auto& v: a) fin.scan(v);
 
-	using T = cplib::add_monoid<long long>;
-	cplib::segment_tree<T> seg(n);
-	for(int i = 0; i < n; i++) {
-		int a; fin.scan(a);
-
-		seg.set(i, a);
-	}
-	seg.build();
-
+	cplib::segment_tree<cplib::add_monoid<long long>> seg(begin(a), end(a));
 	while(q--) {
 		int type; fin.scan(type);
 
