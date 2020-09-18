@@ -54,7 +54,7 @@ public:
 		}
 
 		while(last < first) {
-			acc = value_type::operation(CommutativeMonoid::inverse(data[first]), acc);
+			acc = value_type::operation(data[first].inverse(), acc);
 
 			first -= lsb(first);
 		}
