@@ -27,13 +27,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
     title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
     title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/fast_io.md
@@ -242,7 +242,7 @@ data:
   path: other/fast_io.hpp
   requiredBy: []
   timestamp: '2020-03-20 12:55:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2763.test.cpp
   - test/aoj/2667.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: tree/heavy_light_decomposition.hpp
     title: tree/heavy_light_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
@@ -26,69 +26,73 @@ data:
     \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n#include <stdio.h>\n\
     #line 2 \"data_structure/segment_tree.hpp\"\n\n#include <vector>\n#include <cstdint>\n\
     \n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\nnamespace cplib\
-    \ {\n\ttemplate<class T, T id = T{}> struct add_monoid {\n\t\tT a;\n\n\t\tconstexpr\
-    \ add_monoid(T a): a(a) {}\n\t\tstatic constexpr add_monoid operation(const add_monoid&\
-    \ l, const add_monoid& r) { return add_monoid{l.a + r.a}; }\n\t\tstatic constexpr\
-    \ add_monoid identity() { return add_monoid{id}; };\n\t\tconstexpr T value() {\
-    \ return a; }\n\t};\n\n\ttemplate<class T, T id = T{1}> struct mul_monoid {\n\t\
-    \tT a;\n\n\t\tconstexpr mul_monoid(T a): a(a) {}\n\t\tstatic constexpr mul_monoid\
-    \ operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a\
-    \ * r.a}; }\n\t\tstatic constexpr mul_monoid identity() { return mul_monoid{id};\
-    \ };\n\t\tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T id\
-    \ = T{}> struct max_monoid {\n\t\tT a;\n\n\t\tconstexpr max_monoid(T a): a(a)\
-    \ {}\n\t\tstatic constexpr max_monoid operation(const max_monoid& l, const max_monoid&\
-    \ r) { return max_monoid{std::max(l.a, r.a)}; }\n\t\tstatic constexpr max_monoid\
-    \ identity() { return max_monoid{id}; };\n\t\tconstexpr T value() { return a;\
-    \ }\n\t};\n\n\ttemplate<class T, T id = T{}> struct min_monoid {\n\t\tT a;\n\n\
-    \t\tconstexpr min_monoid(T a): a(a) {}\n\t\tstatic constexpr min_monoid operation(const\
-    \ min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)};\
-    \ }\n\t\tstatic constexpr min_monoid identity() { return min_monoid{id}; };\n\t\
-    \tconstexpr T value() { return a; }\n\t};\n\n\ttemplate<class T, T& id> struct\
-    \ monoid {\n\t\tT a;\n\n\t\tconstexpr monoid(T a): a(a) {}\n\t\tstatic constexpr\
-    \ monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a};\
-    \ }\n\t\tstatic constexpr monoid identity() { return monoid{id}; }\n\t\tconstexpr\
-    \ T value() { return a; }\n\t};\n}\n#line 7 \"data_structure/segment_tree.hpp\"\
-    \n\nnamespace cplib {\n\ttemplate<class Monoid> class segment_tree {\n\tpublic:\n\
-    \t\tusing value_type = Monoid;\n\t\tusing usize = std::uint_fast32_t;\n\n\tprivate:\n\
-    \t\tint n;\n\t\tstd::vector<value_type> data;\n\n\tprivate:\n\t\tusize base()\
-    \ const { return data.size() >> 1; }\n\n\tpublic:\n\t\tsegment_tree() = default;\n\
-    \t\texplicit segment_tree(usize n): n(n) {\n\t\t\tusize size = 1;\n\t\t\twhile(size\
-    \ <= n) size <<= 1;\n\t\t\tdata.assign(size << 1, value_type::identity());\n\t\
-    \t}\n\t\texplicit segment_tree(const std::vector<value_type>& vec): segment_tree(vec.size())\
-    \ {\n\t\t\tfor(usize i = 0; i < vec.size(); i++) set(i, vec[i]);\n\t\t\tbuild();\n\
-    \t\t}\n\n\t\tusize size() const { return n; }\n\t\tvalue_type get(usize i) const\
-    \ { return data[i + base()]; }\n\t\tvoid set(usize i, const value_type& x) { data[i\
-    \ + base()] = x; }\n\n\t\tvoid build() {\n\t\t\tfor(usize i = (int)base() - 1;\
-    \ i > 0; i--)\n\t\t\t\tdata[i] = value_type::operation(data[i * 2 + 0], data[i\
-    \ * 2 + 1]);\n\t\t}\n\t\tvoid change(usize i, const value_type& x) {\n\t\t\tdata[i\
-    \ += base()] = x;\n\t\t\twhile(i >>= 1) data[i] = value_type::operation(data[i\
-    \ * 2 + 0], data[i * 2 + 1]);\n\t\t}\n\t\tvoid update(usize i, const value_type&\
-    \ x) { change(i, value_type::operation(get(i), x)); }\n\n\t\tvalue_type fold(usize\
-    \ first, usize last) const {\n\t\t\tfirst += base();\n\t\t\tlast += base();\n\n\
-    \t\t\tvalue_type lval = value_type::identity();\n\t\t\tvalue_type rval = value_type::identity();\n\
-    \t\t\twhile(first != last) {\n\t\t\t\tif(first & 1) lval = value_type::operation(lval,\
-    \ data[first++]);\n\t\t\t\tif(last  & 1) rval = value_type::operation(data[--last],\
-    \ rval);\n\t\t\t\tfirst >>= 1;\n\t\t\t\tlast  >>= 1;\n\t\t\t}\n\t\t\treturn value_type::operation(lval,\
-    \ rval);\n\t\t}\n\t\tvalue_type fold_all() const { return data[1]; }\n\n\t\t//\
-    \ return max{r | f(fold(l, r - 1)) = true}\n\t\ttemplate<class F> usize search_right(int\
-    \ l, const F& f) const {\n\t\t\tif(l == size()) return base();\n\n\t\t\tl += base();\n\
-    \t\t\tvalue_type acc = value_type::identity();\n\t\t\tdo {\n\t\t\t\twhile(l %\
-    \ 2 == 0) l >>= 1;\n\t\t\t\tif(!f(value_type::operation(acc, data[l]))) {\n\t\t\
-    \t\t\twhile(l < base()) {\n\t\t\t\t\t\tl = l << 1;\n\t\t\t\t\t\tif(f(value_type::operation(acc,\
-    \ data[l]))) {\n\t\t\t\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\
-    \t\t\t\t\tl += 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn l - base();\n\t\
-    \t\t\t}\n\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\t\tl += 1;\n\
-    \t\t\t} while((l & -l) != l);\n\t\t\treturn size();\n\t\t}\n\n\t\t// return min{l\
-    \ | f(fold(l, r - 1) = true}\n\t\ttemplate<class F> usize search_left(int r, const\
-    \ F& f) const {\n\t\t\tif(r == 0) return 0;\n\n\t\t\tr += base();\n\t\t\tvalue_type\
-    \ acc = value_type::identity();\n\t\t\tdo {\n\t\t\t\tr--;\n\t\t\t\twhile(r > 1\
-    \ and (r % 2)) r >>= 1;\n\t\t\t\tif(!f(value_type::operation(data[r], acc))) {\n\
-    \t\t\t\t\twhile(r < base()) {\n\t\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\t\tif(f(value_type::operation(data[r],\
-    \ acc))) {\n\t\t\t\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t\t\
-    \t\t\tr -= 1;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - base();\n\t\
-    \t\t\t}\n\t\t\t\tacc = value_type::operation(data[r], acc);\n\t\t\t} while((r\
-    \ & -r) == r);\n\t\t\treturn 0;\n\t\t}\n\t};\n}\n\n// @docs docs/segment_tree.md\n\
-    #line 1 \"tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 5 \"tree/heavy_light_decomposition.hpp\"\
+    \ {\ntemplate<class T, T id = T{}> struct add_monoid {\n\tusing value_type = T;\n\
+    \n\tT a;\n\n\tconstexpr add_monoid(T a): a(a) {}\n\tstatic constexpr add_monoid\
+    \ operation(const add_monoid& l, const add_monoid& r) { return add_monoid{l.a\
+    \ + r.a}; }\n\tstatic constexpr add_monoid identity() { return add_monoid{id};\
+    \ };\n\tconstexpr add_monoid inverse() { return add_monoid{-a}; }\n\tconstexpr\
+    \ T value() { return a; }\n};\n\ntemplate<class T, T id = T{1}> struct mul_monoid\
+    \ {\n\tusing value_type = T;\n\n\tT a;\n\n\tconstexpr mul_monoid(T a): a(a) {}\n\
+    \tstatic constexpr mul_monoid operation(const mul_monoid& l, const mul_monoid&\
+    \ r) { return mul_monoid{l.a * r.a}; }\n\tstatic constexpr mul_monoid identity()\
+    \ { return mul_monoid{id}; };\n\tconstexpr T value() { return a; }\n};\n\ntemplate<class\
+    \ T, T id = T{}> struct max_monoid {\n\tusing value_type = T;\n\n\tT a;\n\n\t\
+    constexpr max_monoid(T a): a(a) {}\n\tstatic constexpr max_monoid operation(const\
+    \ max_monoid& l, const max_monoid& r) { return max_monoid{std::max(l.a, r.a)};\
+    \ }\n\tstatic constexpr max_monoid identity() { return max_monoid{id}; };\n\t\
+    constexpr T value() { return a; }\n};\n\ntemplate<class T, T id = T{}> struct\
+    \ min_monoid {\n\tusing value_type = T;\n\n\tT a;\n\n\tconstexpr min_monoid(T\
+    \ a): a(a) {}\n\tstatic constexpr min_monoid operation(const min_monoid& l, const\
+    \ min_monoid& r) { return min_monoid{std::min(l.a, r.a)}; }\n\tstatic constexpr\
+    \ min_monoid identity() { return min_monoid{id}; };\n\tconstexpr T value() { return\
+    \ a; }\n};\n\ntemplate<class T, T& id> struct monoid {\n\tusing value_type = T;\n\
+    \n\tT a;\n\n\tconstexpr monoid(T a): a(a) {}\n\tstatic constexpr monoid operation(const\
+    \ monoid& l, const monoid& r) { return monoid{l.a + r.a}; }\n\tstatic constexpr\
+    \ monoid identity() { return monoid{id}; }\n\tconstexpr monoid inverse() { return\
+    \ monoid{id.inverse()}; }\n\tconstexpr T value() { return a; }\n};\n}\n#line 7\
+    \ \"data_structure/segment_tree.hpp\"\n\nnamespace cplib {\ntemplate<class Monoid>\
+    \ class segment_tree {\npublic:\n\tusing value_type = Monoid;\n\tusing T = typename\
+    \ value_type::value_type;\n\tusing usize = std::uint_fast32_t;\n\nprivate:\n\t\
+    int n;\n\tstd::vector<value_type> data;\n\nprivate:\n\tusize base() const { return\
+    \ data.size() >> 1; }\n\npublic:\n\tsegment_tree() = default;\n\texplicit segment_tree(usize\
+    \ n): n(n) {\n\t\tusize size = 1;\n\t\twhile(size <= n) size <<= 1;\n\t\tdata.assign(size\
+    \ << 1, value_type::identity());\n\t}\n\ttemplate<class InputIt> explicit segment_tree(InputIt\
+    \ first, InputIt last)\n\t: segment_tree(std::distance(first, last)) {\n\t\tfor(int\
+    \ index = 0; first != last; first++, index++) set(index, *first);\n\t\tbuild();\n\
+    \t}\n\n\tusize size() const { return n; }\n\tbool empty() const { return size()\
+    \ == 0; }\n\tvoid clear() {\n\t\tn = 0;\n\t\tdata.clear();\n\t}\n\tvoid swap(segment_tree&\
+    \ r) {\n\t\tstd::swap(n, r.n);\n\t\tdata.swap(r.data);\n\t}\n\n\tT get(usize i)\
+    \ const { return data[i + base()].a; }\n\tvoid set(usize i, const value_type&\
+    \ x) { data[i + base()] = x; }\n\n\tvoid build() {\n\t\tfor(usize i = (int)base()\
+    \ - 1; i > 0; i--)\n\t\t\tdata[i] = value_type::operation(data[i * 2 + 0], data[i\
+    \ * 2 + 1]);\n\t}\n\tvoid change(usize i, const value_type& x) {\n\t\tdata[i +=\
+    \ base()] = x;\n\t\twhile(i >>= 1) data[i] = value_type::operation(data[i * 2\
+    \ + 0], data[i * 2 + 1]);\n\t}\n\tvoid update(usize i, const value_type& x) {\
+    \ change(i, value_type::operation(get(i), x)); }\n\n\tT fold(usize first, usize\
+    \ last) const {\n\t\tfirst += base();\n\t\tlast += base();\n\n\t\tvalue_type lval\
+    \ = value_type::identity();\n\t\tvalue_type rval = value_type::identity();\n\t\
+    \twhile(first != last) {\n\t\t\tif(first & 1) lval = value_type::operation(lval,\
+    \ data[first++]);\n\t\t\tif(last  & 1) rval = value_type::operation(data[--last],\
+    \ rval);\n\t\t\tfirst >>= 1;\n\t\t\tlast  >>= 1;\n\t\t}\n\t\treturn value_type::operation(lval,\
+    \ rval).a;\n\t}\n\tT fold_all() const { return data[1].a; }\n\n\t// return max{r\
+    \ | f(fold(l, r - 1)) = true}\n\ttemplate<class F> usize search_right(int l, const\
+    \ F& f) const {\n\t\tif(l == size()) return base();\n\n\t\tl += base();\n\t\t\
+    value_type acc = value_type::identity();\n\t\tdo {\n\t\t\twhile(l % 2 == 0) l\
+    \ >>= 1;\n\t\t\tif(!f(value_type::operation(acc, data[l]))) {\n\t\t\t\twhile(l\
+    \ < base()) {\n\t\t\t\t\tl = l << 1;\n\t\t\t\t\tif(f(value_type::operation(acc,\
+    \ data[l]))) {\n\t\t\t\t\t\tacc = value_type::operation(acc, data[l]);\n\t\t\t\
+    \t\t\tl += 1;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn l - base();\n\t\t\t}\n\t\
+    \t\tacc = value_type::operation(acc, data[l]);\n\t\t\tl += 1;\n\t\t} while((l\
+    \ & -l) != l);\n\t\treturn size();\n\t}\n\n\t// return min{l | f(fold(l, r - 1)\
+    \ = true}\n\ttemplate<class F> usize search_left(int r, const F& f) const {\n\t\
+    \tif(r == 0) return 0;\n\n\t\tr += base();\n\t\tvalue_type acc = value_type::identity();\n\
+    \t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 and (r % 2)) r >>= 1;\n\t\t\tif(!f(value_type::operation(data[r],\
+    \ acc))) {\n\t\t\t\twhile(r < base()) {\n\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\t\
+    if(f(value_type::operation(data[r], acc))) {\n\t\t\t\t\t\tacc = value_type::operation(data[r],\
+    \ acc);\n\t\t\t\t\t\tr -= 1;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - base();\n\
+    \t\t\t}\n\t\t\tacc = value_type::operation(data[r], acc);\n\t\t} while((r & -r)\
+    \ == r);\n\t\treturn 0;\n\t}\n};\n}\n\n// @docs docs/segment_tree.md\n#line 1\
+    \ \"tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 5 \"tree/heavy_light_decomposition.hpp\"\
     \n#include <functional>\n#line 7 \"tree/heavy_light_decomposition.hpp\"\n\nclass\
     \ heavy_light_decomposition {\npublic:\n\tusing i32 = std::int_fast32_t;\n\tusing\
     \ u32 = std::uint_fast32_t;\n\n\tusing processor = std::function<void(u32, u32)>;\n\
@@ -227,7 +231,7 @@ data:
     \tfor(int i = 0; i < n; i++) seg.change(hld[i], a[i]);\n\twhile(q--) {\n\t\tint\
     \ type, x, y; fin.scan(type, x, y);\n\n\t\tif(type == 0) seg.update(hld[x], y);\n\
     \t\tif(type == 1) {\n\t\t\ti64 ans = 0;\n\t\t\tauto p = [&](int l, int r) { ans\
-    \ += seg.fold(l, r).value(); };\n\t\t\thld.path(x, y, p);\n\n\t\t\tfout.println(ans);\n\
+    \ += seg.fold(l, r); };\n\t\t\thld.path(x, y, p);\n\n\t\t\tfout.println(ans);\n\
     \t\t}\n\t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
     \n#include <stdio.h>\n#include \"../../data_structure/segment_tree.hpp\"\n#include\
@@ -239,7 +243,7 @@ data:
     \ seg(n);\n\tfor(int i = 0; i < n; i++) seg.change(hld[i], a[i]);\n\twhile(q--)\
     \ {\n\t\tint type, x, y; fin.scan(type, x, y);\n\n\t\tif(type == 0) seg.update(hld[x],\
     \ y);\n\t\tif(type == 1) {\n\t\t\ti64 ans = 0;\n\t\t\tauto p = [&](int l, int\
-    \ r) { ans += seg.fold(l, r).value(); };\n\t\t\thld.path(x, y, p);\n\n\t\t\tfout.println(ans);\n\
+    \ r) { ans += seg.fold(l, r); };\n\t\t\thld.path(x, y, p);\n\n\t\t\tfout.println(ans);\n\
     \t\t}\n\t}\n\treturn 0;\n}\n"
   dependsOn:
   - data_structure/segment_tree.hpp
@@ -249,7 +253,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 23:58:16+09:00'
+  timestamp: '2020-09-19 05:52:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp
