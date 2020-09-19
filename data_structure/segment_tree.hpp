@@ -80,10 +80,10 @@ public:
 		value_type acc = value_type::identity();
 		do {
 			while(l % 2 == 0) l >>= 1;
-			if(!f(value_type::operation(acc, data[l]))) {
+			if(!f(value_type::operation(acc, data[l]).a)) {
 				while(l < base()) {
 					l = l << 1;
-					if(f(value_type::operation(acc, data[l]))) {
+					if(f(value_type::operation(acc, data[l]).a)) {
 						acc = value_type::operation(acc, data[l]);
 						l += 1;
 					}
@@ -105,10 +105,10 @@ public:
 		do {
 			r--;
 			while(r > 1 and (r % 2)) r >>= 1;
-			if(!f(value_type::operation(data[r], acc))) {
+			if(!f(value_type::operation(data[r], acc).a)) {
 				while(r < base()) {
 					r = r * 2 + 1;
-					if(f(value_type::operation(data[r], acc))) {
+					if(f(value_type::operation(data[r], acc).a)) {
 						acc = value_type::operation(data[r], acc);
 						r -= 1;
 					}
