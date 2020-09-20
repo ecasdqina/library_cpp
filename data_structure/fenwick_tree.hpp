@@ -54,7 +54,7 @@ public:
 		}
 
 		while(last < first) {
-			acc = value_type::operation(data[first].inverse(), acc);
+			acc = value_type::operation(value_type::inverse(data[first]), acc);
 
 			first -= lsb(first);
 		}
@@ -66,7 +66,7 @@ public:
 			data[i] = value_type::operation(data[i], x);
 	}
 	void change(usize i, const value_type& x) {
-		update(i, value_type::operation((*this)[i].inverse(), x));
+		update(i, value_type::operation(value_type::inverse((*this)[i]), x));
 	}
 
 	// return min{x | f(fold(x)) = true}

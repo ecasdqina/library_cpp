@@ -11,8 +11,7 @@ template<class T, T id = T{}> struct add_monoid {
 	constexpr add_monoid(T a): a(a) {}
 	static constexpr add_monoid operation(const add_monoid& l, const add_monoid& r) { return add_monoid{l.a + r.a}; }
 	static constexpr add_monoid identity() { return add_monoid{id}; };
-	constexpr add_monoid inverse() { return add_monoid{-a}; }
-	constexpr T value() { return a; }
+	static constexpr add_monoid inverse(const add_monoid& x) { return add_monoid{-x.a}; }
 };
 
 template<class T, T id = T{1}> struct mul_monoid {
@@ -23,7 +22,6 @@ template<class T, T id = T{1}> struct mul_monoid {
 	constexpr mul_monoid(T a): a(a) {}
 	static constexpr mul_monoid operation(const mul_monoid& l, const mul_monoid& r) { return mul_monoid{l.a * r.a}; }
 	static constexpr mul_monoid identity() { return mul_monoid{id}; };
-	constexpr T value() { return a; }
 };
 
 template<class T, T id = T{}> struct max_monoid {
@@ -34,7 +32,6 @@ template<class T, T id = T{}> struct max_monoid {
 	constexpr max_monoid(T a): a(a) {}
 	static constexpr max_monoid operation(const max_monoid& l, const max_monoid& r) { return max_monoid{std::max(l.a, r.a)}; }
 	static constexpr max_monoid identity() { return max_monoid{id}; };
-	constexpr T value() { return a; }
 };
 
 template<class T, T id = T{}> struct min_monoid {
@@ -45,7 +42,6 @@ template<class T, T id = T{}> struct min_monoid {
 	constexpr min_monoid(T a): a(a) {}
 	static constexpr min_monoid operation(const min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)}; }
 	static constexpr min_monoid identity() { return min_monoid{id}; };
-	constexpr T value() { return a; }
 };
 
 template<class T, T& id> struct monoid {
@@ -56,7 +52,6 @@ template<class T, T& id> struct monoid {
 	constexpr monoid(T a): a(a) {}
 	static constexpr monoid operation(const monoid& l, const monoid& r) { return monoid{l.a + r.a}; }
 	static constexpr monoid identity() { return monoid{id}; }
-	constexpr monoid inverse() { return monoid{id.inverse()}; }
-	constexpr T value() { return a; }
+	static constexpr monoid inverse(const monoid& x) { return monoid{x.a.inverse()}; }
 };
 }
