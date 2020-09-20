@@ -6,6 +6,9 @@ data:
     - icon: ':x:'
       path: data_structure/fenwick_tree.hpp
       title: data_structure/fenwick_tree.hpp
+    - icon: ':warning:'
+      path: data_structure/lazy_segment_tree.hpp
+      title: data_structure/lazy_segment_tree.hpp
     - icon: ':question:'
       path: data_structure/monoid.hpp
       title: data_structure/monoid.hpp
