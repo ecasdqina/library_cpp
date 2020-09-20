@@ -7,6 +7,12 @@
 
 namespace cplib {
 struct lazy_segment_tree {
+public:
+
+private:
+	std::vector<A> data;
+
+public:
 
 
 };
