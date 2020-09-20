@@ -6,30 +6,22 @@
 
 using mint = modint<998244353>;
 
-struct node {
-	mint a, b;
-
-	node operator+(const node& r) const { return node{r.a * a, r.a * b + r.b}; }
-	mint eval(mint x) { return a * x + b; }
-} id{1, 0};
-
 int main() {
 	int n, q; fin.scan(n, q);
 
-	using T = cplib::monoid<node, id>;
-	cplib::segment_tree<T> seg(n);
+	cplib::segment_tree<cplib::affine_composite_monoid<mint>> seg(n);
 	for(int i = 0; i < n; i++) {
 		int a, b; fin.scan(a, b);
 
-		seg.set(i, node{a, b});
+		seg.set(i, cplib::affine<mint>(a, b));
 	}
 	seg.build();
 
 	while(q--) {
 		int type, x, y, z; fin.scan(type, x, y, z);
 
-		if(type == 0) seg.change(x, node{y, z});
-		if(type == 1) fout.println(seg.fold(x, y).eval(z).value());
+		if(type == 0) seg.change(x, cplib::affine<mint>(y, z));
+		if(type == 1) fout.println(seg.fold(x, y).evaluate(z).value());
 	}
 	return 0;
 }
