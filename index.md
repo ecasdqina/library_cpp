@@ -3,19 +3,19 @@ data:
   libraryCategories:
   - name: data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/fenwick_tree.hpp
       title: data_structure/fenwick_tree.hpp
     - icon: ':warning:'
       path: data_structure/lazy_segment_tree.hpp
       title: data_structure/lazy_segment_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/monoid.hpp
       title: data_structure/monoid.hpp
     - icon: ':heavy_check_mark:'
       path: data_structure/persistent_array.hpp
       title: data_structure/persistent_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/segment_tree.hpp
       title: data_structure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -43,7 +43,7 @@ data:
       title: math/polynomial.hpp
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/fast_io.hpp
       title: other/fast_io.hpp
   - name: string
@@ -85,10 +85,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_queue.persistent_array.test.cpp
       title: test/yosupo/persistent_queue.persistent_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
       title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
       title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
     - icon: ':heavy_check_mark:'

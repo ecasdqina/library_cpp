@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -177,20 +177,20 @@ data:
     \ t) { print(t); print('\\n'); }\n\t\tvoid println() { print('\\n'); }\n\t};\n\
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
     \n\n#line 5 \"test/yosupo/point_add_range_sum.segment_tree.test.cpp\"\n\nint main()\
-    \ {\n\tint n, q; fin.scan(n, q);\n\tstd::vector<long long> a; for(auto& v: a)\
-    \ fin.scan(v);\n\n\tcplib::segment_tree<cplib::add_monoid<long long>> seg(begin(a),\
+    \ {\n\tint n, q; fin.scan(n, q);\n\tstd::vector<long long> a(n); for(auto& v:\
+    \ a) fin.scan(v);\n\n\tcplib::segment_tree<cplib::add_monoid<long long>> seg(begin(a),\
     \ end(a));\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\n\t\tif(type == 0)\
     \ {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p, x);\n\t\t} else if(type\
     \ == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l, r));\n\
     \t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     \n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../other/fast_io.hpp\"\
-    \n\nint main() {\n\tint n, q; fin.scan(n, q);\n\tstd::vector<long long> a; for(auto&\
-    \ v: a) fin.scan(v);\n\n\tcplib::segment_tree<cplib::add_monoid<long long>> seg(begin(a),\
-    \ end(a));\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\n\t\tif(type == 0)\
-    \ {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p, x);\n\t\t} else if(type\
-    \ == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l, r));\n\
-    \t\t}\n\t}\n}\n"
+    \n\nint main() {\n\tint n, q; fin.scan(n, q);\n\tstd::vector<long long> a(n);\
+    \ for(auto& v: a) fin.scan(v);\n\n\tcplib::segment_tree<cplib::add_monoid<long\
+    \ long>> seg(begin(a), end(a));\n\twhile(q--) {\n\t\tint type; fin.scan(type);\n\
+    \n\t\tif(type == 0) {\n\t\t\tint p, x; fin.scan(p, x);\n\n\t\t\tseg.update(p,\
+    \ x);\n\t\t} else if(type == 1) {\n\t\t\tint l, r; fin.scan(l, r);\n\n\t\t\tfout.println(seg.fold(l,\
+    \ r));\n\t\t}\n\t}\n}\n"
   dependsOn:
   - data_structure/segment_tree.hpp
   - data_structure/monoid.hpp
@@ -198,8 +198,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-21 01:52:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-09-21 02:13:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.segment_tree.test.cpp
 layout: document

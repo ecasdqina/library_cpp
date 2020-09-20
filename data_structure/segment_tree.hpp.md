@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
   _extendedRequiredBy: []
@@ -12,14 +12,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
     title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/segment_tree.md
@@ -138,7 +138,7 @@ data:
   path: data_structure/segment_tree.hpp
   requiredBy: []
   timestamp: '2020-09-21 01:52:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_set_range_composite.segment_tree.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp

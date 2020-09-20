@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
   _extendedRequiredBy: []
@@ -36,17 +36,17 @@ data:
     \ monoid& r) { return monoid{l.a + r.a}; }\n\tstatic constexpr monoid identity()\
     \ { return monoid{id}; }\n\tstatic constexpr monoid inverse(const monoid& x) {\
     \ return monoid{x.a.inverse()}; }\n};\n}\n#line 7 \"data_structure/lazy_segment_tree.hpp\"\
-    \n\nnamespace cplib {\nstruct lazy_segment_tree {\npublic:\n\nprivate:\n\tstd::vector<A>\
-    \ data;\n\npublic:\n\n\n};\n}\n"
+    \n\nnamespace cplib {\ntemplate<class A, class B, (A)&(A, B) effect> class lazy_segment_tree\
+    \ {\npublic:\n\nprivate:\n\tstd::vector<A> data;\n\npublic:\n\n\n};\n}\n"
   code: "#pragma once\n\n#include <vector>\n#include <cstdint>\n\n#include \"../data_structure/monoid.hpp\"\
-    \n\nnamespace cplib {\nstruct lazy_segment_tree {\npublic:\n\nprivate:\n\tstd::vector<A>\
-    \ data;\n\npublic:\n\n\n};\n}\n"
+    \n\nnamespace cplib {\ntemplate<class A, class B, (A)&(A, B) effect> class lazy_segment_tree\
+    \ {\npublic:\n\nprivate:\n\tstd::vector<A> data;\n\npublic:\n\n\n};\n}\n"
   dependsOn:
   - data_structure/monoid.hpp
   isVerificationFile: false
   path: data_structure/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2020-09-21 01:53:43+09:00'
+  timestamp: '2020-09-21 02:13:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/lazy_segment_tree.hpp
