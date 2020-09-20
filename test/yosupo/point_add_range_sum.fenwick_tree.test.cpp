@@ -5,7 +5,7 @@
 
 int main() {
 	int n, q; fin.scan(n, q);
-	std::vector<long long> a; for(auto& v: a) fin.scan(v);
+	std::vector<long long> a(n); for(auto& v: a) fin.scan(v);
 
 	cplib::fenwick_tree<cplib::add_monoid<long long>> fwt(begin(a), end(a));
 	while(q--) {

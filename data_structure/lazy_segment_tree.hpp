@@ -6,7 +6,7 @@
 #include "../data_structure/monoid.hpp"
 
 namespace cplib {
-struct lazy_segment_tree {
+template<class A, class B, (A)&(A, B) effect> class lazy_segment_tree {
 public:
 
 private:
