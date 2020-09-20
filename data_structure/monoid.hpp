@@ -54,4 +54,19 @@ template<class T, T& id> struct monoid {
 	static constexpr monoid identity() { return monoid{id}; }
 	static constexpr monoid inverse(const monoid& x) { return monoid{x.a.inverse()}; }
 };
+
+template<class A, class B> struct cartesian_product_monoid {
+	using value_type = std::pair<typename A::value_type, typename B::value_type>;
+
+	value_type a;
+
+	constexpr cartesian_product_monoid(const value_type& a): a(a) {}
+	static constexpr cartesian_product_monoid operation(const cartesian_product_monoid& l, const cartesian_product_monoid& r) {
+		return cartesian_product_monoid{{A::operation(l.a.first, r.a.first).a, B::operation(l.a.second, r.a.second).a}};
+	}
+	static constexpr cartesian_product_monoid identity() { return cartesian_product_monoid{{A::identity().a, B::identity().a}}; }
+	static constexpr cartesian_product_monoid inverse(const cartesian_product_monoid& x) {
+		return cartesian_product_monoid{{A::inverse(x.a.first).a, B::inverse(x.a.second).a}};
+	}
+};
 }
