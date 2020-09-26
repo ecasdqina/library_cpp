@@ -1,6 +1,8 @@
 #pragma once
 
 #include <algorithm>
+#include <limits>
+#include "../data_structure/affine.hpp"
 
 namespace cplib {
 template<class T, T id = T{}> struct add_monoid {
@@ -34,7 +36,7 @@ template<class T, T id = T{}> struct max_monoid {
 	static constexpr max_monoid identity() { return max_monoid{id}; };
 };
 
-template<class T, T id = T{}> struct min_monoid {
+template<class T, T id = std::numeric_limits<T>::max()> struct min_monoid {
 	using value_type = T;
 
 	T a;
@@ -67,6 +69,21 @@ template<class A, class B> struct cartesian_product_monoid {
 	static constexpr cartesian_product_monoid identity() { return cartesian_product_monoid{{A::identity().a, B::identity().a}}; }
 	static constexpr cartesian_product_monoid inverse(const cartesian_product_monoid& x) {
 		return cartesian_product_monoid{{A::inverse(x.a.first).a, B::inverse(x.a.second).a}};
+	}
+};
+
+template<class T> struct affine_composite_monoid {
+	using value_type = cplib::affine<T>;
+
+	value_type a;
+
+	constexpr affine_composite_monoid(const value_type& a): a(a) {}
+	static constexpr affine_composite_monoid operation(const affine_composite_monoid& l,
+													   const affine_composite_monoid& r) {
+		return affine_composite_monoid{r.a.composite(l.a)};
+	}
+	static constexpr affine_composite_monoid identity() {
+		return affine_composite_monoid{value_type()};
 	}
 };
 }
