@@ -8,6 +8,9 @@ data:
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
   - icon: ':heavy_check_mark:'
+    path: data_structure/affine.hpp
+    title: data_structure/affine.hpp
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: math/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +29,14 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n\n#line 2 \"data_structure/segment_tree.hpp\"\n\n#include <vector>\n#include\
     \ <cstdint>\n\n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\
-    \nnamespace cplib {\ntemplate<class T, T id = T{}> struct add_monoid {\n\tusing\
+    #include <limits>\n#line 2 \"data_structure/affine.hpp\"\n\n#line 4 \"data_structure/affine.hpp\"\
+    \n\nnamespace cplib {\ntemplate<class T> struct affine {\n\tusing value_type =\
+    \ T;\n\n\tvalue_type a;\n\tvalue_type b;\n\n\tconstexpr affine(const value_type&\
+    \ a = 1, const value_type& b = 0): a(a), b(b) {}\n\tconstexpr affine operator+(const\
+    \ affine& r) const { return affine{a + r.a, b + r.b}; }\n\tconstexpr affine composite(const\
+    \ affine& r) const { return affine{a * r.a, a * r.b + b}; }\n\n\tconstexpr value_type\
+    \ evaluate(const value_type& x) { return a * x + b; }\n};\n}\n#line 6 \"data_structure/monoid.hpp\"\
+    \n\nnamespace cplib {\ntemplate<class T, T id = T{}> struct add_monoid {\n\tusing\
     \ value_type = T;\n\n\tT a;\n\n\tconstexpr add_monoid(T a): a(a) {}\n\tstatic\
     \ constexpr add_monoid operation(const add_monoid& l, const add_monoid& r) { return\
     \ add_monoid{l.a + r.a}; }\n\tstatic constexpr add_monoid identity() { return\
@@ -40,22 +50,38 @@ data:
     \ a): a(a) {}\n\tstatic constexpr max_monoid operation(const max_monoid& l, const\
     \ max_monoid& r) { return max_monoid{std::max(l.a, r.a)}; }\n\tstatic constexpr\
     \ max_monoid identity() { return max_monoid{id}; };\n};\n\ntemplate<class T, T\
-    \ id = T{}> struct min_monoid {\n\tusing value_type = T;\n\n\tT a;\n\n\tconstexpr\
-    \ min_monoid(T a): a(a) {}\n\tstatic constexpr min_monoid operation(const min_monoid&\
-    \ l, const min_monoid& r) { return min_monoid{std::min(l.a, r.a)}; }\n\tstatic\
-    \ constexpr min_monoid identity() { return min_monoid{id}; };\n};\n\ntemplate<class\
-    \ T, T& id> struct monoid {\n\tusing value_type = T;\n\n\tT a;\n\n\tconstexpr\
-    \ monoid(T a): a(a) {}\n\tstatic constexpr monoid operation(const monoid& l, const\
-    \ monoid& r) { return monoid{l.a + r.a}; }\n\tstatic constexpr monoid identity()\
-    \ { return monoid{id}; }\n\tstatic constexpr monoid inverse(const monoid& x) {\
-    \ return monoid{x.a.inverse()}; }\n};\n}\n#line 7 \"data_structure/segment_tree.hpp\"\
-    \n\nnamespace cplib {\ntemplate<class Monoid> class segment_tree {\npublic:\n\t\
-    using value_type = Monoid;\n\tusing T = typename value_type::value_type;\n\tusing\
-    \ usize = std::uint_fast32_t;\n\nprivate:\n\tint n;\n\tstd::vector<value_type>\
-    \ data;\n\nprivate:\n\tusize base() const { return data.size() >> 1; }\n\npublic:\n\
-    \tsegment_tree() = default;\n\texplicit segment_tree(usize n): n(n) {\n\t\tusize\
-    \ size = 1;\n\t\twhile(size <= n) size <<= 1;\n\t\tdata.assign(size << 1, value_type::identity());\n\
-    \t}\n\ttemplate<class InputIt> explicit segment_tree(InputIt first, InputIt last)\n\
+    \ id = std::numeric_limits<T>::max()> struct min_monoid {\n\tusing value_type\
+    \ = T;\n\n\tT a;\n\n\tconstexpr min_monoid(T a): a(a) {}\n\tstatic constexpr min_monoid\
+    \ operation(const min_monoid& l, const min_monoid& r) { return min_monoid{std::min(l.a,\
+    \ r.a)}; }\n\tstatic constexpr min_monoid identity() { return min_monoid{id};\
+    \ };\n};\n\ntemplate<class T, T& id> struct monoid {\n\tusing value_type = T;\n\
+    \n\tT a;\n\n\tconstexpr monoid(T a): a(a) {}\n\tstatic constexpr monoid operation(const\
+    \ monoid& l, const monoid& r) { return monoid{l.a + r.a}; }\n\tstatic constexpr\
+    \ monoid identity() { return monoid{id}; }\n\tstatic constexpr monoid inverse(const\
+    \ monoid& x) { return monoid{x.a.inverse()}; }\n};\n\ntemplate<class A, class\
+    \ B> struct cartesian_product_monoid {\n\tusing value_type = std::pair<typename\
+    \ A::value_type, typename B::value_type>;\n\n\tvalue_type a;\n\n\tconstexpr cartesian_product_monoid(const\
+    \ value_type& a): a(a) {}\n\tstatic constexpr cartesian_product_monoid operation(const\
+    \ cartesian_product_monoid& l, const cartesian_product_monoid& r) {\n\t\treturn\
+    \ cartesian_product_monoid{{A::operation(l.a.first, r.a.first).a, B::operation(l.a.second,\
+    \ r.a.second).a}};\n\t}\n\tstatic constexpr cartesian_product_monoid identity()\
+    \ { return cartesian_product_monoid{{A::identity().a, B::identity().a}}; }\n\t\
+    static constexpr cartesian_product_monoid inverse(const cartesian_product_monoid&\
+    \ x) {\n\t\treturn cartesian_product_monoid{{A::inverse(x.a.first).a, B::inverse(x.a.second).a}};\n\
+    \t}\n};\n\ntemplate<class T> struct affine_composite_monoid {\n\tusing value_type\
+    \ = cplib::affine<T>;\n\n\tvalue_type a;\n\n\tconstexpr affine_composite_monoid(const\
+    \ value_type& a): a(a) {}\n\tstatic constexpr affine_composite_monoid operation(const\
+    \ affine_composite_monoid& l,\n\t\t\t\t\t\t\t\t\t\t\t\t\t   const affine_composite_monoid&\
+    \ r) {\n\t\treturn affine_composite_monoid{r.a.composite(l.a)};\n\t}\n\tstatic\
+    \ constexpr affine_composite_monoid identity() {\n\t\treturn affine_composite_monoid{value_type()};\n\
+    \t}\n};\n}\n#line 7 \"data_structure/segment_tree.hpp\"\n\nnamespace cplib {\n\
+    template<class Monoid> class segment_tree {\npublic:\n\tusing value_type = Monoid;\n\
+    \tusing T = typename value_type::value_type;\n\tusing usize = std::uint_fast32_t;\n\
+    \nprivate:\n\tint n;\n\tstd::vector<value_type> data;\n\nprivate:\n\tusize base()\
+    \ const { return data.size() >> 1; }\n\npublic:\n\tsegment_tree() = default;\n\
+    \texplicit segment_tree(usize n): n(n) {\n\t\tusize size = 1;\n\t\twhile(size\
+    \ <= n) size <<= 1;\n\t\tdata.assign(size << 1, value_type::identity());\n\t}\n\
+    \ttemplate<class InputIt> explicit segment_tree(InputIt first, InputIt last)\n\
     \t: segment_tree(std::distance(first, last)) {\n\t\tfor(int index = 0; first !=\
     \ last; first++, index++) set(index, *first);\n\t\tbuild();\n\t}\n\n\tusize size()\
     \ const { return n; }\n\tbool empty() const { return size() == 0; }\n\tvoid clear()\
@@ -131,8 +157,8 @@ data:
     \ p) {\n\t\treturn os << p.a;\n\t}\n\tfriend std::istream& operator>>(std::istream&\
     \ is, modint& p) {\n\t\tu64 t;\n\t\tis >> t;\n\t\tp = modint(t);\n\t\treturn is;\n\
     \t}\n};\n\n\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include <cstdio>\n#line 6 \"\
-    other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n#include <limits>\n\
-    #include <string>\n#include <type_traits>\n#include <utility>\n#line 13 \"other/fast_io.hpp\"\
+    other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n#line 9 \"other/fast_io.hpp\"\
+    \n#include <string>\n#include <type_traits>\n#include <utility>\n#line 13 \"other/fast_io.hpp\"\
     \n\nnamespace fast_io {\n\t// fast I/O by rsk0315 (update: 2020-03-02 01:10:54).\n\
     \tstatic size_t constexpr buf_size = 1 << 17;\n\tstatic size_t constexpr margin\
     \ = 1;\n\tstatic char inbuf[buf_size + margin] = {};\n\tstatic char outbuf[buf_size\
@@ -221,35 +247,32 @@ data:
     \ t) { print(t); print('\\n'); }\n\t\tvoid println() { print('\\n'); }\n\t};\n\
     }\nfast_io::scanner fin;\nfast_io::printer fout;\n\n// @docs docs/fast_io.md\n\
     \n\n#line 6 \"test/yosupo/point_set_range_composite.segment_tree.test.cpp\"\n\n\
-    using mint = modint<998244353>;\n\nstruct node {\n\tmint a, b;\n\n\tnode operator+(const\
-    \ node& r) const { return node{r.a * a, r.a * b + r.b}; }\n\tmint eval(mint x)\
-    \ { return a * x + b; }\n} id{1, 0};\n\nint main() {\n\tint n, q; fin.scan(n,\
-    \ q);\n\n\tusing T = cplib::monoid<node, id>;\n\tcplib::segment_tree<T> seg(n);\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tint a, b; fin.scan(a, b);\n\n\t\tseg.set(i,\
-    \ node{a, b});\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type, x, y, z;\
-    \ fin.scan(type, x, y, z);\n\n\t\tif(type == 0) seg.change(x, node{y, z});\n\t\
-    \tif(type == 1) fout.println(seg.fold(x, y).eval(z).value());\n\t}\n\treturn 0;\n\
-    }\n"
+    using mint = modint<998244353>;\n\nint main() {\n\tint n, q; fin.scan(n, q);\n\
+    \n\tcplib::segment_tree<cplib::affine_composite_monoid<mint>> seg(n);\n\tfor(int\
+    \ i = 0; i < n; i++) {\n\t\tint a, b; fin.scan(a, b);\n\n\t\tseg.set(i, cplib::affine<mint>(a,\
+    \ b));\n\t}\n\tseg.build();\n\n\twhile(q--) {\n\t\tint type, x, y, z; fin.scan(type,\
+    \ x, y, z);\n\n\t\tif(type == 0) seg.change(x, cplib::affine<mint>(y, z));\n\t\
+    \tif(type == 1) fout.println(seg.fold(x, y).evaluate(z).value());\n\t}\n\treturn\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n\n#include \"../../data_structure/segment_tree.hpp\"\n#include \"../../math/modint.hpp\"\
     \n#include \"../../other/fast_io.hpp\"\n\nusing mint = modint<998244353>;\n\n\
-    struct node {\n\tmint a, b;\n\n\tnode operator+(const node& r) const { return\
-    \ node{r.a * a, r.a * b + r.b}; }\n\tmint eval(mint x) { return a * x + b; }\n\
-    } id{1, 0};\n\nint main() {\n\tint n, q; fin.scan(n, q);\n\n\tusing T = cplib::monoid<node,\
-    \ id>;\n\tcplib::segment_tree<T> seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\t\
-    int a, b; fin.scan(a, b);\n\n\t\tseg.set(i, node{a, b});\n\t}\n\tseg.build();\n\
-    \n\twhile(q--) {\n\t\tint type, x, y, z; fin.scan(type, x, y, z);\n\n\t\tif(type\
-    \ == 0) seg.change(x, node{y, z});\n\t\tif(type == 1) fout.println(seg.fold(x,\
-    \ y).eval(z).value());\n\t}\n\treturn 0;\n}\n"
+    int main() {\n\tint n, q; fin.scan(n, q);\n\n\tcplib::segment_tree<cplib::affine_composite_monoid<mint>>\
+    \ seg(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tint a, b; fin.scan(a, b);\n\n\t\
+    \tseg.set(i, cplib::affine<mint>(a, b));\n\t}\n\tseg.build();\n\n\twhile(q--)\
+    \ {\n\t\tint type, x, y, z; fin.scan(type, x, y, z);\n\n\t\tif(type == 0) seg.change(x,\
+    \ cplib::affine<mint>(y, z));\n\t\tif(type == 1) fout.println(seg.fold(x, y).evaluate(z).value());\n\
+    \t}\n\treturn 0;\n}\n"
   dependsOn:
   - data_structure/segment_tree.hpp
   - data_structure/monoid.hpp
+  - data_structure/affine.hpp
   - math/modint.hpp
   - other/fast_io.hpp
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-21 01:52:21+09:00'
+  timestamp: '2020-09-27 04:15:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.segment_tree.test.cpp
