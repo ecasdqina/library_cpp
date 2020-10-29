@@ -17,14 +17,15 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/fenwick_tree.hpp\"\n\n#include <vector>\n\
-    #include <functional>\n\n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\
-    #include <limits>\n#line 2 \"data_structure/affine.hpp\"\n\n#line 4 \"data_structure/affine.hpp\"\
-    \n\nnamespace cplib {\ntemplate<class T> struct affine {\n\tusing value_type =\
-    \ T;\n\n\tvalue_type a;\n\tvalue_type b;\n\n\tconstexpr affine(const value_type&\
-    \ a = 1, const value_type& b = 0): a(a), b(b) {}\n\tconstexpr affine operator+(const\
-    \ affine& r) const { return affine{a + r.a, b + r.b}; }\n\tconstexpr affine composite(const\
-    \ affine& r) const { return affine{a * r.a, a * r.b + b}; }\n\n\tconstexpr value_type\
-    \ evaluate(const value_type& x) { return a * x + b; }\n};\n}\n#line 6 \"data_structure/monoid.hpp\"\
+    #include <functional>\n#include <stdint.h>\n\n#line 2 \"data_structure/monoid.hpp\"\
+    \n\n#include <algorithm>\n#include <limits>\n#line 2 \"data_structure/affine.hpp\"\
+    \n\n#line 4 \"data_structure/affine.hpp\"\n\nnamespace cplib {\ntemplate<class\
+    \ T> struct affine {\n\tusing value_type = T;\n\n\tvalue_type a;\n\tvalue_type\
+    \ b;\n\n\tconstexpr affine(const value_type& a = 1, const value_type& b = 0):\
+    \ a(a), b(b) {}\n\tconstexpr affine operator+(const affine& r) const { return\
+    \ affine{a + r.a, b + r.b}; }\n\tconstexpr affine composite(const affine& r) const\
+    \ { return affine{a * r.a, a * r.b + b}; }\n\n\tconstexpr value_type evaluate(const\
+    \ value_type& x) { return a * x + b; }\n};\n}\n#line 6 \"data_structure/monoid.hpp\"\
     \n\nnamespace cplib {\ntemplate<class T, T id = T{}> struct add_monoid {\n\tusing\
     \ value_type = T;\n\n\tT a;\n\n\tconstexpr add_monoid(T a): a(a) {}\n\tstatic\
     \ constexpr add_monoid operation(const add_monoid& l, const add_monoid& r) { return\
@@ -63,7 +64,7 @@ data:
     \ affine_composite_monoid& l,\n\t\t\t\t\t\t\t\t\t\t\t\t\t   const affine_composite_monoid&\
     \ r) {\n\t\treturn affine_composite_monoid{r.a.composite(l.a)};\n\t}\n\tstatic\
     \ constexpr affine_composite_monoid identity() {\n\t\treturn affine_composite_monoid{value_type()};\n\
-    \t}\n};\n}\n#line 7 \"data_structure/fenwick_tree.hpp\"\n\nnamespace cplib {\n\
+    \t}\n};\n}\n#line 8 \"data_structure/fenwick_tree.hpp\"\n\nnamespace cplib {\n\
     template<class CommutativeMonoid> class fenwick_tree {\npublic:\n\tusing value_type\
     \ = CommutativeMonoid;\n\tusing T\t\t\t = typename value_type::value_type;\n\t\
     using usize      = std::uint_fast32_t;\n\n\tstd::vector<value_type> data;\n\n\
@@ -91,16 +92,17 @@ data:
     \t\twhile(k >>= 1) {\n\t\t\tif((i | k) < data.size() and !f(value_type::operation(acc,\
     \ data[i | k]))) {\n\t\t\t\tacc = value_type::operation(acc, data[i | k]);\n\t\
     \t\t\ti |= k;\n\t\t\t}\n\t\t}\n\t\treturn i + 1;\n\t}\n};\n}\n"
-  code: "#pragma once\n\n#include <vector>\n#include <functional>\n\n#include \"../data_structure/monoid.hpp\"\
-    \n\nnamespace cplib {\ntemplate<class CommutativeMonoid> class fenwick_tree {\n\
-    public:\n\tusing value_type = CommutativeMonoid;\n\tusing T\t\t\t = typename value_type::value_type;\n\
-    \tusing usize      = std::uint_fast32_t;\n\n\tstd::vector<value_type> data;\n\n\
-    private:\n\tusize lsb(usize i) const { return i & (~i + 1); }\n\npublic:\n\tfenwick_tree()\
-    \ = default;\n\n\tfenwick_tree(usize n): data(n + 1, value_type::identity()) {}\n\
-    \n\ttemplate<class InputIt> fenwick_tree(InputIt first, InputIt last)\n\t: fenwick_tree(std::distance(first,\
-    \ last)) {\n\t\tfor(int index = 0; first != last; first++, index++) update(index,\
-    \ *first);\n\t}\n\n\tusize size() const { return data.size() - 1; }\n\tbool empty()\
-    \ const { return size() == 0; }\n\tvoid clear() { data.clear(); }\n\tvoid swap(fenwick_tree&\
+  code: "#pragma once\n\n#include <vector>\n#include <functional>\n#include <stdint.h>\n\
+    \n#include \"../data_structure/monoid.hpp\"\n\nnamespace cplib {\ntemplate<class\
+    \ CommutativeMonoid> class fenwick_tree {\npublic:\n\tusing value_type = CommutativeMonoid;\n\
+    \tusing T\t\t\t = typename value_type::value_type;\n\tusing usize      = std::uint_fast32_t;\n\
+    \n\tstd::vector<value_type> data;\n\nprivate:\n\tusize lsb(usize i) const { return\
+    \ i & (~i + 1); }\n\npublic:\n\tfenwick_tree() = default;\n\n\tfenwick_tree(usize\
+    \ n): data(n + 1, value_type::identity()) {}\n\n\ttemplate<class InputIt> fenwick_tree(InputIt\
+    \ first, InputIt last)\n\t: fenwick_tree(std::distance(first, last)) {\n\t\tfor(int\
+    \ index = 0; first != last; first++, index++) update(index, *first);\n\t}\n\n\t\
+    usize size() const { return data.size() - 1; }\n\tbool empty() const { return\
+    \ size() == 0; }\n\tvoid clear() { data.clear(); }\n\tvoid swap(fenwick_tree&\
     \ r) { data.swap(r.data); }\n\n\tT get(usize i) const { return fold(i, i + 1);\
     \ }\n\tvoid set(usize i, const value_type& x) const { change(i, x); }\n\n\tT fold(usize\
     \ last) const {\n\t\tvalue_type acc = value_type::identity();\n\t\twhile(last)\
@@ -125,7 +127,7 @@ data:
   isVerificationFile: false
   path: data_structure/fenwick_tree.hpp
   requiredBy: []
-  timestamp: '2020-09-27 04:15:30+09:00'
+  timestamp: '2020-10-30 01:57:39+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
