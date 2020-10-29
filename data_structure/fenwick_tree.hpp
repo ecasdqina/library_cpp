@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <functional>
+#include <stdint.h>
 
 #include "../data_structure/monoid.hpp"
 
