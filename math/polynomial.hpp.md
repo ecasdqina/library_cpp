@@ -2,41 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/arbitary_mod_number_theoritic_transform.hpp
+    title: math/arbitary_mod_number_theoritic_transform.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/arbitary_mod_number_theoritic_transform.hpp
+    title: math/arbitary_mod_number_theoritic_transform.hpp
   - icon: ':warning:'
     path: math/fast_fourier_transform.hpp
     title: math/fast_fourier_transform.hpp
   - icon: ':heavy_check_mark:'
     path: math/number_theoritic_transform.hpp
     title: math/number_theoritic_transform.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/arbitary_mod_number_theoritic_transform.hpp
-    title: math/arbitary_mod_number_theoritic_transform.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/arbitary_mod_number_theoritic_transform.hpp
-    title: math/arbitary_mod_number_theoritic_transform.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/polynomial.hpp\"\n\n\n\n#include <cstdint>\n#include\
     \ <vector>\n\ntemplate<class T>\nclass polynomial: public std::vector<T> {\npublic:\n\
@@ -129,19 +128,19 @@ data:
   isVerificationFile: false
   path: math/polynomial.hpp
   requiredBy:
+  - math/arbitary_mod_number_theoritic_transform.hpp
+  - math/arbitary_mod_number_theoritic_transform.hpp
   - math/fast_fourier_transform.hpp
   - math/number_theoritic_transform.hpp
-  - math/arbitary_mod_number_theoritic_transform.hpp
-  - math/arbitary_mod_number_theoritic_transform.hpp
   timestamp: '2020-03-19 17:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
 documentation_of: math/polynomial.hpp
 layout: document
 redirect_from:

@@ -13,24 +13,23 @@ data:
     title: math/arbitary_mod_number_theoritic_transform.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod.test.cpp
+    title: test/yosupo/convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
     title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution_mod.test.cpp
-    title: test/yosupo/convolution_mod.test.cpp
+    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/number_theoritic_transform.md
     links: []
   bundledCode: "#line 1 \"math/number_theoritic_transform.hpp\"\n\n\n\n#line 1 \"\
@@ -203,11 +202,11 @@ data:
   timestamp: '2020-03-20 12:55:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
 documentation_of: math/number_theoritic_transform.hpp
 layout: document
 redirect_from:

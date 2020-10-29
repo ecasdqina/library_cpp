@@ -8,18 +8,18 @@ data:
     path: math/modint.hpp
     title: math/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: math/polynomial.hpp
-    title: math/polynomial.hpp
+    path: math/modint.hpp
+    title: math/modint.hpp
   - icon: ':heavy_check_mark:'
     path: math/number_theoritic_transform.hpp
     title: math/number_theoritic_transform.hpp
   - icon: ':heavy_check_mark:'
-    path: math/modint.hpp
-    title: math/modint.hpp
-  - icon: ':heavy_check_mark:'
     path: math/polynomial.hpp
     title: math/polynomial.hpp
   - icon: ':heavy_check_mark:'
+    path: math/polynomial.hpp
+    title: math/polynomial.hpp
+  - icon: ':question:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []

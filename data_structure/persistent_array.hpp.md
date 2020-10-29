@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data_structure/persistent_array.hpp\"\n\n\n\n#include <cstdint>\n\
     #include <cstring>\n#include <vector>\n#include <algorithm>\n\ntemplate<class\

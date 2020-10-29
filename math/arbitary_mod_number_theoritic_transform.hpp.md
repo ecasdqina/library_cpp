@@ -5,14 +5,14 @@ data:
     path: math/modint.hpp
     title: math/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: math/polynomial.hpp
-    title: math/polynomial.hpp
+    path: math/modint.hpp
+    title: math/modint.hpp
   - icon: ':heavy_check_mark:'
     path: math/number_theoritic_transform.hpp
     title: math/number_theoritic_transform.hpp
   - icon: ':heavy_check_mark:'
-    path: math/modint.hpp
-    title: math/modint.hpp
+    path: math/polynomial.hpp
+    title: math/polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: math/polynomial.hpp
     title: math/polynomial.hpp
@@ -24,7 +24,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/arbitary_mod_number_theoritic_transform.md
     links:
     - https://lumakernel.github.io/ecasdqina/math/FFT/NTT

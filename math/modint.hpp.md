@@ -3,27 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: math/arbitary_mod_number_theoritic_transform.hpp
+    title: math/arbitary_mod_number_theoritic_transform.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/arbitary_mod_number_theoritic_transform.hpp
+    title: math/arbitary_mod_number_theoritic_transform.hpp
+  - icon: ':heavy_check_mark:'
     path: math/number_theoritic_transform.hpp
     title: math/number_theoritic_transform.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/arbitary_mod_number_theoritic_transform.hpp
-    title: math/arbitary_mod_number_theoritic_transform.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/arbitary_mod_number_theoritic_transform.hpp
-    title: math/arbitary_mod_number_theoritic_transform.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
-    title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
@@ -31,12 +31,11 @@ data:
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
+    title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\n#include <iostream>\n\ntemplate\
     \ <std::uint_fast64_t Modulus>\nclass modint {\n\tusing u32 = std::uint_fast32_t;\n\
@@ -126,19 +125,19 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
+  - math/arbitary_mod_number_theoritic_transform.hpp
+  - math/arbitary_mod_number_theoritic_transform.hpp
   - math/number_theoritic_transform.hpp
-  - math/arbitary_mod_number_theoritic_transform.hpp
-  - math/arbitary_mod_number_theoritic_transform.hpp
   timestamp: '2020-03-19 17:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
   - test/yosupo/point_set_range_composite.segment_tree.test.cpp
+  - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - test/yosupo/convolution_mod.test.cpp
   - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 redirect_from:

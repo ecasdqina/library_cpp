@@ -7,18 +7,17 @@ data:
     path: test/aoj/2667.test.cpp
     title: test/aoj/2667.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/901.test.cpp
-    title: test/yukicoder/901.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/901.test.cpp
+    title: test/yukicoder/901.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"tree/heavy_light_decomposition.hpp\"\n\n\n\n#include <cstdint>\n\
     #include <functional>\n#include <vector>\n\nclass heavy_light_decomposition {\n\
@@ -107,8 +106,8 @@ data:
   timestamp: '2020-03-19 17:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2667.test.cpp
   - test/yukicoder/901.test.cpp
+  - test/aoj/2667.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
 documentation_of: tree/heavy_light_decomposition.hpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: data_structure/affine.hpp
+    title: data_structure/affine.hpp
+  - icon: ':question:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
   - icon: ':heavy_check_mark:'
-    path: data_structure/monoid.hpp
-    title: data_structure/monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/affine.hpp
-    title: data_structure/affine.hpp
-  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: math/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []

@@ -1,18 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/monoid.hpp
-    title: data_structure/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
+  - icon: ':question:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 2 \"data_structure/lazy_segment_tree.hpp\"\n\n#include <vector>\n\
     #include <stack>\n#include <cstdint>\n\n#line 2 \"data_structure/monoid.hpp\"\n\
@@ -85,27 +84,27 @@ data:
     \ {}\n\ttemplate<class InputIt> explicit lazy_segment_tree(InputIt first, InputIt\
     \ last)\n\t: lazy_segment_tree(std::distance(first, last)) {\n\t\tfor(int index\
     \ = 0; first != last; first++, index++) set(index, *first);\n\t\tbuild();\n\t\
-    }\n\n\tusize size() { return data.size() >> 1; }\n\tbool empty() { return size()\
-    \ == 0; }\n\tvoid clear() { data.clear(); }\n\tvoid swap(lazy_segment_tree& r)\
-    \ { data.swap(r.data); }\n\n\tT get(usize i) { return fold(i, i + 1).value.a;\
-    \ }\n\tvoid set(usize i, const value_type& x) { data[i + size()].value = x; };\n\
-    \n\tvoid build() { for(usize i = size() - 1; i > 0; i--) recalc(i); }\n\tvoid\
-    \ change(usize i, const value_type& x) {\n\t\ti += size();\n\t\tpropagate_bound(((i\
-    \ >> 1) << 1) + 1);\n\t\tdata[i] = node_type(x, operator_type::identity());\n\t\
-    \trecalc_bound(((i >> 1) << 1) + 1);\n\t}\n\tvoid update(usize i, const value_type&\
-    \ x) {\n\t\ti += size();\n\t\tpropagate_bound(((i >> 1) << 1) + 1);\n\t\tdata[i]\
-    \ = node_type(value_type::operation(value(data[i]), x), operator_type::identity());\n\
-    \t\trecalc_bound(((i >> 1) << 1) + 1);\n\t}\n\n\tT fold(usize first, usize last)\
-    \ {\n\t\tfirst += size();\n\t\tlast  += size();\n\t\tpropagate_bound(first);\n\
-    \t\trecalc_bound(first);\n\t\tpropagate_bound(last);\n\t\trecalc_bound(last);\n\
-    \n\t\tvalue_type lval = value_type::identity();\n\t\tvalue_type rval = value_type::identity();\n\
-    \t\twhile(first != last) {\n\t\t\tif(first & 1) {\n\t\t\t\tlval = value_type::operation(lval,\
-    \ value(data[first]));\n\t\t\t\tfirst++;\n\t\t\t}\n\t\t\tif(last  & 1) {\n\t\t\
-    \t\tlast--;\n\t\t\t\trval = value_type::operation(value(data[last]), rval);\n\t\
-    \t\t}\n\t\t\tfirst >>= 1;\n\t\t\tlast  >>= 1;\n\t\t}\n\t\treturn value_type::operation(lval,\
-    \ rval).a;\n\t}\n\n\tvoid update(usize first, usize last, const operator_type&\
-    \ x) {\n\t\tfirst += size();\n\t\tlast  += size();\n\t\tusize first_tmp = first;\n\
-    \t\tusize last_tmp  = last;\n\t\tpropagate_bound(first);\n\t\tpropagate_bound(last);\n\
+    }\n\tvoid build() { for(usize i = size() - 1; i > 0; i--) recalc(i); }\n\n\tusize\
+    \ size() { return data.size() >> 1; }\n\tbool empty() { return size() == 0; }\n\
+    \tvoid clear() { data.clear(); }\n\tvoid swap(lazy_segment_tree& r) { data.swap(r.data);\
+    \ }\n\n\tT get(usize i) { return fold(i, i + 1); }\n\tvoid set(usize i, const\
+    \ value_type& x) { data[i + size()].value = x; };\n\n\tvoid change(usize i, const\
+    \ value_type& x) {\n\t\ti += size();\n\t\tpropagate_bound(((i >> 1) << 1) + 1);\n\
+    \t\tdata[i] = node_type(x, operator_type::identity());\n\t\trecalc_bound(((i >>\
+    \ 1) << 1) + 1);\n\t}\n\tvoid update(usize i, const value_type& x) {\n\t\ti +=\
+    \ size();\n\t\tpropagate_bound(((i >> 1) << 1) + 1);\n\t\tdata[i] = node_type(value_type::operation(value(data[i]),\
+    \ x), operator_type::identity());\n\t\trecalc_bound(((i >> 1) << 1) + 1);\n\t\
+    }\n\n\tT fold(usize first, usize last) {\n\t\tfirst += size();\n\t\tlast  += size();\n\
+    \t\tpropagate_bound(first);\n\t\trecalc_bound(first);\n\t\tpropagate_bound(last);\n\
+    \t\trecalc_bound(last);\n\n\t\tvalue_type lval = value_type::identity();\n\t\t\
+    value_type rval = value_type::identity();\n\t\twhile(first != last) {\n\t\t\t\
+    if(first & 1) {\n\t\t\t\tlval = value_type::operation(lval, value(data[first]));\n\
+    \t\t\t\tfirst++;\n\t\t\t}\n\t\t\tif(last  & 1) {\n\t\t\t\tlast--;\n\t\t\t\trval\
+    \ = value_type::operation(value(data[last]), rval);\n\t\t\t}\n\t\t\tfirst >>=\
+    \ 1;\n\t\t\tlast  >>= 1;\n\t\t}\n\t\treturn value_type::operation(lval, rval).a;\n\
+    \t}\n\n\tvoid update(usize first, usize last, const operator_type& x) {\n\t\t\
+    first += size();\n\t\tlast  += size();\n\t\tusize first_tmp = first;\n\t\tusize\
+    \ last_tmp  = last;\n\t\tpropagate_bound(first);\n\t\tpropagate_bound(last);\n\
     \t\twhile(first != last) {\n\t\t\tif(first & 1) {\n\t\t\t\tadd(data[first].lazy,\
     \ x);\n\t\t\t\tfirst++;\n\t\t\t}\n\t\t\tif(last  & 1) {\n\t\t\t\tlast--;\n\t\t\
     \t\tadd(data[last].lazy, x);\n\t\t\t}\n\t\t\tfirst >>= 1;\n\t\t\tlast >>= 1;\n\
@@ -134,27 +133,27 @@ data:
     \ {}\n\ttemplate<class InputIt> explicit lazy_segment_tree(InputIt first, InputIt\
     \ last)\n\t: lazy_segment_tree(std::distance(first, last)) {\n\t\tfor(int index\
     \ = 0; first != last; first++, index++) set(index, *first);\n\t\tbuild();\n\t\
-    }\n\n\tusize size() { return data.size() >> 1; }\n\tbool empty() { return size()\
-    \ == 0; }\n\tvoid clear() { data.clear(); }\n\tvoid swap(lazy_segment_tree& r)\
-    \ { data.swap(r.data); }\n\n\tT get(usize i) { return fold(i, i + 1).value.a;\
-    \ }\n\tvoid set(usize i, const value_type& x) { data[i + size()].value = x; };\n\
-    \n\tvoid build() { for(usize i = size() - 1; i > 0; i--) recalc(i); }\n\tvoid\
-    \ change(usize i, const value_type& x) {\n\t\ti += size();\n\t\tpropagate_bound(((i\
-    \ >> 1) << 1) + 1);\n\t\tdata[i] = node_type(x, operator_type::identity());\n\t\
-    \trecalc_bound(((i >> 1) << 1) + 1);\n\t}\n\tvoid update(usize i, const value_type&\
-    \ x) {\n\t\ti += size();\n\t\tpropagate_bound(((i >> 1) << 1) + 1);\n\t\tdata[i]\
-    \ = node_type(value_type::operation(value(data[i]), x), operator_type::identity());\n\
-    \t\trecalc_bound(((i >> 1) << 1) + 1);\n\t}\n\n\tT fold(usize first, usize last)\
-    \ {\n\t\tfirst += size();\n\t\tlast  += size();\n\t\tpropagate_bound(first);\n\
-    \t\trecalc_bound(first);\n\t\tpropagate_bound(last);\n\t\trecalc_bound(last);\n\
-    \n\t\tvalue_type lval = value_type::identity();\n\t\tvalue_type rval = value_type::identity();\n\
-    \t\twhile(first != last) {\n\t\t\tif(first & 1) {\n\t\t\t\tlval = value_type::operation(lval,\
-    \ value(data[first]));\n\t\t\t\tfirst++;\n\t\t\t}\n\t\t\tif(last  & 1) {\n\t\t\
-    \t\tlast--;\n\t\t\t\trval = value_type::operation(value(data[last]), rval);\n\t\
-    \t\t}\n\t\t\tfirst >>= 1;\n\t\t\tlast  >>= 1;\n\t\t}\n\t\treturn value_type::operation(lval,\
-    \ rval).a;\n\t}\n\n\tvoid update(usize first, usize last, const operator_type&\
-    \ x) {\n\t\tfirst += size();\n\t\tlast  += size();\n\t\tusize first_tmp = first;\n\
-    \t\tusize last_tmp  = last;\n\t\tpropagate_bound(first);\n\t\tpropagate_bound(last);\n\
+    }\n\tvoid build() { for(usize i = size() - 1; i > 0; i--) recalc(i); }\n\n\tusize\
+    \ size() { return data.size() >> 1; }\n\tbool empty() { return size() == 0; }\n\
+    \tvoid clear() { data.clear(); }\n\tvoid swap(lazy_segment_tree& r) { data.swap(r.data);\
+    \ }\n\n\tT get(usize i) { return fold(i, i + 1); }\n\tvoid set(usize i, const\
+    \ value_type& x) { data[i + size()].value = x; };\n\n\tvoid change(usize i, const\
+    \ value_type& x) {\n\t\ti += size();\n\t\tpropagate_bound(((i >> 1) << 1) + 1);\n\
+    \t\tdata[i] = node_type(x, operator_type::identity());\n\t\trecalc_bound(((i >>\
+    \ 1) << 1) + 1);\n\t}\n\tvoid update(usize i, const value_type& x) {\n\t\ti +=\
+    \ size();\n\t\tpropagate_bound(((i >> 1) << 1) + 1);\n\t\tdata[i] = node_type(value_type::operation(value(data[i]),\
+    \ x), operator_type::identity());\n\t\trecalc_bound(((i >> 1) << 1) + 1);\n\t\
+    }\n\n\tT fold(usize first, usize last) {\n\t\tfirst += size();\n\t\tlast  += size();\n\
+    \t\tpropagate_bound(first);\n\t\trecalc_bound(first);\n\t\tpropagate_bound(last);\n\
+    \t\trecalc_bound(last);\n\n\t\tvalue_type lval = value_type::identity();\n\t\t\
+    value_type rval = value_type::identity();\n\t\twhile(first != last) {\n\t\t\t\
+    if(first & 1) {\n\t\t\t\tlval = value_type::operation(lval, value(data[first]));\n\
+    \t\t\t\tfirst++;\n\t\t\t}\n\t\t\tif(last  & 1) {\n\t\t\t\tlast--;\n\t\t\t\trval\
+    \ = value_type::operation(value(data[last]), rval);\n\t\t\t}\n\t\t\tfirst >>=\
+    \ 1;\n\t\t\tlast  >>= 1;\n\t\t}\n\t\treturn value_type::operation(lval, rval).a;\n\
+    \t}\n\n\tvoid update(usize first, usize last, const operator_type& x) {\n\t\t\
+    first += size();\n\t\tlast  += size();\n\t\tusize first_tmp = first;\n\t\tusize\
+    \ last_tmp  = last;\n\t\tpropagate_bound(first);\n\t\tpropagate_bound(last);\n\
     \t\twhile(first != last) {\n\t\t\tif(first & 1) {\n\t\t\t\tadd(data[first].lazy,\
     \ x);\n\t\t\t\tfirst++;\n\t\t\t}\n\t\t\tif(last  & 1) {\n\t\t\t\tlast--;\n\t\t\
     \t\tadd(data[last].lazy, x);\n\t\t\t}\n\t\t\tfirst >>= 1;\n\t\t\tlast >>= 1;\n\
@@ -165,7 +164,7 @@ data:
   isVerificationFile: false
   path: data_structure/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2020-09-27 04:15:30+09:00'
+  timestamp: '2020-10-30 00:31:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/lazy_segment_tree.hpp

@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/fast_fourier_transform.md
     links: []
   bundledCode: "#line 1 \"math/fast_fourier_transform.hpp\"\n\n\n\n#line 1 \"math/polynomial.hpp\"\

@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/rolling_hash.hpp\"\n\n\n\n#include <vector>\n#include\
     \ <string>\n\nclass rolling_hash {\npublic:\n\tusing u64 = std::uint_fast64_t;\n\

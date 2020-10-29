@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/fenwick_tree.hpp
-    title: data_structure/fenwick_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/monoid.hpp
-    title: data_structure/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: data_structure/fenwick_tree.hpp
+    title: data_structure/fenwick_tree.hpp
+  - icon: ':question:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
+  - icon: ':question:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -212,7 +212,7 @@ data:
   path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   requiredBy: []
   timestamp: '2020-09-27 04:15:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
 layout: document

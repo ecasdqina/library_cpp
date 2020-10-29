@@ -4,18 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/formal_power_series.md
     links: []
   bundledCode: "#line 1 \"math/formal_power_series.hpp\"\n\n\n\n#include <cassert>\n\
@@ -83,9 +82,9 @@ data:
   timestamp: '2020-03-20 12:55:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
 documentation_of: math/formal_power_series.hpp
 layout: document
 redirect_from:

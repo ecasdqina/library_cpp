@@ -1,21 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/monoid.hpp
-    title: data_structure/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
+  - icon: ':question:'
+    path: data_structure/monoid.hpp
+    title: data_structure/monoid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
     title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 2 \"data_structure/fenwick_tree.hpp\"\n\n#include <vector>\n\
     #include <functional>\n\n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\
@@ -127,7 +126,7 @@ data:
   path: data_structure/fenwick_tree.hpp
   requiredBy: []
   timestamp: '2020-09-27 04:15:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
 documentation_of: data_structure/fenwick_tree.hpp

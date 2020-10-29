@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data_structure/union_find.hpp\"\n\n\n\n#include <cstdint>\n\
     #include <vector>\n\nclass union_find {\npublic:\n\tusing size_type = std::int_fast32_t;\n\

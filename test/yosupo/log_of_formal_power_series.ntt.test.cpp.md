@@ -2,18 +2,18 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/number_theoritic_transform.hpp
-    title: math/number_theoritic_transform.hpp
+    path: math/formal_power_series.hpp
+    title: math/formal_power_series.hpp
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: math/modint.hpp
   - icon: ':heavy_check_mark:'
+    path: math/number_theoritic_transform.hpp
+    title: math/number_theoritic_transform.hpp
+  - icon: ':heavy_check_mark:'
     path: math/polynomial.hpp
     title: math/polynomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/formal_power_series.hpp
-    title: math/formal_power_series.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []

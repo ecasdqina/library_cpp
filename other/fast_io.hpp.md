@@ -4,38 +4,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/2763.test.cpp
-    title: test/aoj/2763.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/2667.test.cpp
     title: test/aoj/2667.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/901.test.cpp
-    title: test/yukicoder/901.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/persistent_queue.persistent_array.test.cpp
-    title: test/yosupo/persistent_queue.persistent_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/unionfind.union_find.test.cpp
-    title: test/yosupo/unionfind.union_find.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
-    title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
-    title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
+    path: test/aoj/2763.test.cpp
+    title: test/aoj/2763.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
-    title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
+    path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+    title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
@@ -43,15 +25,32 @@ data:
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-    title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+    path: test/yosupo/persistent_queue.persistent_array.test.cpp
+    title: test/yosupo/persistent_queue.persistent_array.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
+    title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
+    title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
+    title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/unionfind.union_find.test.cpp
+    title: test/yosupo/unionfind.union_find.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_path_sum.test.cpp
+    title: test/yosupo/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/901.test.cpp
+    title: test/yukicoder/901.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     _deprecated_at_docs: docs/fast_io.md
     links:
     - https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4
@@ -242,23 +241,23 @@ data:
   path: other/fast_io.hpp
   requiredBy: []
   timestamp: '2020-03-20 12:55:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/901.test.cpp
   - test/aoj/2763.test.cpp
   - test/aoj/2667.test.cpp
-  - test/yukicoder/901.test.cpp
-  - test/yosupo/persistent_queue.persistent_array.test.cpp
-  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - test/yosupo/unionfind.union_find.test.cpp
   - test/yosupo/point_set_range_composite.segment_tree.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/point_add_range_sum.segment_tree.test.cpp
-  - test/yosupo/convolution_mod.test.cpp
-  - test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
-  - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/persistent_queue.persistent_array.test.cpp
+  - test/yosupo/point_add_range_sum.segment_tree.test.cpp
+  - test/yosupo/log_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
+  - test/yosupo/unionfind.union_find.test.cpp
+  - test/yosupo/convolution_mod.test.cpp
+  - test/yosupo/inv_of_formal_power_series.ntt.test.cpp
+  - test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
 documentation_of: other/fast_io.hpp
 layout: document
 redirect_from:
