@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/fenwick_tree.hpp
     title: data_structure/fenwick_tree.hpp
   - icon: ':warning:'
@@ -15,7 +15,7 @@ data:
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
     title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -31,7 +31,7 @@ data:
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n#include\
@@ -130,7 +130,7 @@ data:
   - data_structure/segment_tree.hpp
   - data_structure/lazy_segment_tree.hpp
   timestamp: '2020-09-27 04:15:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_set_range_composite.segment_tree.test.cpp
   - test/yosupo/point_add_range_sum.segment_tree.test.cpp

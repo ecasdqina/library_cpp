@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
   _extendedRequiredBy: []

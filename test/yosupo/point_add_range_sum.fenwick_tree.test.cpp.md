@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/fenwick_tree.hpp
     title: data_structure/fenwick_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -25,7 +25,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/point_add_range_sum.fenwick_tree.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n#line\
     \ 2 \"data_structure/fenwick_tree.hpp\"\n\n#include <vector>\n#include <functional>\n\
-    #include <stdint.h>\n\n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\
+    #include <cstdint>\n\n#line 2 \"data_structure/monoid.hpp\"\n\n#include <algorithm>\n\
     #include <limits>\n#line 2 \"data_structure/affine.hpp\"\n\n#line 4 \"data_structure/affine.hpp\"\
     \n\nnamespace cplib {\ntemplate<class T> struct affine {\n\tusing value_type =\
     \ T;\n\n\tvalue_type a;\n\tvalue_type b;\n\n\tconstexpr affine(const value_type&\
@@ -99,27 +99,28 @@ data:
     \t\twhile(k >>= 1) {\n\t\t\tif((i | k) < data.size() and !f(value_type::operation(acc,\
     \ data[i | k]))) {\n\t\t\t\tacc = value_type::operation(acc, data[i | k]);\n\t\
     \t\t\ti |= k;\n\t\t\t}\n\t\t}\n\t\treturn i + 1;\n\t}\n};\n}\n#line 1 \"other/fast_io.hpp\"\
-    \n\n\n\n#include <cstdio>\n#include <cstdint>\n#include <cstddef>\n#include <cstring>\n\
-    #line 9 \"other/fast_io.hpp\"\n#include <string>\n#include <type_traits>\n#include\
-    \ <utility>\n#line 13 \"other/fast_io.hpp\"\n\nnamespace fast_io {\n\t// fast\
-    \ I/O by rsk0315 (update: 2020-03-02 01:10:54).\n\tstatic size_t constexpr buf_size\
-    \ = 1 << 17;\n\tstatic size_t constexpr margin = 1;\n\tstatic char inbuf[buf_size\
-    \ + margin] = {};\n\tstatic char outbuf[buf_size + margin] = {};\n\tstatic __attribute__((aligned(8)))\
-    \ char minibuf[32];\n\tstatic size_t constexpr int_digits = 20;\t// 18446744073709551615\n\
-    \tstatic uintmax_t constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t\
-    \ constexpr first_mask = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask\
-    \ = 0x0000FFFF0000FFFF;\n\tstatic uintmax_t constexpr third_mask = 0x00000000FFFFFFFF;\n\
-    \tstatic uintmax_t constexpr tenpow[] = {\n\t\t1, 10, 100, 1000, 10000, 100000,\
-    \ 1000000, 10000000, 100000000\n\t};\n\ttemplate <typename Tp>\n\tusing enable_if_integral\
-    \ = std::enable_if<std::is_integral<Tp>::value, Tp>;\n\n\tclass scanner {\n\t\t\
-    char* pos = inbuf;\n\t\tchar* endpos = inbuf + buf_size;\n\n\t\tvoid M_read_from_stdin()\
-    \ {\n\t\t\tendpos = inbuf + fread(pos, 1, buf_size, stdin);\n\t\t}\n\t\tvoid M_reread_from_stdin()\
-    \ {\n\t\t\tptrdiff_t len = endpos - pos;\n\t\t\tif (!(inbuf + len <= pos)) return;\n\
-    \t\t\tmemcpy(inbuf, pos, len);\n\t\t\tchar* tmp = inbuf + len;\n\t\t\tendpos =\
-    \ tmp + fread(tmp, 1, buf_size-len, stdin);\n\t\t\t*endpos = 0;\n\t\t\tpos = inbuf;\n\
-    \t\t}\n\n\tpublic:\n\t\tscanner() { M_read_from_stdin(); }\n\n\t\ttemplate <typename\
-    \ Integral,\n\t\t\t\t\t\t\ttypename enable_if_integral<Integral>::type* = nullptr>\n\
-    \t\tvoid scan_parallel(Integral& x) {\n\t\t\t// See https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4\n\
+    \n\n\n\n#include <cstdio>\n#line 6 \"other/fast_io.hpp\"\n#include <cstddef>\n\
+    #include <cstring>\n#line 9 \"other/fast_io.hpp\"\n#include <string>\n#include\
+    \ <type_traits>\n#include <utility>\n#line 13 \"other/fast_io.hpp\"\n\nnamespace\
+    \ fast_io {\n\t// fast I/O by rsk0315 (update: 2020-03-02 01:10:54).\n\tstatic\
+    \ size_t constexpr buf_size = 1 << 17;\n\tstatic size_t constexpr margin = 1;\n\
+    \tstatic char inbuf[buf_size + margin] = {};\n\tstatic char outbuf[buf_size +\
+    \ margin] = {};\n\tstatic __attribute__((aligned(8))) char minibuf[32];\n\tstatic\
+    \ size_t constexpr int_digits = 20;\t// 18446744073709551615\n\tstatic uintmax_t\
+    \ constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t constexpr first_mask\
+    \ = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask = 0x0000FFFF0000FFFF;\n\
+    \tstatic uintmax_t constexpr third_mask = 0x00000000FFFFFFFF;\n\tstatic uintmax_t\
+    \ constexpr tenpow[] = {\n\t\t1, 10, 100, 1000, 10000, 100000, 1000000, 10000000,\
+    \ 100000000\n\t};\n\ttemplate <typename Tp>\n\tusing enable_if_integral = std::enable_if<std::is_integral<Tp>::value,\
+    \ Tp>;\n\n\tclass scanner {\n\t\tchar* pos = inbuf;\n\t\tchar* endpos = inbuf\
+    \ + buf_size;\n\n\t\tvoid M_read_from_stdin() {\n\t\t\tendpos = inbuf + fread(pos,\
+    \ 1, buf_size, stdin);\n\t\t}\n\t\tvoid M_reread_from_stdin() {\n\t\t\tptrdiff_t\
+    \ len = endpos - pos;\n\t\t\tif (!(inbuf + len <= pos)) return;\n\t\t\tmemcpy(inbuf,\
+    \ pos, len);\n\t\t\tchar* tmp = inbuf + len;\n\t\t\tendpos = tmp + fread(tmp,\
+    \ 1, buf_size-len, stdin);\n\t\t\t*endpos = 0;\n\t\t\tpos = inbuf;\n\t\t}\n\n\t\
+    public:\n\t\tscanner() { M_read_from_stdin(); }\n\n\t\ttemplate <typename Integral,\n\
+    \t\t\t\t\t\t\ttypename enable_if_integral<Integral>::type* = nullptr>\n\t\tvoid\
+    \ scan_parallel(Integral& x) {\n\t\t\t// See https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4\n\
     \t\t\tif (__builtin_expect(endpos <= pos + int_digits, 0))\n\t\t\t\tM_reread_from_stdin();\n\
     \t\t\tbool ends = false;\n\t\t\ttypename std::make_unsigned<Integral>::type y\
     \ = 0;\n\t\t\tbool neg = false;\n\t\t\tif (std::is_signed<Integral>::value &&\
@@ -211,8 +212,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-30 01:57:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-30 02:03:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
 layout: document

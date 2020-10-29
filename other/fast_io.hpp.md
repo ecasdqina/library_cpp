@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_queue.persistent_array.test.cpp
     title: test/yosupo/persistent_queue.persistent_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
     title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
     path: test/yukicoder/901.test.cpp
     title: test/yukicoder/901.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/fast_io.md
     links:
@@ -241,7 +241,7 @@ data:
   path: other/fast_io.hpp
   requiredBy: []
   timestamp: '2020-03-20 12:55:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/901.test.cpp
   - test/aoj/2763.test.cpp

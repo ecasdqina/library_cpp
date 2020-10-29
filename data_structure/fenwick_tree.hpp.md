@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
     title: test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/fenwick_tree.hpp\"\n\n#include <vector>\n\
-    #include <functional>\n#include <stdint.h>\n\n#line 2 \"data_structure/monoid.hpp\"\
+    #include <functional>\n#include <cstdint>\n\n#line 2 \"data_structure/monoid.hpp\"\
     \n\n#include <algorithm>\n#include <limits>\n#line 2 \"data_structure/affine.hpp\"\
     \n\n#line 4 \"data_structure/affine.hpp\"\n\nnamespace cplib {\ntemplate<class\
     \ T> struct affine {\n\tusing value_type = T;\n\n\tvalue_type a;\n\tvalue_type\
@@ -92,7 +92,7 @@ data:
     \t\twhile(k >>= 1) {\n\t\t\tif((i | k) < data.size() and !f(value_type::operation(acc,\
     \ data[i | k]))) {\n\t\t\t\tacc = value_type::operation(acc, data[i | k]);\n\t\
     \t\t\ti |= k;\n\t\t\t}\n\t\t}\n\t\treturn i + 1;\n\t}\n};\n}\n"
-  code: "#pragma once\n\n#include <vector>\n#include <functional>\n#include <stdint.h>\n\
+  code: "#pragma once\n\n#include <vector>\n#include <functional>\n#include <cstdint>\n\
     \n#include \"../data_structure/monoid.hpp\"\n\nnamespace cplib {\ntemplate<class\
     \ CommutativeMonoid> class fenwick_tree {\npublic:\n\tusing value_type = CommutativeMonoid;\n\
     \tusing T\t\t\t = typename value_type::value_type;\n\tusing usize      = std::uint_fast32_t;\n\
@@ -127,8 +127,8 @@ data:
   isVerificationFile: false
   path: data_structure/fenwick_tree.hpp
   requiredBy: []
-  timestamp: '2020-10-30 01:57:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-10-30 02:03:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_range_sum.fenwick_tree.test.cpp
 documentation_of: data_structure/fenwick_tree.hpp

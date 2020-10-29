@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/polynomial.hpp
     title: math/polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
