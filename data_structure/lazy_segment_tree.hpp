@@ -63,16 +63,16 @@ public:
 		for(int index = 0; first != last; first++, index++) set(index, *first);
 		build();
 	}
+	void build() { for(usize i = size() - 1; i > 0; i--) recalc(i); }
 
 	usize size() { return data.size() >> 1; }
 	bool empty() { return size() == 0; }
 	void clear() { data.clear(); }
 	void swap(lazy_segment_tree& r) { data.swap(r.data); }
 
-	T get(usize i) { return fold(i, i + 1).value.a; }
+	T get(usize i) { return fold(i, i + 1); }
 	void set(usize i, const value_type& x) { data[i + size()].value = x; };
 
-	void build() { for(usize i = size() - 1; i > 0; i--) recalc(i); }
 	void change(usize i, const value_type& x) {
 		i += size();
 		propagate_bound(((i >> 1) << 1) + 1);
