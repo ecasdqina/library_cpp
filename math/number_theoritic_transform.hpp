@@ -1,6 +1,7 @@
 #ifndef INCLUDED_NUMBER_THEORITIC_TRANSFORM_HPP
 #define INCLUDED_NUMBER_THEORITIC_TRANSFORM_HPP
 
+#include <queue>
 #include "../math/modint.hpp"
 #include "../math/polynomial.hpp"
 
@@ -121,6 +122,23 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+
+template<class T>
+number_theoritic_transform<T> convex_all(std::vector<number_theoritic_transform<T>> polies, int size = -1) {
+	if(polies.empty()) return number_theoritic_transform<T>::zero();
+
+	std::deque<int> qu;
+	for(int i = 0; i < polies.size(); i++) qu.push_back(i);
+	while(qu.size() > 1) {
+		int a = qu.front(); qu.pop_front();
+		int b = qu.front(); qu.pop_front();
+
+		polies.push_back(polies[a] * polies[b]);
+		if(size != -1) polies.back().resize(size);
+		qu.push_back((int)polies.size() - 1);
+	}
+	return polies.back();
+}
 }
 // @docs docs/number_theoritic_transform.md
 
