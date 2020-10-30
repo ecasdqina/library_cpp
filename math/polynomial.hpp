@@ -35,6 +35,10 @@ public:
 		return ret;
 	}
 
+	static polynomial<T> one() { return term(0); }
+	static polynomial<T> zero() { return polynomial<T>({T{0}}); }
+	static polynomial<T> term(int k) { return polynomial<T>({T{1}}) << k; }
+
 public:
 	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
 	polynomial operator+(const_reference r) const { return polynomial(*this) += r; }
