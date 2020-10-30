@@ -27,32 +27,33 @@ data:
     - https://judge.yosupo.jp/problem/inv_of_formal_power_series
   bundledCode: "#line 1 \"test/yosupo/inv_of_formal_power_series.ntt.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#line 1 \"math/number_theoritic_transform.hpp\"\n\n\n\n#line 1 \"math/modint.hpp\"\
-    \n\n\n\n#include <iostream>\n\nnamespace cplib {\ntemplate <std::uint_fast64_t\
-    \ Modulus>\nclass modint {\n\tusing u32 = std::uint_fast32_t;\n\tusing u64 = std::uint_fast64_t;\n\
-    \tusing i64 = std::int_fast64_t;\n\n\tinline u64 apply(i64 x) { return (x < 0\
-    \ ? x + Modulus : x); };\n\npublic:\n\tu64 a;\n\tstatic constexpr u64 mod = Modulus;\n\
-    \n\tconstexpr modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}\n\
-    \n\tconstexpr modint operator+(const modint& rhs) const noexcept { return modint(*this)\
-    \ += rhs; }\n\tconstexpr modint operator-(const modint& rhs) const noexcept {\
-    \ return modint(*this) -= rhs; }\n\tconstexpr modint operator*(const modint& rhs)\
-    \ const noexcept { return modint(*this) *= rhs; }\n\tconstexpr modint operator/(const\
-    \ modint& rhs) const noexcept { return modint(*this) /= rhs; }\n\tconstexpr modint\
-    \ operator^(const u64& k) const noexcept { return modint(*this) ^= k; }\n\tconstexpr\
-    \ modint operator^(const modint& k) const noexcept { return modint(*this) ^= k.value();\
-    \ }\n\tconstexpr modint operator-() const noexcept { return modint(Modulus - a);\
-    \ }\n\tconstexpr modint operator++() noexcept { return (*this) = modint(*this)\
-    \ + 1; }\n\tconstexpr modint operator--() noexcept { return (*this) = modint(*this)\
-    \ - 1; }\n\tconst bool operator==(const modint& rhs) const noexcept { return a\
-    \ == rhs.a; };\n\tconst bool operator!=(const modint& rhs) const noexcept { return\
-    \ a != rhs.a; };\n\tconst bool operator<=(const modint& rhs) const noexcept {\
-    \ return a <= rhs.a; };\n\tconst bool operator>=(const modint& rhs) const noexcept\
-    \ { return a >= rhs.a; };\n\tconst bool operator<(const modint& rhs) const noexcept\
-    \ { return a < rhs.a; };\n\tconst bool operator>(const modint& rhs) const noexcept\
-    \ { return a > rhs.a; };\n\tconstexpr modint& operator+=(const modint& rhs) noexcept\
-    \ {\n\t\ta += rhs.a;\n\t\tif (a >= Modulus) a -= Modulus;\n\t\treturn *this;\n\
-    \t}\n\tconstexpr modint& operator-=(const modint& rhs) noexcept {\n\t\tif (a <\
-    \ rhs.a) a += Modulus;\n\t\ta -= rhs.a;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
+    \n\n#line 1 \"math/number_theoritic_transform.hpp\"\n\n\n\n#include <queue>\n\
+    #line 1 \"math/modint.hpp\"\n\n\n\n#include <iostream>\n\nnamespace cplib {\n\
+    template <std::uint_fast64_t Modulus>\nclass modint {\n\tusing u32 = std::uint_fast32_t;\n\
+    \tusing u64 = std::uint_fast64_t;\n\tusing i64 = std::int_fast64_t;\n\n\tinline\
+    \ u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };\n\npublic:\n\tu64 a;\n\
+    \tstatic constexpr u64 mod = Modulus;\n\n\tconstexpr modint(const i64& x = 0)\
+    \ noexcept: a(apply(x % (i64)Modulus)) {}\n\n\tconstexpr modint operator+(const\
+    \ modint& rhs) const noexcept { return modint(*this) += rhs; }\n\tconstexpr modint\
+    \ operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }\n\
+    \tconstexpr modint operator*(const modint& rhs) const noexcept { return modint(*this)\
+    \ *= rhs; }\n\tconstexpr modint operator/(const modint& rhs) const noexcept {\
+    \ return modint(*this) /= rhs; }\n\tconstexpr modint operator^(const u64& k) const\
+    \ noexcept { return modint(*this) ^= k; }\n\tconstexpr modint operator^(const\
+    \ modint& k) const noexcept { return modint(*this) ^= k.value(); }\n\tconstexpr\
+    \ modint operator-() const noexcept { return modint(Modulus - a); }\n\tconstexpr\
+    \ modint operator++() noexcept { return (*this) = modint(*this) + 1; }\n\tconstexpr\
+    \ modint operator--() noexcept { return (*this) = modint(*this) - 1; }\n\tconst\
+    \ bool operator==(const modint& rhs) const noexcept { return a == rhs.a; };\n\t\
+    const bool operator!=(const modint& rhs) const noexcept { return a != rhs.a; };\n\
+    \tconst bool operator<=(const modint& rhs) const noexcept { return a <= rhs.a;\
+    \ };\n\tconst bool operator>=(const modint& rhs) const noexcept { return a >=\
+    \ rhs.a; };\n\tconst bool operator<(const modint& rhs) const noexcept { return\
+    \ a < rhs.a; };\n\tconst bool operator>(const modint& rhs) const noexcept { return\
+    \ a > rhs.a; };\n\tconstexpr modint& operator+=(const modint& rhs) noexcept {\n\
+    \t\ta += rhs.a;\n\t\tif (a >= Modulus) a -= Modulus;\n\t\treturn *this;\n\t}\n\
+    \tconstexpr modint& operator-=(const modint& rhs) noexcept {\n\t\tif (a < rhs.a)\
+    \ a += Modulus;\n\t\ta -= rhs.a;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
     \ operator*=(const modint& rhs) noexcept {\n\t\ta = a * rhs.a % Modulus;\n\t\t\
     return *this;\n\t}\n\tconstexpr modint& operator/=(modint rhs) noexcept {\n\t\t\
     u64 exp = Modulus - 2;\n\t\twhile (exp) {\n\t\t\tif (exp % 2) (*this) *= rhs;\n\
@@ -119,7 +120,7 @@ data:
     \t}\n\tvoid shrink() {\n\t\twhile(this->size() > 1 and this->back() == T{}) this->pop_back();\n\
     \t}\n\npublic:\n\tT operator()(T x) const { return eval(x); }\n\tsize_type degree()\
     \ const { return this->size() - 1; }\n\tvoid clear() { this->assign(1, T{}); }\n\
-    };\n}\n\n\n#line 6 \"math/number_theoritic_transform.hpp\"\n\nnamespace cplib\
+    };\n}\n\n\n#line 7 \"math/number_theoritic_transform.hpp\"\n\nnamespace cplib\
     \ {\ntemplate<class T, int primitive_root = 3>\nclass number_theoritic_transform:\
     \ public polynomial<T> {\npublic:\n\tusing polynomial<T>::polynomial;\n\tusing\
     \ value_type \t  = typename polynomial<T>::value_type;\n\tusing reference \t \
@@ -163,7 +164,14 @@ data:
     \ = (*this)[i] * r;\n\t\treturn *this;\n\t}\n\tnumber_theoritic_transform operator*(const\
     \ number_theoritic_transform& r) const { return number_theoritic_transform(*this)\
     \ *= r; }\n\tnumber_theoritic_transform& operator*=(const number_theoritic_transform&\
-    \ r) {\n\t\treturn (*this) = convolution((*this), r);\n\t}\n};\n}\n// @docs docs/number_theoritic_transform.md\n\
+    \ r) {\n\t\treturn (*this) = convolution((*this), r);\n\t}\n};\n\ntemplate<class\
+    \ T>\nnumber_theoritic_transform<T> convex_all(std::vector<number_theoritic_transform<T>>\
+    \ polies, int size = -1) {\n\tif(polies.empty()) return number_theoritic_transform<T>::zero();\n\
+    \n\tstd::deque<int> qu;\n\tfor(int i = 0; i < polies.size(); i++) qu.push_back(i);\n\
+    \twhile(qu.size() > 1) {\n\t\tint a = qu.front(); qu.pop_front();\n\t\tint b =\
+    \ qu.front(); qu.pop_front();\n\n\t\tpolies.push_back(polies[a] * polies[b]);\n\
+    \t\tif(size != -1) polies.back().resize(size);\n\t\tqu.push_back((int)polies.size()\
+    \ - 1);\n\t}\n\treturn polies.back();\n}\n}\n// @docs docs/number_theoritic_transform.md\n\
     \n\n#line 1 \"math/formal_power_series.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <utility>\n\ntemplate<class T>\nclass formal_power_series: public T {\npublic:\n\
     \tusing T::T;\n\tusing value_type = typename T::value_type;\n\tusing reference\
@@ -301,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
   requiredBy: []
-  timestamp: '2020-10-30 17:19:30+09:00'
+  timestamp: '2020-10-30 23:34:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
