@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+namespace cplib {
 template <std::uint_fast64_t Modulus>
 class modint {
 	using u32 = std::uint_fast32_t;
@@ -18,7 +19,7 @@ public:
 	constexpr modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}
 
 	constexpr modint operator+(const modint& rhs) const noexcept { return modint(*this) += rhs; }
-	constexpr modint operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }	
+	constexpr modint operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }
 	constexpr modint operator*(const modint& rhs) const noexcept { return modint(*this) *= rhs; }
 	constexpr modint operator/(const modint& rhs) const noexcept { return modint(*this) /= rhs; }
 	constexpr modint operator^(const u64& k) const noexcept { return modint(*this) ^= k; }
@@ -50,7 +51,7 @@ public:
 		u64 exp = Modulus - 2;
 		while (exp) {
 			if (exp % 2) (*this) *= rhs;
-			
+
 			rhs *= rhs;
 			exp /= 2;
 		}
@@ -92,5 +93,6 @@ public:
 		return is;
 	}
 };
+}
 
 #endif

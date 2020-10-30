@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <vector>
 
+namespace cplib {
 template<class T>
 class polynomial: public std::vector<T> {
 public:
@@ -24,11 +25,21 @@ private:
 	}
 
 public:
-	polynomial(): std::vector<T>(1, T{}) {}
 	polynomial(const std::vector<T>& p): std::vector<T>(p) {}
 
+	size_type nonzeros() const {
+		size_type ret = 0;
+		for(int i = 0; i < this->size(); i++) {
+			if((*this)[i] != T{}) ret++;
+		}
+		return ret;
+	}
+
+public:
 	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
+	polynomial operator+(const_reference r) const { return polynomial(*this) += r; }
 	polynomial operator-(const polynomial& r) const { return polynomial(*this) -= r; }
+	polynomial operator-(const_reference r) const { return polynomial(*this) -= r; }
 	polynomial operator*(const_reference r) const { return polynomial(*this) *= r; }
 	polynomial operator/(const_reference r) const { return polynomial(*this) /= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }
@@ -43,9 +54,17 @@ public:
 		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
 		return *this;
 	}
+	polynomial& operator+=(const_reference r) {
+		(*this)[0] += r;
+		return *this;
+	}
 	polynomial& operator-=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
 		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
+		return *this;
+	}
+	polynomial& operator-=(const_reference r) {
+		(*this)[0] -= r;
 		return *this;
 	}
 	polynomial& operator*=(const_reference r) {
@@ -91,14 +110,15 @@ public:
 		if(size == 0) return polynomial();
 		return polynomial(begin(*this), begin(*this) + std::min(this->size(), size));
 	}
-	
 	void shrink() {
 		while(this->size() > 1 and this->back() == T{}) this->pop_back();
 	}
-	
+
+public:
 	T operator()(T x) const { return eval(x); }
 	size_type degree() const { return this->size() - 1; }
 	void clear() { this->assign(1, T{}); }
 };
+}
 
 #endif

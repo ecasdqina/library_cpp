@@ -4,14 +4,15 @@
 #include "../math/modint.hpp"
 #include "../math/polynomial.hpp"
 
+namespace cplib {
 template<class T, int primitive_root = 3>
 class number_theoritic_transform: public polynomial<T> {
 public:
 	using polynomial<T>::polynomial;
-	using value_type = typename polynomial<T>::value_type;
-	using reference = typename polynomial<T>::reference;
+	using value_type 	  = typename polynomial<T>::value_type;
+	using reference 	  = typename polynomial<T>::reference;
 	using const_reference = typename polynomial<T>::const_reference;
-	using size_type = typename polynomial<T>::size_type;
+	using size_type 	  = typename polynomial<T>::size_type;
 
 private:
 	void ntt(number_theoritic_transform& a) const {
@@ -76,6 +77,28 @@ private:
 		number_theoritic_transform a(ar), b(br);
 		a.resize(size);
 		b.resize(size);
+
+		if(br.nonzeros() < 5) {
+			a.assign(size, T{});
+			for(int i = 0; i < br.size(); i++) {
+				if(br[i] == T{}) continue;
+				for(int j = 0; j < ar.size(); j++) {
+					a[i + j] += br[i] * ar[j];
+				}
+			}
+			return a;
+		}
+		if(ar.nonzeros() < 5) {
+			a.assign(size, T{});
+			for(int i = 0; i < ar.size(); i++) {
+				if(ar[i] == T{}) continue;
+				for(int j = 0; j < br.size(); j++) {
+					a[i + j] += ar[i] * br[j];
+				}
+			}
+			return a;
+		}
+
 		transform(a, false);
 		transform(b, false);
 
@@ -87,7 +110,7 @@ private:
 
 public:
 	number_theoritic_transform(const polynomial<T>& p): polynomial<T>(p) {}
-	
+
 	number_theoritic_transform operator*(const_reference r) const { return number_theoritic_transform(*this) *= r; }
 	number_theoritic_transform& operator*=(const_reference r) {
 		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
@@ -98,7 +121,7 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
-
+}
 // @docs docs/number_theoritic_transform.md
 
 #endif
