@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/formal_power_series.md
     links: []
@@ -80,7 +80,7 @@ data:
   path: math/formal_power_series.hpp
   requiredBy: []
   timestamp: '2020-03-20 12:55:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/exp_of_formal_power_series.ntt.test.cpp
   - test/yosupo/log_of_formal_power_series.ntt.test.cpp

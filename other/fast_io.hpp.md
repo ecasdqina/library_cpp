@@ -9,19 +9,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2763.test.cpp
     title: test/aoj/2763.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution_mod.test.cpp
     title: test/yosupo/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
     title: test/yosupo/convolution_mod_1000000007.arbitary_mod_ntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/exp_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/log_of_formal_power_series.ntt.test.cpp
     title: test/yosupo/log_of_formal_power_series.ntt.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.segment_tree.test.cpp
     title: test/yosupo/point_add_range_sum.segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
     title: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
     path: test/yukicoder/901.test.cpp
     title: test/yukicoder/901.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/fast_io.md
     links:
@@ -241,7 +241,7 @@ data:
   path: other/fast_io.hpp
   requiredBy: []
   timestamp: '2020-03-20 12:55:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/901.test.cpp
   - test/aoj/2763.test.cpp

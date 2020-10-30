@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/affine.hpp
     title: data_structure/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/monoid.hpp
     title: data_structure/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data_structure/segment_tree.hpp
     title: data_structure/segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/modint.hpp
     title: math/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/fast_io.hpp
     title: other/fast_io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -116,38 +116,39 @@ data:
     \ acc);\n\t\t\t\t\t\tr -= 1;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - base();\n\
     \t\t\t}\n\t\t\tacc = value_type::operation(data[r], acc);\n\t\t} while((r & -r)\
     \ == r);\n\t\treturn 0;\n\t}\n};\n}\n\n// @docs docs/segment_tree.md\n#line 1\
-    \ \"math/modint.hpp\"\n\n\n\n#include <iostream>\n\ntemplate <std::uint_fast64_t\
-    \ Modulus>\nclass modint {\n\tusing u32 = std::uint_fast32_t;\n\tusing u64 = std::uint_fast64_t;\n\
-    \tusing i64 = std::int_fast64_t;\n\n\tinline u64 apply(i64 x) { return (x < 0\
-    \ ? x + Modulus : x); };\n\npublic:\n\tu64 a;\n\tstatic constexpr u64 mod = Modulus;\n\
-    \n\tconstexpr modint(const i64& x = 0) noexcept: a(apply(x % (i64)Modulus)) {}\n\
-    \n\tconstexpr modint operator+(const modint& rhs) const noexcept { return modint(*this)\
-    \ += rhs; }\n\tconstexpr modint operator-(const modint& rhs) const noexcept {\
-    \ return modint(*this) -= rhs; }\t\n\tconstexpr modint operator*(const modint&\
-    \ rhs) const noexcept { return modint(*this) *= rhs; }\n\tconstexpr modint operator/(const\
-    \ modint& rhs) const noexcept { return modint(*this) /= rhs; }\n\tconstexpr modint\
-    \ operator^(const u64& k) const noexcept { return modint(*this) ^= k; }\n\tconstexpr\
-    \ modint operator^(const modint& k) const noexcept { return modint(*this) ^= k.value();\
-    \ }\n\tconstexpr modint operator-() const noexcept { return modint(Modulus - a);\
-    \ }\n\tconstexpr modint operator++() noexcept { return (*this) = modint(*this)\
-    \ + 1; }\n\tconstexpr modint operator--() noexcept { return (*this) = modint(*this)\
-    \ - 1; }\n\tconst bool operator==(const modint& rhs) const noexcept { return a\
-    \ == rhs.a; };\n\tconst bool operator!=(const modint& rhs) const noexcept { return\
-    \ a != rhs.a; };\n\tconst bool operator<=(const modint& rhs) const noexcept {\
-    \ return a <= rhs.a; };\n\tconst bool operator>=(const modint& rhs) const noexcept\
-    \ { return a >= rhs.a; };\n\tconst bool operator<(const modint& rhs) const noexcept\
-    \ { return a < rhs.a; };\n\tconst bool operator>(const modint& rhs) const noexcept\
-    \ { return a > rhs.a; };\n\tconstexpr modint& operator+=(const modint& rhs) noexcept\
-    \ {\n\t\ta += rhs.a;\n\t\tif (a >= Modulus) a -= Modulus;\n\t\treturn *this;\n\
-    \t}\n\tconstexpr modint& operator-=(const modint& rhs) noexcept {\n\t\tif (a <\
-    \ rhs.a) a += Modulus;\n\t\ta -= rhs.a;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
+    \ \"math/modint.hpp\"\n\n\n\n#include <iostream>\n\nnamespace cplib {\ntemplate\
+    \ <std::uint_fast64_t Modulus>\nclass modint {\n\tusing u32 = std::uint_fast32_t;\n\
+    \tusing u64 = std::uint_fast64_t;\n\tusing i64 = std::int_fast64_t;\n\n\tinline\
+    \ u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };\n\npublic:\n\tu64 a;\n\
+    \tstatic constexpr u64 mod = Modulus;\n\n\tconstexpr modint(const i64& x = 0)\
+    \ noexcept: a(apply(x % (i64)Modulus)) {}\n\n\tconstexpr modint operator+(const\
+    \ modint& rhs) const noexcept { return modint(*this) += rhs; }\n\tconstexpr modint\
+    \ operator-(const modint& rhs) const noexcept { return modint(*this) -= rhs; }\n\
+    \tconstexpr modint operator*(const modint& rhs) const noexcept { return modint(*this)\
+    \ *= rhs; }\n\tconstexpr modint operator/(const modint& rhs) const noexcept {\
+    \ return modint(*this) /= rhs; }\n\tconstexpr modint operator^(const u64& k) const\
+    \ noexcept { return modint(*this) ^= k; }\n\tconstexpr modint operator^(const\
+    \ modint& k) const noexcept { return modint(*this) ^= k.value(); }\n\tconstexpr\
+    \ modint operator-() const noexcept { return modint(Modulus - a); }\n\tconstexpr\
+    \ modint operator++() noexcept { return (*this) = modint(*this) + 1; }\n\tconstexpr\
+    \ modint operator--() noexcept { return (*this) = modint(*this) - 1; }\n\tconst\
+    \ bool operator==(const modint& rhs) const noexcept { return a == rhs.a; };\n\t\
+    const bool operator!=(const modint& rhs) const noexcept { return a != rhs.a; };\n\
+    \tconst bool operator<=(const modint& rhs) const noexcept { return a <= rhs.a;\
+    \ };\n\tconst bool operator>=(const modint& rhs) const noexcept { return a >=\
+    \ rhs.a; };\n\tconst bool operator<(const modint& rhs) const noexcept { return\
+    \ a < rhs.a; };\n\tconst bool operator>(const modint& rhs) const noexcept { return\
+    \ a > rhs.a; };\n\tconstexpr modint& operator+=(const modint& rhs) noexcept {\n\
+    \t\ta += rhs.a;\n\t\tif (a >= Modulus) a -= Modulus;\n\t\treturn *this;\n\t}\n\
+    \tconstexpr modint& operator-=(const modint& rhs) noexcept {\n\t\tif (a < rhs.a)\
+    \ a += Modulus;\n\t\ta -= rhs.a;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
     \ operator*=(const modint& rhs) noexcept {\n\t\ta = a * rhs.a % Modulus;\n\t\t\
     return *this;\n\t}\n\tconstexpr modint& operator/=(modint rhs) noexcept {\n\t\t\
     u64 exp = Modulus - 2;\n\t\twhile (exp) {\n\t\t\tif (exp % 2) (*this) *= rhs;\n\
-    \t\t\t\n\t\t\trhs *= rhs;\n\t\t\texp /= 2;\n\t\t}\n\t\treturn *this;\n\t}\n\t\
-    constexpr modint& operator^=(u64 k) noexcept {\n\t\tauto b = modint(1);\n\t\t\
-    while(k) {\n\t\t\tif(k & 1) b = b * (*this);\n\t\t\t(*this) *= (*this);\n\t\t\t\
-    k >>= 1;\n\t\t}\n\t\treturn (*this) = b;\n\t}\n\tconstexpr modint& operator=(const\
+    \n\t\t\trhs *= rhs;\n\t\t\texp /= 2;\n\t\t}\n\t\treturn *this;\n\t}\n\tconstexpr\
+    \ modint& operator^=(u64 k) noexcept {\n\t\tauto b = modint(1);\n\t\twhile(k)\
+    \ {\n\t\t\tif(k & 1) b = b * (*this);\n\t\t\t(*this) *= (*this);\n\t\t\tk >>=\
+    \ 1;\n\t\t}\n\t\treturn (*this) = b;\n\t}\n\tconstexpr modint& operator=(const\
     \ modint& rhs) noexcept {\n\t\ta = rhs.a;\n\t\treturn (*this);\n\t}\n\n\tconstexpr\
     \ u64& value() noexcept { return a; }\n\tconstexpr const u64& value() const noexcept\
     \ { return a; }\n\texplicit operator bool() const { return a; }\n\texplicit operator\
@@ -156,28 +157,28 @@ data:
     \ k;\n\t}\n\n\tfriend std::ostream& operator<<(std::ostream& os, const modint&\
     \ p) {\n\t\treturn os << p.a;\n\t}\n\tfriend std::istream& operator>>(std::istream&\
     \ is, modint& p) {\n\t\tu64 t;\n\t\tis >> t;\n\t\tp = modint(t);\n\t\treturn is;\n\
-    \t}\n};\n\n\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include <cstdio>\n#line 6 \"\
-    other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n#line 9 \"other/fast_io.hpp\"\
-    \n#include <string>\n#include <type_traits>\n#include <utility>\n#line 13 \"other/fast_io.hpp\"\
-    \n\nnamespace fast_io {\n\t// fast I/O by rsk0315 (update: 2020-03-02 01:10:54).\n\
-    \tstatic size_t constexpr buf_size = 1 << 17;\n\tstatic size_t constexpr margin\
-    \ = 1;\n\tstatic char inbuf[buf_size + margin] = {};\n\tstatic char outbuf[buf_size\
-    \ + margin] = {};\n\tstatic __attribute__((aligned(8))) char minibuf[32];\n\t\
-    static size_t constexpr int_digits = 20;\t// 18446744073709551615\n\tstatic uintmax_t\
-    \ constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t constexpr first_mask\
-    \ = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask = 0x0000FFFF0000FFFF;\n\
-    \tstatic uintmax_t constexpr third_mask = 0x00000000FFFFFFFF;\n\tstatic uintmax_t\
-    \ constexpr tenpow[] = {\n\t\t1, 10, 100, 1000, 10000, 100000, 1000000, 10000000,\
-    \ 100000000\n\t};\n\ttemplate <typename Tp>\n\tusing enable_if_integral = std::enable_if<std::is_integral<Tp>::value,\
-    \ Tp>;\n\n\tclass scanner {\n\t\tchar* pos = inbuf;\n\t\tchar* endpos = inbuf\
-    \ + buf_size;\n\n\t\tvoid M_read_from_stdin() {\n\t\t\tendpos = inbuf + fread(pos,\
-    \ 1, buf_size, stdin);\n\t\t}\n\t\tvoid M_reread_from_stdin() {\n\t\t\tptrdiff_t\
-    \ len = endpos - pos;\n\t\t\tif (!(inbuf + len <= pos)) return;\n\t\t\tmemcpy(inbuf,\
-    \ pos, len);\n\t\t\tchar* tmp = inbuf + len;\n\t\t\tendpos = tmp + fread(tmp,\
-    \ 1, buf_size-len, stdin);\n\t\t\t*endpos = 0;\n\t\t\tpos = inbuf;\n\t\t}\n\n\t\
-    public:\n\t\tscanner() { M_read_from_stdin(); }\n\n\t\ttemplate <typename Integral,\n\
-    \t\t\t\t\t\t\ttypename enable_if_integral<Integral>::type* = nullptr>\n\t\tvoid\
-    \ scan_parallel(Integral& x) {\n\t\t\t// See https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4\n\
+    \t}\n};\n}\n\n\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include <cstdio>\n#line\
+    \ 6 \"other/fast_io.hpp\"\n#include <cstddef>\n#include <cstring>\n#line 9 \"\
+    other/fast_io.hpp\"\n#include <string>\n#include <type_traits>\n#include <utility>\n\
+    #line 13 \"other/fast_io.hpp\"\n\nnamespace fast_io {\n\t// fast I/O by rsk0315\
+    \ (update: 2020-03-02 01:10:54).\n\tstatic size_t constexpr buf_size = 1 << 17;\n\
+    \tstatic size_t constexpr margin = 1;\n\tstatic char inbuf[buf_size + margin]\
+    \ = {};\n\tstatic char outbuf[buf_size + margin] = {};\n\tstatic __attribute__((aligned(8)))\
+    \ char minibuf[32];\n\tstatic size_t constexpr int_digits = 20;\t// 18446744073709551615\n\
+    \tstatic uintmax_t constexpr digit_mask = 0x3030303030303030;\n\tstatic uintmax_t\
+    \ constexpr first_mask = 0x00FF00FF00FF00FF;\n\tstatic uintmax_t constexpr second_mask\
+    \ = 0x0000FFFF0000FFFF;\n\tstatic uintmax_t constexpr third_mask = 0x00000000FFFFFFFF;\n\
+    \tstatic uintmax_t constexpr tenpow[] = {\n\t\t1, 10, 100, 1000, 10000, 100000,\
+    \ 1000000, 10000000, 100000000\n\t};\n\ttemplate <typename Tp>\n\tusing enable_if_integral\
+    \ = std::enable_if<std::is_integral<Tp>::value, Tp>;\n\n\tclass scanner {\n\t\t\
+    char* pos = inbuf;\n\t\tchar* endpos = inbuf + buf_size;\n\n\t\tvoid M_read_from_stdin()\
+    \ {\n\t\t\tendpos = inbuf + fread(pos, 1, buf_size, stdin);\n\t\t}\n\t\tvoid M_reread_from_stdin()\
+    \ {\n\t\t\tptrdiff_t len = endpos - pos;\n\t\t\tif (!(inbuf + len <= pos)) return;\n\
+    \t\t\tmemcpy(inbuf, pos, len);\n\t\t\tchar* tmp = inbuf + len;\n\t\t\tendpos =\
+    \ tmp + fread(tmp, 1, buf_size-len, stdin);\n\t\t\t*endpos = 0;\n\t\t\tpos = inbuf;\n\
+    \t\t}\n\n\tpublic:\n\t\tscanner() { M_read_from_stdin(); }\n\n\t\ttemplate <typename\
+    \ Integral,\n\t\t\t\t\t\t\ttypename enable_if_integral<Integral>::type* = nullptr>\n\
+    \t\tvoid scan_parallel(Integral& x) {\n\t\t\t// See https://qiita.com/rsk0315_h4x/items/17a9cb12e0de5fd918f4\n\
     \t\t\tif (__builtin_expect(endpos <= pos + int_digits, 0))\n\t\t\t\tM_reread_from_stdin();\n\
     \t\t\tbool ends = false;\n\t\t\ttypename std::make_unsigned<Integral>::type y\
     \ = 0;\n\t\t\tbool neg = false;\n\t\t\tif (std::is_signed<Integral>::value &&\
@@ -272,8 +273,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2020-09-27 04:15:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-10-30 17:04:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.segment_tree.test.cpp
 layout: document
