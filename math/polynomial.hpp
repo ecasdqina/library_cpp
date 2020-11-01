@@ -42,8 +42,10 @@ public:
 public:
 	polynomial operator+(const polynomial& r) const { return polynomial(*this) += r; }
 	polynomial operator+(const_reference r) const { return polynomial(*this) += r; }
+	friend polynomial operator+(const_reference l, polynomial r) { return r += l; }
 	polynomial operator-(const polynomial& r) const { return polynomial(*this) -= r; }
 	polynomial operator-(const_reference r) const { return polynomial(*this) -= r; }
+	friend polynomial operator-(const_reference l, polynomial r) { return r -= l; }
 	polynomial operator*(const_reference r) const { return polynomial(*this) *= r; }
 	polynomial operator/(const_reference r) const { return polynomial(*this) /= r; }
 	polynomial operator<<(size_type r) const { return polynomial(*this) <<= r; }

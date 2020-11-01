@@ -4,6 +4,7 @@
 #include <cassert>
 #include <utility>
 
+namespace cplib {
 template<class T>
 class formal_power_series: public T {
 public:
@@ -13,7 +14,7 @@ public:
 	using const_reference = typename T::const_reference;
 	using size_type = typename T::size_type;
 
-private:
+public:
 	formal_power_series(): T(1) {}
 	formal_power_series(const T& p): T(p) {}
 
@@ -36,7 +37,7 @@ public:
 	}
 	formal_power_series log() const {
 		assert((*this)[0] == value_type(1));
-		
+
 		return (formal_power_series(this->differential()) * this->inverse()).integral().prefix(this->size());
 	}
 	formal_power_series exp() const {
@@ -67,6 +68,7 @@ public:
 		return *this;
 	}
 };
+}
 
 // @docs docs/formal_power_series.md
 

@@ -6,8 +6,8 @@
 #include "../math/polynomial.hpp"
 
 namespace cplib {
-template<class T, int primitive_root = 3>
-class number_theoritic_transform: public polynomial<T> {
+template<std::uint_fast64_t MOD, int primitive_root = 3, class T = modint<MOD>>
+class number_theoritic_transform: public polynomial<modint<MOD>> {
 public:
 	using polynomial<T>::polynomial;
 	using value_type 	  = typename polynomial<T>::value_type;
@@ -123,9 +123,9 @@ public:
 	}
 };
 
-template<class T>
-number_theoritic_transform<T> convex_all(std::vector<number_theoritic_transform<T>> polies, int size = -1) {
-	if(polies.empty()) return number_theoritic_transform<T>::zero();
+template<std::uint_fast64_t MOD>
+number_theoritic_transform<MOD> convex_all(std::vector<number_theoritic_transform<MOD>> polies, int size = -1) {
+	if(polies.empty()) return number_theoritic_transform<MOD>::zero();
 
 	std::deque<int> qu;
 	for(int i = 0; i < polies.size(); i++) qu.push_back(i);
