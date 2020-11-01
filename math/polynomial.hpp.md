@@ -52,9 +52,11 @@ data:
     \tstatic polynomial<T> term(int k) { return polynomial<T>({T{1}}) << k; }\n\n\
     public:\n\tpolynomial operator+(const polynomial& r) const { return polynomial(*this)\
     \ += r; }\n\tpolynomial operator+(const_reference r) const { return polynomial(*this)\
-    \ += r; }\n\tpolynomial operator-(const polynomial& r) const { return polynomial(*this)\
+    \ += r; }\n\tfriend polynomial operator+(const_reference l, polynomial r) { return\
+    \ r += l; }\n\tpolynomial operator-(const polynomial& r) const { return polynomial(*this)\
     \ -= r; }\n\tpolynomial operator-(const_reference r) const { return polynomial(*this)\
-    \ -= r; }\n\tpolynomial operator*(const_reference r) const { return polynomial(*this)\
+    \ -= r; }\n\tfriend polynomial operator-(const_reference l, polynomial r) { return\
+    \ r -= l; }\n\tpolynomial operator*(const_reference r) const { return polynomial(*this)\
     \ *= r; }\n\tpolynomial operator/(const_reference r) const { return polynomial(*this)\
     \ /= r; }\n\tpolynomial operator<<(size_type r) const { return polynomial(*this)\
     \ <<= r; }\n\tpolynomial operator>>(size_type r) const { return polynomial(*this)\
@@ -105,9 +107,11 @@ data:
     \ term(int k) { return polynomial<T>({T{1}}) << k; }\n\npublic:\n\tpolynomial\
     \ operator+(const polynomial& r) const { return polynomial(*this) += r; }\n\t\
     polynomial operator+(const_reference r) const { return polynomial(*this) += r;\
-    \ }\n\tpolynomial operator-(const polynomial& r) const { return polynomial(*this)\
+    \ }\n\tfriend polynomial operator+(const_reference l, polynomial r) { return r\
+    \ += l; }\n\tpolynomial operator-(const polynomial& r) const { return polynomial(*this)\
     \ -= r; }\n\tpolynomial operator-(const_reference r) const { return polynomial(*this)\
-    \ -= r; }\n\tpolynomial operator*(const_reference r) const { return polynomial(*this)\
+    \ -= r; }\n\tfriend polynomial operator-(const_reference l, polynomial r) { return\
+    \ r -= l; }\n\tpolynomial operator*(const_reference r) const { return polynomial(*this)\
     \ *= r; }\n\tpolynomial operator/(const_reference r) const { return polynomial(*this)\
     \ /= r; }\n\tpolynomial operator<<(size_type r) const { return polynomial(*this)\
     \ <<= r; }\n\tpolynomial operator>>(size_type r) const { return polynomial(*this)\
@@ -150,7 +154,7 @@ data:
   - math/arbitary_mod_number_theoritic_transform.hpp
   - math/fast_fourier_transform.hpp
   - math/number_theoritic_transform.hpp
-  timestamp: '2020-10-30 17:19:30+09:00'
+  timestamp: '2020-11-01 20:48:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/exp_of_formal_power_series.ntt.test.cpp

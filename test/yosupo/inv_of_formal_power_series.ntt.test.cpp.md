@@ -84,9 +84,11 @@ data:
     \tstatic polynomial<T> term(int k) { return polynomial<T>({T{1}}) << k; }\n\n\
     public:\n\tpolynomial operator+(const polynomial& r) const { return polynomial(*this)\
     \ += r; }\n\tpolynomial operator+(const_reference r) const { return polynomial(*this)\
-    \ += r; }\n\tpolynomial operator-(const polynomial& r) const { return polynomial(*this)\
+    \ += r; }\n\tfriend polynomial operator+(const_reference l, polynomial r) { return\
+    \ r += l; }\n\tpolynomial operator-(const polynomial& r) const { return polynomial(*this)\
     \ -= r; }\n\tpolynomial operator-(const_reference r) const { return polynomial(*this)\
-    \ -= r; }\n\tpolynomial operator*(const_reference r) const { return polynomial(*this)\
+    \ -= r; }\n\tfriend polynomial operator-(const_reference l, polynomial r) { return\
+    \ r -= l; }\n\tpolynomial operator*(const_reference r) const { return polynomial(*this)\
     \ *= r; }\n\tpolynomial operator/(const_reference r) const { return polynomial(*this)\
     \ /= r; }\n\tpolynomial operator<<(size_type r) const { return polynomial(*this)\
     \ <<= r; }\n\tpolynomial operator>>(size_type r) const { return polynomial(*this)\
@@ -121,31 +123,31 @@ data:
     \t}\n\npublic:\n\tT operator()(T x) const { return eval(x); }\n\tsize_type degree()\
     \ const { return this->size() - 1; }\n\tvoid clear() { this->assign(1, T{}); }\n\
     };\n}\n\n\n#line 7 \"math/number_theoritic_transform.hpp\"\n\nnamespace cplib\
-    \ {\ntemplate<class T, int primitive_root = 3>\nclass number_theoritic_transform:\
-    \ public polynomial<T> {\npublic:\n\tusing polynomial<T>::polynomial;\n\tusing\
-    \ value_type \t  = typename polynomial<T>::value_type;\n\tusing reference \t \
-    \ = typename polynomial<T>::reference;\n\tusing const_reference = typename polynomial<T>::const_reference;\n\
-    \tusing size_type \t  = typename polynomial<T>::size_type;\n\nprivate:\n\tvoid\
-    \ ntt(number_theoritic_transform& a) const {\n\t\tint N = a.size();\n\t\tstatic\
-    \ std::vector<T> dw;\n\t\tif(dw.size() < N) {\n\t\t\tint n = dw.size();\n\t\t\t\
-    dw.resize(N);\n\t\t\tfor(int i = n; i < N; i++) dw[i] = -(T(primitive_root) ^\
-    \ ((T::mod - 1) >> i + 2));\n\t\t}\n\n\t\tfor(int m = N; m >>= 1;) {\n\t\t\tT\
-    \ w = 1;\n\t\t\tfor(int s = 0, k = 0; s < N; s += 2 * m) {\n\t\t\t\tfor(int i\
-    \ = s, j = s + m; i < s + m; i++, j++) {\n\t\t\t\t\tT x = a[i], y = a[j] * w;\n\
-    \t\t\t\t\ta[i] = x + y;\n\t\t\t\t\ta[j] = x - y;\n\t\t\t\t}\n\t\t\t\tw *= dw[__builtin_ctz(++k)];\n\
-    \t\t\t}\n\t\t}\n\t}\n\tvoid intt(number_theoritic_transform& a) const {\n\t\t\
-    int N = a.size();\n\t\tstatic std::vector<T> idw;\n\t\tif(idw.size() < N) {\n\t\
-    \t\tint n = idw.size();\n\t\t\tidw.resize(N);\n\t\t\tfor(int i = n; i < N; i++)\
-    \ idw[i] = (-(T(primitive_root) ^ ((T::mod - 1) >> i + 2))).inverse();\n\t\t}\n\
-    \n\t\tfor(int m = 1; m < N; m *= 2) {\n\t\t\tT w = 1;\n\t\t\tfor(int s = 0, k\
-    \ = 0; s < N; s += 2 * m) {\n\t\t\t\tfor(int i = s, j = s + m; i < s + m; i++,\
-    \ j++) {\n\t\t\t\t\tT x = a[i], y = a[j];\n\t\t\t\t\ta[i] = x + y;\n\t\t\t\t\t\
-    a[j] = (x - y) * w;\n\t\t\t\t}\n\t\t\t\tw *= idw[__builtin_ctz(++k)];\n\t\t\t\
-    }\n\t\t}\n\t}\n\tvoid transform(number_theoritic_transform& a, bool inverse =\
-    \ false) const {\n\t\tsize_type n = 0;\n\t\twhile((1 << n) < a.size()) n++;\n\t\
-    \tsize_type N = 1 << n;\n\t\ta.resize(N);\n\n\t\tif(!inverse) {\n\t\t\tntt(a);\n\
-    \t\t} else {\n\t\t\tintt(a);\n\t\t\tT inv = T(N).inverse();\n\t\t\tfor(int i =\
-    \ 0; i < a.size(); i++) a[i] *= inv;\n\t\t}\n\t}\n\n\tnumber_theoritic_transform\
+    \ {\ntemplate<std::uint_fast64_t MOD, int primitive_root = 3, class T = modint<MOD>>\n\
+    class number_theoritic_transform: public polynomial<modint<MOD>> {\npublic:\n\t\
+    using polynomial<T>::polynomial;\n\tusing value_type \t  = typename polynomial<T>::value_type;\n\
+    \tusing reference \t  = typename polynomial<T>::reference;\n\tusing const_reference\
+    \ = typename polynomial<T>::const_reference;\n\tusing size_type \t  = typename\
+    \ polynomial<T>::size_type;\n\nprivate:\n\tvoid ntt(number_theoritic_transform&\
+    \ a) const {\n\t\tint N = a.size();\n\t\tstatic std::vector<T> dw;\n\t\tif(dw.size()\
+    \ < N) {\n\t\t\tint n = dw.size();\n\t\t\tdw.resize(N);\n\t\t\tfor(int i = n;\
+    \ i < N; i++) dw[i] = -(T(primitive_root) ^ ((T::mod - 1) >> i + 2));\n\t\t}\n\
+    \n\t\tfor(int m = N; m >>= 1;) {\n\t\t\tT w = 1;\n\t\t\tfor(int s = 0, k = 0;\
+    \ s < N; s += 2 * m) {\n\t\t\t\tfor(int i = s, j = s + m; i < s + m; i++, j++)\
+    \ {\n\t\t\t\t\tT x = a[i], y = a[j] * w;\n\t\t\t\t\ta[i] = x + y;\n\t\t\t\t\t\
+    a[j] = x - y;\n\t\t\t\t}\n\t\t\t\tw *= dw[__builtin_ctz(++k)];\n\t\t\t}\n\t\t\
+    }\n\t}\n\tvoid intt(number_theoritic_transform& a) const {\n\t\tint N = a.size();\n\
+    \t\tstatic std::vector<T> idw;\n\t\tif(idw.size() < N) {\n\t\t\tint n = idw.size();\n\
+    \t\t\tidw.resize(N);\n\t\t\tfor(int i = n; i < N; i++) idw[i] = (-(T(primitive_root)\
+    \ ^ ((T::mod - 1) >> i + 2))).inverse();\n\t\t}\n\n\t\tfor(int m = 1; m < N; m\
+    \ *= 2) {\n\t\t\tT w = 1;\n\t\t\tfor(int s = 0, k = 0; s < N; s += 2 * m) {\n\t\
+    \t\t\tfor(int i = s, j = s + m; i < s + m; i++, j++) {\n\t\t\t\t\tT x = a[i],\
+    \ y = a[j];\n\t\t\t\t\ta[i] = x + y;\n\t\t\t\t\ta[j] = (x - y) * w;\n\t\t\t\t\
+    }\n\t\t\t\tw *= idw[__builtin_ctz(++k)];\n\t\t\t}\n\t\t}\n\t}\n\tvoid transform(number_theoritic_transform&\
+    \ a, bool inverse = false) const {\n\t\tsize_type n = 0;\n\t\twhile((1 << n) <\
+    \ a.size()) n++;\n\t\tsize_type N = 1 << n;\n\t\ta.resize(N);\n\n\t\tif(!inverse)\
+    \ {\n\t\t\tntt(a);\n\t\t} else {\n\t\t\tintt(a);\n\t\t\tT inv = T(N).inverse();\n\
+    \t\t\tfor(int i = 0; i < a.size(); i++) a[i] *= inv;\n\t\t}\n\t}\n\n\tnumber_theoritic_transform\
     \ convolution(const number_theoritic_transform& ar, const number_theoritic_transform&\
     \ br) const {\n\t\tsize_type size = ar.degree() + br.degree() + 1;\n\t\tnumber_theoritic_transform\
     \ a(ar), b(br);\n\t\ta.resize(size);\n\t\tb.resize(size);\n\n\t\tif(br.nonzeros()\
@@ -164,28 +166,28 @@ data:
     \ = (*this)[i] * r;\n\t\treturn *this;\n\t}\n\tnumber_theoritic_transform operator*(const\
     \ number_theoritic_transform& r) const { return number_theoritic_transform(*this)\
     \ *= r; }\n\tnumber_theoritic_transform& operator*=(const number_theoritic_transform&\
-    \ r) {\n\t\treturn (*this) = convolution((*this), r);\n\t}\n};\n\ntemplate<class\
-    \ T>\nnumber_theoritic_transform<T> convex_all(std::vector<number_theoritic_transform<T>>\
-    \ polies, int size = -1) {\n\tif(polies.empty()) return number_theoritic_transform<T>::zero();\n\
+    \ r) {\n\t\treturn (*this) = convolution((*this), r);\n\t}\n};\n\ntemplate<std::uint_fast64_t\
+    \ MOD>\nnumber_theoritic_transform<MOD> convex_all(std::vector<number_theoritic_transform<MOD>>\
+    \ polies, int size = -1) {\n\tif(polies.empty()) return number_theoritic_transform<MOD>::zero();\n\
     \n\tstd::deque<int> qu;\n\tfor(int i = 0; i < polies.size(); i++) qu.push_back(i);\n\
     \twhile(qu.size() > 1) {\n\t\tint a = qu.front(); qu.pop_front();\n\t\tint b =\
     \ qu.front(); qu.pop_front();\n\n\t\tpolies.push_back(polies[a] * polies[b]);\n\
     \t\tif(size != -1) polies.back().resize(size);\n\t\tqu.push_back((int)polies.size()\
     \ - 1);\n\t}\n\treturn polies.back();\n}\n}\n// @docs docs/number_theoritic_transform.md\n\
     \n\n#line 1 \"math/formal_power_series.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <utility>\n\ntemplate<class T>\nclass formal_power_series: public T {\npublic:\n\
-    \tusing T::T;\n\tusing value_type = typename T::value_type;\n\tusing reference\
-    \ = typename T::reference;\n\tusing const_reference = typename T::const_reference;\n\
-    \tusing size_type = typename T::size_type;\n\nprivate:\n\tformal_power_series():\
-    \ T(1) {}\n\tformal_power_series(const T& p): T(p) {}\n\npublic:\n\tformal_power_series\
-    \ inverse() const {\n\t\tassert((*this)[0] != value_type{});\n\n\t\tformal_power_series\
-    \ ret(1, (*this)[0].inverse());\n\t\tfor(int i = 1; i < this->size(); i <<= 1)\
-    \ {\n\t\t\tauto tmp = ret * this->prefix(i << 1);\n\t\t\tfor(int j = 0; j < i;\
-    \ j++) {\n\t\t\t\ttmp[j] = value_type{};\n\t\t\t\tif(j + i < tmp.size()) tmp[j\
-    \ + i] *= value_type(-1);\n\t\t\t}\n\t\t\ttmp = tmp * ret;\n\t\t\tfor(int j =\
-    \ 0; j < i; j++) tmp[j] = ret[j];\n\t\t\tret = std::move(tmp).prefix(i << 1);\n\
-    \t\t}\n\t\treturn ret.prefix(this->size());\n\t}\n\tformal_power_series log()\
-    \ const {\n\t\tassert((*this)[0] == value_type(1));\n\t\t\n\t\treturn (formal_power_series(this->differential())\
+    \ <utility>\n\nnamespace cplib {\ntemplate<class T>\nclass formal_power_series:\
+    \ public T {\npublic:\n\tusing T::T;\n\tusing value_type = typename T::value_type;\n\
+    \tusing reference = typename T::reference;\n\tusing const_reference = typename\
+    \ T::const_reference;\n\tusing size_type = typename T::size_type;\n\npublic:\n\
+    \tformal_power_series(): T(1) {}\n\tformal_power_series(const T& p): T(p) {}\n\
+    \npublic:\n\tformal_power_series inverse() const {\n\t\tassert((*this)[0] != value_type{});\n\
+    \n\t\tformal_power_series ret(1, (*this)[0].inverse());\n\t\tfor(int i = 1; i\
+    \ < this->size(); i <<= 1) {\n\t\t\tauto tmp = ret * this->prefix(i << 1);\n\t\
+    \t\tfor(int j = 0; j < i; j++) {\n\t\t\t\ttmp[j] = value_type{};\n\t\t\t\tif(j\
+    \ + i < tmp.size()) tmp[j + i] *= value_type(-1);\n\t\t\t}\n\t\t\ttmp = tmp *\
+    \ ret;\n\t\t\tfor(int j = 0; j < i; j++) tmp[j] = ret[j];\n\t\t\tret = std::move(tmp).prefix(i\
+    \ << 1);\n\t\t}\n\t\treturn ret.prefix(this->size());\n\t}\n\tformal_power_series\
+    \ log() const {\n\t\tassert((*this)[0] == value_type(1));\n\n\t\treturn (formal_power_series(this->differential())\
     \ * this->inverse()).integral().prefix(this->size());\n\t}\n\tformal_power_series\
     \ exp() const {\n\t\tassert((*this)[0] == value_type{});\n\n\t\tformal_power_series\
     \ f(1, value_type(1)), g(1, value_type(1));\n\t\tfor(int i = 1; i < this->size();\
@@ -199,7 +201,7 @@ data:
     \t\t\tformal_power_series g(f >> i);\n\t\t\t\tg = formal_power_series(g.log()\
     \ * value_type(k)).exp() * (*this)[i].pow(k);\n\t\t\t\tif(i * k > this->size())\
     \ return formal_power_series(this->size());\n\n\t\t\t\treturn (g << (i * k)).prefix(this->size());\n\
-    \t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n};\n\n// @docs docs/formal_power_series.md\n\
+    \t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n};\n}\n\n// @docs docs/formal_power_series.md\n\
     \n\n#line 1 \"other/fast_io.hpp\"\n\n\n\n#include <cstdio>\n#line 6 \"other/fast_io.hpp\"\
     \n#include <cstddef>\n#include <cstring>\n#include <limits>\n#include <string>\n\
     #include <type_traits>\n#line 13 \"other/fast_io.hpp\"\n\nnamespace fast_io {\n\
@@ -309,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
   requiredBy: []
-  timestamp: '2020-10-30 23:34:55+09:00'
+  timestamp: '2020-11-01 20:48:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/inv_of_formal_power_series.ntt.test.cpp
