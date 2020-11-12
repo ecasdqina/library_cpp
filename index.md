@@ -24,6 +24,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/union_find.hpp
       title: data_structure/union_find.hpp
+  - name: graph
+    pages:
+    - icon: ':warning:'
+      path: graph/weisfeiler_lehman_graph_kernel.hpp
+      title: graph/weisfeiler_lehman_graph_kernel.hpp
   - name: math
     pages:
     - icon: ':x:'
