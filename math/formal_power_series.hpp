@@ -1,6 +1,7 @@
 #ifndef INCLUDED_FORMAL_POWER_SERIES_HPP
 #define INCLUDED_FORMAL_POWER_SERIES_HPP
 
+#include <cstddef>
 #include <cassert>
 #include <utility>
 
@@ -23,14 +24,14 @@ public:
 		assert((*this)[0] != value_type{});
 
 		formal_power_series ret(1, (*this)[0].inverse());
-		for(int i = 1; i < this->size(); i <<= 1) {
+		for(size_t i = 1; i < this->size(); i <<= 1) {
 			auto tmp = ret * this->prefix(i << 1);
-			for(int j = 0; j < i; j++) {
+			for(size_t j = 0; j < i; j++) {
 				tmp[j] = value_type{};
 				if(j + i < tmp.size()) tmp[j + i] *= value_type(-1);
 			}
 			tmp = tmp * ret;
-			for(int j = 0; j < i; j++) tmp[j] = ret[j];
+			for(size_t j = 0; j < i; j++) tmp[j] = ret[j];
 			ret = std::move(tmp).prefix(i << 1);
 		}
 		return ret.prefix(this->size());
@@ -44,7 +45,7 @@ public:
 		assert((*this)[0] == value_type{});
 
 		formal_power_series f(1, value_type(1)), g(1, value_type(1));
-		for(int i = 1; i < this->size(); i <<= 1) {
+		for(size_t i = 1; i < this->size(); i <<= 1) {
 			g = (g * value_type(2) - f * g * g).prefix(i);
 			formal_power_series q = this->differential().prefix(i - 1);
 			formal_power_series w = (q + g * (f.differential() - f * q)).prefix((i << 1) - 1);

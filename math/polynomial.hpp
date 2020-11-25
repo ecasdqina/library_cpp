@@ -17,7 +17,7 @@ public:
 private:
 	T eval(T x) const {
 		T ret = (*this)[0], tmp = x;
-		for(int i = 1; i < this->size(); i++) {
+		for(size_t i = 1; i < this->size(); i++) {
 			ret = ret + (*this)[i] * tmp;
 			tmp = tmp * x;
 		}
@@ -29,7 +29,7 @@ public:
 
 	size_type nonzeros() const {
 		size_type ret = 0;
-		for(int i = 0; i < this->size(); i++) {
+		for(size_t i = 0; i < this->size(); i++) {
 			if((*this)[i] != T{}) ret++;
 		}
 		return ret;
@@ -52,12 +52,12 @@ public:
 	polynomial operator>>(size_type r) const { return polynomial(*this) >>= r; }
 	polynomial operator-() const {
 		polynomial ret(this->size());
-		for(int i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
+		for(size_t i = 0; i < this->size(); i++) ret[i] = -(*this)[i];
 		return ret;
 	}
 	polynomial& operator+=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
-		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
+		for(size_t i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] + r[i];
 		return *this;
 	}
 	polynomial& operator+=(const_reference r) {
@@ -66,7 +66,7 @@ public:
 	}
 	polynomial& operator-=(const polynomial& r) {
 		if(r.size() > this->size()) this->resize(r.size());
-		for(int i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
+		for(size_t i = 0; i < r.size(); i++) (*this)[i] = (*this)[i] - r[i];
 		return *this;
 	}
 	polynomial& operator-=(const_reference r) {
@@ -74,11 +74,11 @@ public:
 		return *this;
 	}
 	polynomial& operator*=(const_reference r) {
-		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
+		for(size_t i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
 		return *this;
 	}
 	polynomial& operator/=(const_reference r) {
-		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] / r;
+		for(size_t i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] / r;
 		return *this;
 	}
 	polynomial& operator<<=(size_type r) {
@@ -93,23 +93,23 @@ public:
 
 	polynomial differential(size_type k) const {
 		polynomial ret(*this);
-		for(int i = 0; i < k; i++) ret = ret.differential();
+		for(size_t i = 0; i < k; i++) ret = ret.differential();
 		return ret;
 	}
 	polynomial differential() const {
 		if(degree() < 1) return polynomial();
 		polynomial ret(this->size() - 1);
-		for(int i = 1; i < this->size(); i++) ret[i - 1] = (*this)[i] * T{i};
+		for(size_t i = 1; i < this->size(); i++) ret[i - 1] = (*this)[i] * T(i);
 		return ret;
 	}
 	polynomial integral(size_type k) const {
 		polynomial ret(*this);
-		for(int i = 0; i < k; i++) ret = ret.integral();
+		for(size_t i = 0; i < k; i++) ret = ret.integral();
 		return ret;
 	}
 	polynomial integral() const {
 		polynomial ret(this->size() + 1);
-		for(int i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T{i + 1};
+		for(size_t i = 0; i < this->size(); i++) ret[i + 1] = (*this)[i] / T(i + 1);
 		return ret;
 	}
 	polynomial prefix(size_type size) const {

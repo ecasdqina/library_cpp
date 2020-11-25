@@ -6,8 +6,10 @@
 #include "../math/polynomial.hpp"
 
 namespace cplib {
-template<std::uint_fast64_t MOD, int primitive_root = 3, class T = modint<MOD>>
-class number_theoritic_transform: public polynomial<modint<MOD>> {
+template<std::uint_fast64_t MOD,
+	int primitive_root = 3,
+	class T = modint<MOD>>
+class number_theoritic_transform: public polynomial<T> {
 public:
 	using polynomial<T>::polynomial;
 	using value_type 	  = typename polynomial<T>::value_type;
@@ -17,18 +19,18 @@ public:
 
 private:
 	void ntt(number_theoritic_transform& a) const {
-		int N = a.size();
+		size_t N = a.size();
 		static std::vector<T> dw;
 		if(dw.size() < N) {
 			int n = dw.size();
 			dw.resize(N);
-			for(int i = n; i < N; i++) dw[i] = -(T(primitive_root) ^ ((T::mod - 1) >> i + 2));
+			for(size_t i = n; i < N; i++) dw[i] = -(T(primitive_root) ^ ((T::mod - 1) >> (i + 2)));
 		}
 
-		for(int m = N; m >>= 1;) {
+		for(size_t m = N; m >>= 1;) {
 			T w = 1;
-			for(int s = 0, k = 0; s < N; s += 2 * m) {
-				for(int i = s, j = s + m; i < s + m; i++, j++) {
+			for(size_t s = 0, k = 0; s < N; s += 2 * m) {
+				for(size_t i = s, j = s + m; i < s + m; i++, j++) {
 					T x = a[i], y = a[j] * w;
 					a[i] = x + y;
 					a[j] = x - y;
@@ -38,18 +40,18 @@ private:
 		}
 	}
 	void intt(number_theoritic_transform& a) const {
-		int N = a.size();
+		size_t N = a.size();
 		static std::vector<T> idw;
 		if(idw.size() < N) {
-			int n = idw.size();
+			size_t n = idw.size();
 			idw.resize(N);
-			for(int i = n; i < N; i++) idw[i] = (-(T(primitive_root) ^ ((T::mod - 1) >> i + 2))).inverse();
+			for(size_t i = n; i < N; i++) idw[i] = (-(T(primitive_root) ^ ((T::mod - 1) >> (i + 2)))).inverse();
 		}
 
-		for(int m = 1; m < N; m *= 2) {
+		for(size_t m = 1; m < N; m *= 2) {
 			T w = 1;
-			for(int s = 0, k = 0; s < N; s += 2 * m) {
-				for(int i = s, j = s + m; i < s + m; i++, j++) {
+			for(size_t s = 0, k = 0; s < N; s += 2 * m) {
+				for(size_t i = s, j = s + m; i < s + m; i++, j++) {
 					T x = a[i], y = a[j];
 					a[i] = x + y;
 					a[j] = (x - y) * w;
@@ -60,7 +62,7 @@ private:
 	}
 	void transform(number_theoritic_transform& a, bool inverse = false) const {
 		size_type n = 0;
-		while((1 << n) < a.size()) n++;
+		while((1ul << n) < a.size()) n++;
 		size_type N = 1 << n;
 		a.resize(N);
 
@@ -69,7 +71,7 @@ private:
 		} else {
 			intt(a);
 			T inv = T(N).inverse();
-			for(int i = 0; i < a.size(); i++) a[i] *= inv;
+			for(size_t i = 0; i < a.size(); i++) a[i] *= inv;
 		}
 	}
 
@@ -81,9 +83,9 @@ private:
 
 		if(br.nonzeros() < 5) {
 			a.assign(size, T{});
-			for(int i = 0; i < br.size(); i++) {
+			for(size_t i = 0; i < br.size(); i++) {
 				if(br[i] == T{}) continue;
-				for(int j = 0; j < ar.size(); j++) {
+				for(size_t j = 0; j < ar.size(); j++) {
 					a[i + j] += br[i] * ar[j];
 				}
 			}
@@ -91,9 +93,9 @@ private:
 		}
 		if(ar.nonzeros() < 5) {
 			a.assign(size, T{});
-			for(int i = 0; i < ar.size(); i++) {
+			for(size_t i = 0; i < ar.size(); i++) {
 				if(ar[i] == T{}) continue;
-				for(int j = 0; j < br.size(); j++) {
+				for(size_t j = 0; j < br.size(); j++) {
 					a[i + j] += ar[i] * br[j];
 				}
 			}
@@ -103,7 +105,7 @@ private:
 		transform(a, false);
 		transform(b, false);
 
-		for(int i = 0; i < a.size(); i++) a[i] *= b[i];
+		for(size_t i = 0; i < a.size(); i++) a[i] *= b[i];
 		transform(a, true);
 		a.resize(size);
 		return a;

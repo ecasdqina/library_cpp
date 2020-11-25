@@ -5,6 +5,7 @@
 #include "../math/polynomial.hpp"
 #include "../math/number_theoritic_transform.hpp"
 
+namespace cplib {
 namespace amnttlib {
 	using u64 = std::uint_fast64_t;
 
@@ -31,7 +32,8 @@ namespace amnttlib {
 	};
 };
 
-template<class T,
+template<std::uint_fast64_t MOD,
+	class T = cplib::modint<MOD>,
 	amnttlib::u64 MOD_1 = amnttlib::ntt_primes[0][0],
 	amnttlib::u64 PRR_1 = amnttlib::ntt_primes[0][1],
 	amnttlib::u64 MOD_2 = amnttlib::ntt_primes[2][0],
@@ -41,10 +43,10 @@ template<class T,
 > class arbitary_mod_number_theoritic_transform: public polynomial<T> {
 public:
 	using polynomial<T>::polynomial;
-	using value_type = typename polynomial<T>::value_type;
-	using reference = typename polynomial<T>::reference;
+	using value_type 	  = typename polynomial<T>::value_type;
+	using reference 	  = typename polynomial<T>::reference;
 	using const_reference = typename polynomial<T>::const_reference;
-	using size_type = typename polynomial<T>::size_type;
+	using size_type 	  = typename polynomial<T>::size_type;
 
 	using amntt = arbitary_mod_number_theoritic_transform;
 	using m1 = modint<MOD_1>;
@@ -53,15 +55,15 @@ public:
 
 private:
 	amntt convolution(const amntt& ar, const amntt& br) {
-		number_theoritic_transform<m1, PRR_1> ntt1_a(ar.size()), ntt1_b(br.size());
-		number_theoritic_transform<m2, PRR_2> ntt2_a(ar.size()), ntt2_b(br.size());
-		number_theoritic_transform<m3, PRR_3> ntt3_a(ar.size()), ntt3_b(br.size());
-		for(int i = 0; i < ar.size(); i++) {
+		number_theoritic_transform<MOD_1, PRR_1> ntt1_a(ar.size()), ntt1_b(br.size());
+		number_theoritic_transform<MOD_2, PRR_2> ntt2_a(ar.size()), ntt2_b(br.size());
+		number_theoritic_transform<MOD_3, PRR_3> ntt3_a(ar.size()), ntt3_b(br.size());
+		for(size_t i = 0; i < ar.size(); i++) {
 			ntt1_a[i] = m1(ar[i].value());
 			ntt2_a[i] = m2(ar[i].value());
 			ntt3_a[i] = m3(ar[i].value());
 		}
-		for(int i = 0; i < br.size(); i++) {
+		for(size_t i = 0; i < br.size(); i++) {
 			ntt1_b[i] = m1(br[i].value());
 			ntt2_b[i] = m2(br[i].value());
 			ntt3_b[i] = m3(br[i].value());
@@ -74,7 +76,7 @@ private:
 		const m2 m1_inv_m2 = m2(MOD_1).inverse();
 		const m3 m12_inv_m3 = (m3(MOD_1) * m3(MOD_2)).inverse();
 		const T m12 = T(MOD_1) * T(MOD_2);
-		for(int i = 0; i < ret.size(); i++) {
+		for(size_t i = 0; i < ret.size(); i++) {
 			m2 v1 = (m2(y[i].value()) - m2(x[i].value())) * m1_inv_m2;
 			m3 v2 = (m3(z[i].value()) - (m3(x[i].value()) + m3(MOD_1) * m3(v1.value()))) * m12_inv_m3;
 			ret[i] = (T(x[i].value()) + T(MOD_1) * T(v1.value()) + m12 * T(v2.value()));
@@ -82,14 +84,14 @@ private:
 		ret.resize(ar.degree() + br.degree() + 1);
 		return ret;
 	}
-	
+
 public:
 	arbitary_mod_number_theoritic_transform(const polynomial<T>& p): polynomial<T>(p) {}
 
 
 	amntt operator*(const_reference r) const { return amntt(*this) *= r; }
 	amntt& operator*=(const_reference r) {
-		for(int i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
+		for(size_t i = 0; i < this->size(); i++) (*this)[i] = (*this)[i] * r;
 		return *this;
 	}
 	amntt operator*(const amntt& r) const { return amntt(*this) *= r; }
@@ -97,6 +99,7 @@ public:
 		return (*this) = convolution((*this), r);
 	}
 };
+}
 
 // @docs docs/arbitary_mod_number_theoritic_transform.md
 
