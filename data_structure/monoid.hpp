@@ -62,6 +62,8 @@ template<class A, class B> struct cartesian_product_monoid {
 
 	value_type a;
 
+	constexpr cartesian_product_monoid(const typename A::value_type& a): a(a, a) {}
+	constexpr cartesian_product_monoid(const typename A::value_type& a, const typename B::value_type& b): a(a, b) {}
 	constexpr cartesian_product_monoid(const value_type& a): a(a) {}
 	static constexpr cartesian_product_monoid operation(const cartesian_product_monoid& l, const cartesian_product_monoid& r) {
 		return cartesian_product_monoid{{A::operation(l.a.first, r.a.first).a, B::operation(l.a.second, r.a.second).a}};

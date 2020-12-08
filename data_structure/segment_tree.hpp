@@ -26,10 +26,15 @@ public:
 		while(size <= n) size <<= 1;
 		data.assign(size << 1, value_type::identity());
 	}
-	template<class InputIt> explicit segment_tree(InputIt first, InputIt last)
-	: segment_tree(std::distance(first, last)) {
-		for(int index = 0; first != last; first++, index++) set(index, *first);
+	explicit segment_tree(usize n, const T& x): segment_tree(n) {
+		for(usize index = 0; index < n; index++) set(index, x);
 		build();
+	}
+	template<class InputIt, typename std::iterator_traits<InputIt>::iterator_category()>
+	segment_tree(InputIt first, InputIt last, std::input_iterator_tag) {
+		for(usize index = 0; first != last; first++, index++) set(index, *first);
+		build();
+
 	}
 
 	usize size() const { return n; }
@@ -63,8 +68,14 @@ public:
 		value_type lval = value_type::identity();
 		value_type rval = value_type::identity();
 		while(first != last) {
-			if(first & 1) lval = value_type::operation(lval, data[first++]);
-			if(last  & 1) rval = value_type::operation(data[--last], rval);
+			if(first & 1) {
+				lval = value_type::operation(lval, data[first]);
+				first++;
+			}
+			if(last  & 1) {
+				--last;
+				rval = value_type::operation(data[last], rval);
+			}
 			first >>= 1;
 			last  >>= 1;
 		}

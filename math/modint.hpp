@@ -8,6 +8,7 @@ template <std::uint_fast64_t Modulus>
 class modint {
 	using u32 = std::uint_fast32_t;
 	using u64 = std::uint_fast64_t;
+	using i32 = std::int_fast32_t;
 	using i64 = std::int_fast64_t;
 
 	inline u64 apply(i64 x) { return (x < 0 ? x + Modulus : x); };
@@ -71,17 +72,21 @@ public:
 		return (*this);
 	}
 
-	constexpr u64& value() noexcept { return a; }
-	constexpr const u64& value() const noexcept { return a; }
-	explicit operator bool() const { return a; }
-	explicit operator u32() const { return a; }
-
 	const modint inverse() const {
 		return modint(1) / *this;
 	}
-	const modint pow(i64 k) const {
+	const modint power(i64 k) const {
+		if(k < 0) return modint(*this).inverse() ^ (-k);
 		return modint(*this) ^ k;
 	}
+
+	explicit operator bool() const { return a; }
+	explicit operator i32() const { return a; }
+	explicit operator i64() const { return a; }
+	explicit operator u32() const { return a; }
+	explicit operator u64() const { return a; }
+	constexpr u64& value() noexcept { return a; }
+	constexpr const u64& value() const noexcept { return a; }
 
 	friend std::ostream& operator<<(std::ostream& os, const modint& p) {
 		return os << p.a;
